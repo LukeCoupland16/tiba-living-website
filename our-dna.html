@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tiba Living — Where You Arrive</title>
-  <meta name="description" content="Tiba Living crafts boutique real estate sanctuaries across Bali, Tennessee, and California. Quiet luxury. Untouched destinations. Community by design.">
+  <title>Our DNA — Natural. Sustainable. Timeless. · Tiba Living</title>
+  <meta name="description" content="Tiba Living's philosophy is built on five principles: Natural Assimilation, Sustainable Development, Climate Adaptability, Timeless Development, and Informed Modernity.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,7 +54,7 @@
     }
 
     /* ============================================================
-       SECTION BADGE
+       BADGE
     ============================================================ */
     .badge {
       display: inline-flex;
@@ -75,6 +75,12 @@
       height: 1px;
       background: var(--river-green);
       flex-shrink: 0;
+    }
+    .badge--dark {
+      color: var(--river-green);
+    }
+    .badge--dark::before {
+      background: var(--river-green);
     }
 
     /* ============================================================
@@ -231,6 +237,8 @@
     }
     .navbar__links a:hover { color: var(--ivory); }
     .navbar__links a:hover::after { width: 100%; }
+    .navbar__links a.active { color: var(--ivory); }
+    .navbar__links a.active::after { width: 100%; }
 
     .navbar__right {
       display: flex;
@@ -268,21 +276,15 @@
       background: var(--stone);
     }
 
-    /* Slides */
-    .hero__slides { position: absolute; inset: 0; }
-    .hero__slide {
+    .hero__bg {
       position: absolute; inset: 0;
-      opacity: 0;
-      transition: opacity 2.2s ease;
     }
-    .hero__slide.active { opacity: 1; }
-    .hero__slide img {
-      transform: scale(1.06);
-      transition: transform 10s ease;
+    .hero__bg img {
+      transform: scale(1.04);
+      transition: transform 12s ease;
     }
-    .hero__slide.active img { transform: scale(1.0); }
+    .hero__bg img.loaded { transform: scale(1.0); }
 
-    /* Gradient overlay */
     .hero__overlay {
       position: absolute; inset: 0; z-index: 1;
       background: linear-gradient(
@@ -293,7 +295,6 @@
       );
     }
 
-    /* Bottom content area */
     .hero__lower {
       position: absolute;
       bottom: 0; left: 0; right: 0;
@@ -346,62 +347,38 @@
       animation: fadeUp 1s 0.85s var(--ease-out) forwards;
     }
 
-    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-
-    /* Metrics bar */
-    .hero__metrics {
+    /* Bottom divider bar */
+    .hero__bar {
       margin-top: 36px;
       border-top: 1px solid rgba(240, 238, 220, 0.09);
-    }
-    .hero__metrics .container {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      padding-top: 0;
-      padding-bottom: 0;
-    }
-    .hero__metric {
-      padding: 22px clamp(16px, 2vw, 28px);
-      border-right: 1px solid rgba(240, 238, 220, 0.07);
-      transition: background 0.3s;
+      padding: 22px clamp(24px, 4vw, 72px);
+      display: flex;
+      align-items: center;
+      gap: clamp(24px, 4vw, 56px);
       opacity: 0;
-      animation: fadeIn 0.8s var(--ease-out) forwards;
+      animation: fadeIn 0.8s 1.2s var(--ease-out) forwards;
     }
-    .hero__metric:nth-child(1) { animation-delay: 1.1s; }
-    .hero__metric:nth-child(2) { animation-delay: 1.2s; }
-    .hero__metric:nth-child(3) { animation-delay: 1.3s; }
-    .hero__metric:nth-child(4) { animation-delay: 1.4s; border-right: none; }
-    .hero__metric:hover { background: rgba(240, 238, 220, 0.03); }
-    @keyframes fadeIn { to { opacity: 1; } }
-
-    .hero__metric-num {
-      font-family: var(--font-serif);
-      font-size: clamp(1.5rem, 2.2vw, 2.2rem);
-      font-weight: 400;
-      color: var(--ivory);
-      line-height: 1.1;
-      margin-bottom: 4px;
-    }
-    .hero__metric-label {
+    .hero__bar-item {
       font-family: var(--font-sans);
       font-size: 0.62rem;
       font-weight: 500;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: rgba(240, 238, 220, 0.38);
+      color: rgba(240, 238, 220, 0.32);
+    }
+    .hero__bar-sep {
+      width: 1px; height: 16px;
+      background: rgba(240, 238, 220, 0.12);
+      flex-shrink: 0;
     }
 
-    /* Slide counter + scroll cue */
-    .hero__counter {
-      position: absolute;
-      bottom: 170px; right: clamp(24px, 4vw, 72px);
-      z-index: 3;
-      font-family: var(--font-sans);
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      color: rgba(240, 238, 220, 0.35);
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-    .hero__counter em { color: rgba(240, 238, 220, 0.8); font-style: normal; }
+    @keyframes fadeIn { to { opacity: 1; } }
 
+    /* Scroll cue */
     .hero__scroll-cue {
       position: absolute;
       left: clamp(24px, 4vw, 72px);
@@ -436,27 +413,28 @@
     @keyframes drip { 0% { top: -100%; } 100% { top: 200%; } }
 
     /* ============================================================
-       MISSION / ETHOS
+       THE JOURNEY
     ============================================================ */
-    .mission {
+    .journey {
       background: var(--stone-mid);
       padding: clamp(90px, 11vw, 150px) 0;
       border-top: 1px solid rgba(240, 238, 220, 0.06);
     }
 
-    .mission__grid {
+    .journey__grid {
       display: grid;
       grid-template-columns: 280px 1fr;
       gap: clamp(60px, 8vw, 120px);
-      align-items: center;
+      align-items: start;
     }
 
-    .mission__aside {
+    .journey__aside {
       border-right: 1px solid rgba(240, 238, 220, 0.08);
       padding-right: clamp(40px, 5vw, 80px);
+      padding-top: 8px;
     }
 
-    .mission__label {
+    .journey__label {
       font-family: var(--font-sans);
       font-size: 0.65rem;
       font-weight: 500;
@@ -467,17 +445,17 @@
       margin-top: 16px;
     }
 
-    .mission__quote {
+    .journey__quote {
       font-family: var(--font-serif);
       font-size: clamp(1.6rem, 2.8vw, 2.8rem);
       font-weight: 400;
       font-style: italic;
       line-height: 1.6;
       color: var(--ivory);
-      margin-bottom: 40px;
+      margin-bottom: 36px;
       position: relative;
     }
-    .mission__quote::before {
+    .journey__quote::before {
       content: '\201C';
       display: block;
       font-size: 4em;
@@ -487,13 +465,24 @@
       font-style: normal;
     }
 
-    .mission__pillars {
+    .journey__body {
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 400;
+      line-height: 1.9;
+      color: rgba(240, 238, 220, 0.62);
+      margin-bottom: 22px;
+      max-width: 620px;
+    }
+
+    .journey__pillars {
       display: flex;
       align-items: center;
       gap: 0;
       flex-wrap: wrap;
+      margin-top: 40px;
     }
-    .mission__pillar {
+    .journey__pillar {
       font-family: var(--font-sans);
       font-size: 0.7rem;
       font-weight: 500;
@@ -501,27 +490,19 @@
       text-transform: uppercase;
       color: rgba(240, 238, 220, 0.4);
     }
-    .mission__sep {
+    .journey__sep {
       margin: 0 16px;
       color: rgba(240, 238, 220, 0.18);
     }
 
     /* ============================================================
-       SELECTED WORKS
+       WHAT DRIVES US — PILLAR SECTION HEADER
     ============================================================ */
-    .works {
+    .pillars-header {
       background: var(--offwhite);
-      padding-top: clamp(80px, 10vw, 130px);
+      padding: clamp(80px, 10vw, 120px) 0 clamp(52px, 6vw, 80px);
     }
-
-    .works__head {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-bottom: 52px;
-    }
-
-    .works__badge {
+    .pillars-header__badge {
       display: inline-flex;
       align-items: center;
       gap: 14px;
@@ -531,9 +512,154 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--river-green);
-      margin-bottom: 16px;
+      margin-bottom: 24px;
     }
-    .works__badge::before {
+    .pillars-header__badge::before {
+      content: '';
+      display: block;
+      width: 22px; height: 1px;
+      background: var(--river-green);
+      flex-shrink: 0;
+    }
+    .pillars-header__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 4vw, 4.4rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--stone);
+      max-width: 560px;
+    }
+
+    /* ============================================================
+       PILLAR ROWS
+    ============================================================ */
+    .pillar-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 620px;
+    }
+
+    .pillar-row__image {
+      position: relative;
+      overflow: hidden;
+    }
+    .pillar-row__image img {
+      transition: transform 1.6s var(--ease-out);
+    }
+    .pillar-row:hover .pillar-row__image img {
+      transform: scale(1.04);
+    }
+
+    .pillar-row__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(60px, 8vw, 100px) clamp(48px, 6vw, 96px);
+    }
+
+    .pillar-row--reverse .pillar-row__image { order: 2; }
+    .pillar-row--reverse .pillar-row__content { order: 1; }
+
+    .pillar-row__num {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: rgba(240, 238, 220, 0.22);
+      margin-bottom: 20px;
+    }
+
+    .pillar-row__name {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.2vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--ivory);
+      margin-bottom: 28px;
+    }
+
+    .pillar-row__body {
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      font-weight: 400;
+      line-height: 1.85;
+      color: rgba(240, 238, 220, 0.58);
+      max-width: 480px;
+    }
+
+    .pillar-row__divider {
+      width: 28px; height: 1px;
+      background: rgba(240, 238, 220, 0.14);
+      margin: 32px 0;
+    }
+
+    /* ============================================================
+       PULL QUOTE
+    ============================================================ */
+    .pull-quote {
+      background: var(--stone);
+      padding: clamp(100px, 13vw, 160px) 0;
+      text-align: center;
+      border-top: 1px solid rgba(240, 238, 220, 0.06);
+      border-bottom: 1px solid rgba(240, 238, 220, 0.06);
+    }
+
+    .pull-quote__mark {
+      font-family: var(--font-serif);
+      font-size: 5rem;
+      line-height: 0.7;
+      color: var(--river-green);
+      margin-bottom: 32px;
+      display: block;
+    }
+
+    .pull-quote__text {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3.2vw, 3.6rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--ivory);
+      line-height: 1.5;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .pull-quote__attr {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.3);
+      margin-top: 32px;
+    }
+
+    /* ============================================================
+       DEVELOPMENT TOLD PLAINLY
+    ============================================================ */
+    .development {
+      background: var(--offwhite);
+      padding: clamp(80px, 10vw, 130px) 0;
+    }
+
+    .development__intro {
+      margin-bottom: clamp(52px, 7vw, 88px);
+    }
+
+    .development__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--river-green);
+      margin-bottom: 24px;
+    }
+    .development__badge::before {
       content: '';
       display: block;
       width: 22px; height: 1px;
@@ -541,235 +667,94 @@
       flex-shrink: 0;
     }
 
-    .works__title {
+    .development__title {
       font-family: var(--font-serif);
       font-size: clamp(2rem, 3.5vw, 3.4rem);
       font-weight: 400;
       line-height: 1.12;
       color: var(--stone);
+      margin-bottom: 20px;
     }
 
-    .works__arrows { display: flex; gap: 8px; }
-    .arrow-btn {
-      width: 44px; height: 44px;
-      border: 1px solid rgba(34, 35, 35, 0.16);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--stone);
-      transition: background 0.3s, border-color 0.3s, color 0.3s;
-    }
-    .arrow-btn:hover { background: var(--stone); border-color: var(--stone); color: var(--ivory); }
-    .arrow-btn svg { width: 18px; height: 18px; }
-
-    /* Track */
-    .works__track {
-      display: flex;
-      gap: 14px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      padding-left: clamp(24px, 4vw, 72px);
-      padding-right: 40px;
-      cursor: grab;
-      -webkit-user-select: none; user-select: none;
-      scroll-snap-type: x mandatory;
-    }
-    .works__track:active { cursor: grabbing; }
-    .works__track::-webkit-scrollbar { display: none; }
-
-    .work-card {
-      flex: 0 0 auto;
-      width: clamp(260px, 28vw, 400px);
-      aspect-ratio: 3 / 4;
-      position: relative;
-      overflow: hidden;
-      background: var(--stone);
-      scroll-snap-align: start;
-      cursor: pointer;
-    }
-    .work-card img { transition: transform 0.9s var(--ease-out); }
-    .work-card:hover img { transform: scale(1.05); }
-
-    .work-card::before {
-      content: '';
-      position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(to top, rgba(34,35,35,0.9) 0%, rgba(34,35,35,0.04) 50%);
-    }
-
-    .work-card__body {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 28px 24px;
-      z-index: 2;
-    }
-    .work-card__loc {
+    .development__sub {
       font-family: var(--font-sans);
-      font-size: 0.62rem; font-weight: 600;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--river-green);
-      margin-bottom: 8px;
-      transform: translateY(6px);
-      transition: transform 0.4s var(--ease-out);
-    }
-    .work-card:hover .work-card__loc { transform: translateY(0); }
-
-    .work-card__name {
-      font-family: var(--font-serif);
-      font-size: clamp(1.2rem, 1.8vw, 1.8rem);
+      font-size: 0.88rem;
       font-weight: 400;
-      color: var(--ivory);
-      line-height: 1.2;
-      transform: translateY(8px);
-      transition: transform 0.4s var(--ease-out);
-    }
-    .work-card:hover .work-card__name { transform: translateY(0); }
-
-    .work-card__cta {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 12px;
-      font-family: var(--font-sans);
-      font-size: 0.65rem; font-weight: 600;
-      letter-spacing: 0.16em; text-transform: uppercase;
-      color: rgba(240, 238, 220, 0.55);
-      opacity: 0; transform: translateY(10px);
-      transition: opacity 0.35s 0.05s var(--ease-out), transform 0.35s 0.05s var(--ease-out);
-    }
-    .work-card__cta svg { width: 14px; height: 14px; }
-    .work-card:hover .work-card__cta { opacity: 1; transform: translateY(0); }
-
-    .work-card__num {
-      position: absolute;
-      top: 20px; right: 20px; z-index: 2;
-      font-family: var(--font-sans);
-      font-size: 0.65rem; font-weight: 300;
-      letter-spacing: 0.06em;
-      color: rgba(240, 238, 220, 0.28);
+      line-height: 1.8;
+      color: rgba(34, 35, 35, 0.55);
+      max-width: 520px;
     }
 
-    /* Works bottom bar */
-    .works__footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: clamp(32px, 4vw, 52px) 0;
-      border-top: 1px solid rgba(34, 35, 35, 0.1);
-      margin-top: 64px;
-    }
-
-    .works__count {
-      font-family: var(--font-sans);
-      font-size: 0.72rem; font-weight: 500;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: rgba(34, 35, 35, 0.38);
-    }
-
-    /* ============================================================
-       OUR DNA
-    ============================================================ */
-    .dna {
+    .development__timeline {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 740px;
+      grid-template-columns: repeat(5, 1fr);
+      border-top: 1px solid rgba(34, 35, 35, 0.1);
+      margin-bottom: 52px;
     }
 
-    .dna__image {
+    .timeline-item {
+      padding: 40px 0 40px clamp(0px, 2vw, 24px);
+      border-right: 1px solid rgba(34, 35, 35, 0.08);
       position: relative;
-      overflow: hidden;
     }
-    .dna__image img { transition: transform 1.6s var(--ease-out); }
-    .dna:hover .dna__image img { transform: scale(1.04); }
+    .timeline-item:last-child { border-right: none; }
+    .timeline-item:first-child { padding-left: 0; }
 
-    .dna__content {
-      background: var(--stone);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: clamp(60px, 8vw, 100px) clamp(48px, 6vw, 96px);
-    }
-
-    .dna__headline {
+    .timeline-item__year {
       font-family: var(--font-serif);
-      font-size: clamp(2rem, 3.2vw, 3.4rem);
+      font-size: clamp(1.6rem, 2.2vw, 2.2rem);
       font-weight: 400;
-      line-height: 1.18;
-      color: var(--ivory);
-      margin-bottom: 48px;
+      color: var(--stone);
+      line-height: 1;
+      margin-bottom: 14px;
     }
 
-    .dna__pillars { list-style: none; margin-bottom: 52px; }
-    .dna__pillar {
-      font-family: var(--font-sans);
-      font-size: 0.82rem; font-weight: 400;
-      letter-spacing: 0.04em;
-      color: rgba(240, 238, 220, 0.58);
-      padding: 15px 0;
-      border-bottom: 1px solid rgba(240, 238, 220, 0.07);
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .dna__pillar:first-child { border-top: 1px solid rgba(240, 238, 220, 0.07); }
-
-    .dna__dot {
-      width: 4px; height: 4px;
-      border-radius: 50%;
+    .timeline-item__line {
+      width: 22px; height: 1px;
       background: var(--river-green);
-      flex-shrink: 0;
+      margin-bottom: 14px;
     }
 
-    .dna__link {
+    .timeline-item__project {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 6px;
+    }
+
+    .timeline-item__location {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 400;
+      color: rgba(34, 35, 35, 0.45);
+      letter-spacing: 0.04em;
+    }
+
+    .development__cta {
       display: inline-flex;
       align-items: center;
       gap: 10px;
       font-family: var(--font-sans);
-      font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.16em; text-transform: uppercase;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
       color: var(--river-green);
       position: relative;
     }
-    .dna__link::after {
+    .development__cta::after {
       content: '';
       position: absolute; bottom: -3px; left: 0;
       width: 0; height: 1px;
       background: var(--river-green);
       transition: width 0.4s var(--ease-out);
     }
-    .dna__link:hover::after { width: 100%; }
-    .dna__link svg { width: 18px; height: 18px; transition: transform 0.3s; }
-    .dna__link:hover svg { transform: translateX(4px); }
-
-    /* ============================================================
-       STATS
-    ============================================================ */
-    .stats {
-      background: var(--offwhite);
-      padding: clamp(72px, 9vw, 110px) 0;
-    }
-    .stats .container {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-    }
-    .stat-item {
-      text-align: center;
-      padding: 0 20px;
-      border-right: 1px solid rgba(34, 35, 35, 0.09);
-    }
-    .stat-item:last-child { border-right: none; }
-    .stat-num {
-      font-family: var(--font-serif);
-      font-size: clamp(2.4rem, 4vw, 4.8rem);
-      font-weight: 400;
-      color: var(--stone);
-      line-height: 1;
-      margin-bottom: 14px;
-    }
-    .stat-label {
-      font-family: var(--font-sans);
-      font-size: 0.65rem; font-weight: 500;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(34, 35, 35, 0.38);
-    }
+    .development__cta:hover::after { width: 100%; }
+    .development__cta svg { width: 18px; height: 18px; transition: transform 0.3s; }
+    .development__cta:hover svg { transform: translateX(4px); }
 
     /* ============================================================
        INQUIRE CTA
@@ -792,7 +777,8 @@
     }
     .inquire__sub {
       font-family: var(--font-sans);
-      font-size: 0.82rem; font-weight: 400;
+      font-size: 0.82rem;
+      font-weight: 400;
       letter-spacing: 0.06em;
       color: rgba(240, 238, 220, 0.4);
       max-width: 440px;
@@ -826,8 +812,10 @@
     }
     .footer__col-head {
       font-family: var(--font-sans);
-      font-size: 0.62rem; font-weight: 600;
-      letter-spacing: 0.2em; text-transform: uppercase;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
       color: rgba(240, 238, 220, 0.28);
       margin-bottom: 20px;
     }
@@ -835,7 +823,8 @@
     .footer__col p {
       display: block;
       font-family: var(--font-sans);
-      font-size: 0.82rem; font-weight: 400;
+      font-size: 0.82rem;
+      font-weight: 400;
       line-height: 2.2;
       color: rgba(240, 238, 220, 0.48);
       transition: color 0.3s;
@@ -858,8 +847,10 @@
     .footer__social { display: flex; gap: 28px; }
     .footer__social a {
       font-family: var(--font-sans);
-      font-size: 0.68rem; font-weight: 600;
-      letter-spacing: 0.16em; text-transform: uppercase;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
       color: rgba(240, 238, 220, 0.38);
       transition: color 0.3s;
     }
@@ -897,34 +888,28 @@
     ============================================================ */
     @media (max-width: 1080px) {
       .navbar__links { display: none; }
-      .mission__grid { grid-template-columns: 1fr; gap: 40px; }
-      .mission__aside { border-right: none; padding-right: 0; border-bottom: 1px solid rgba(240,238,220,0.08); padding-bottom: 32px; }
-      .dna { grid-template-columns: 1fr; }
-      .dna__image { height: 50vw; min-height: 300px; }
-      .stats .container { grid-template-columns: repeat(2, 1fr); gap: 48px 0; }
-      .stat-item:nth-child(even) { border-right: none; }
-      .stat-item:nth-child(odd) { border-right: 1px solid rgba(34,35,35,0.09); }
+      .journey__grid { grid-template-columns: 1fr; gap: 40px; }
+      .journey__aside { border-right: none; padding-right: 0; border-bottom: 1px solid rgba(240,238,220,0.08); padding-bottom: 32px; }
+      .pillar-row { grid-template-columns: 1fr; }
+      .pillar-row__image { height: 55vw; min-height: 320px; }
+      .pillar-row--reverse .pillar-row__image { order: 0; }
+      .pillar-row--reverse .pillar-row__content { order: 1; }
+      .development__timeline { grid-template-columns: repeat(3, 1fr); }
+      .timeline-item:nth-child(3) { border-right: none; }
       .footer__main { grid-template-columns: 1fr 1fr; gap: 40px; }
-      .hero__metrics .container { grid-template-columns: repeat(2, 1fr); }
-      .hero__metric:nth-child(2) { border-right: none; }
-      .hero__metric:nth-child(3) { border-top: 1px solid rgba(240,238,220,0.07); }
-      .hero__metric:nth-child(4) { border-top: 1px solid rgba(240,238,220,0.07); border-right: none; }
     }
 
     @media (max-width: 640px) {
-      .hero__counter { display: none; }
       .hero__scroll-cue { display: none; }
-      .works__footer { flex-direction: column; gap: 20px; text-align: center; }
+      .development__timeline { grid-template-columns: repeat(2, 1fr); }
+      .timeline-item:nth-child(2) { border-right: none; }
+      .timeline-item:nth-child(3) { border-right: 1px solid rgba(34,35,35,0.08); }
+      .timeline-item:nth-child(4) { border-right: none; }
       .footer__main { grid-template-columns: 1fr; }
       .footer__base { flex-direction: column; gap: 14px; }
-      .inquire__headline { font-size: clamp(1.8rem, 8vw, 2.6rem); }
-      .stat-item { padding: 24px 0; border-right: none !important; border-bottom: 1px solid rgba(34,35,35,0.08); }
-      .stat-item:last-child { border-bottom: none; }
-      .stats .container { grid-template-columns: repeat(2, 1fr); gap: 0; }
-      .stat-item { padding: 24px 16px; }
+      .pillars-header__title { font-size: clamp(2rem, 8vw, 2.8rem); }
     }
 
-    /* Hide nav inquire button on small screens */
     @media (max-width: 540px) {
       .btn.desktop-only { display: none; }
     }
@@ -938,11 +923,11 @@
     <div class="menu__inner">
       <nav>
         <ul class="menu__links" role="list">
-          <li><a href="#" onclick="closeMenu(); return false;">Home</a></li>
+          <li><a href="index.html" onclick="closeMenu(); return false;">Home</a></li>
           <li><a href="our-dna.html" onclick="closeMenu(); return false;">Our DNA</a></li>
           <li><a href="#" onclick="closeMenu(); return false;">Portfolio</a></li>
           <li><a href="#" onclick="closeMenu(); return false;">About</a></li>
-          <li><a href="#" onclick="closeMenu(); return false;">Inquire</a></li>
+          <li><a href="mailto:contact@tibaliving.com" onclick="closeMenu(); return false;">Inquire</a></li>
         </ul>
       </nav>
       <div class="menu__divider"></div>
@@ -953,7 +938,7 @@
   <!-- Navigation -->
   <nav class="navbar" id="navbar">
     <div class="container">
-      <a href="#" class="navbar__logo" aria-label="Tiba Living — Home">
+      <a href="index.html" class="navbar__logo" aria-label="Tiba Living — Home">
         <img src="TIBA_FINAL_LOGO_LANDSCAPE%20(3)%20(13).png"
              alt="Tiba Living"
              width="400" height="92"
@@ -962,7 +947,7 @@
       </a>
 
       <ul class="navbar__links">
-        <li><a href="our-dna.html">Our DNA</a></li>
+        <li><a href="our-dna.html" class="active">Our DNA</a></li>
         <li><a href="#">Portfolio</a></li>
         <li><a href="#">About</a></li>
       </ul>
@@ -981,25 +966,14 @@
     </div>
   </nav>
 
-  <!-- ═══════════════════════════════════ HERO ═══════════════════ -->
-  <section class="hero" id="hero">
+  <!-- ══════════════════════════════════ HERO ══════════════════════ -->
+  <section class="hero">
 
-    <div class="hero__slides">
-      <div class="hero__slide active">
-        <img src="Project%20Images/House%20SJ/SJ4.png"
-             alt="House SJ — Pererenan, Bali"
-             loading="eager">
-      </div>
-      <div class="hero__slide">
-        <img src="Project%20Images/Tiba%20Hills/2804153C-3938-4286-97AC-1263E5451BC3.jpg"
-             alt="Tiba Hills — Uluwatu, Bali"
-             loading="lazy">
-      </div>
-      <div class="hero__slide">
-        <img src="Project%20Images/Tiba%20Tennessee/infinity_pool_8K_upscaled.png"
-             alt="Tiba Tennessee — Appalachian Highlands"
-             loading="lazy">
-      </div>
+    <div class="hero__bg">
+      <img src="Project%20Images/Tiba%20Hills/2804153C-3938-4286-97AC-1263E5451BC3.jpg"
+           alt="Tiba Hills — natural landscape"
+           id="heroBg"
+           loading="eager">
     </div>
 
     <div class="hero__overlay"></div>
@@ -1009,63 +983,51 @@
       <div class="hero__scroll-line"></div>
     </div>
 
-    <div class="hero__counter">
-      <em id="slideNum">01</em> / 03
-    </div>
-
     <div class="hero__lower">
       <div class="container hero__content">
-        <div class="hero__eyebrow">Where You Arrive</div>
-        <h1 class="hero__headline">Crafting destinations,<br>not just buildings.</h1>
-        <p class="hero__sub">Bali &nbsp;·&nbsp; Tennessee &nbsp;·&nbsp; California</p>
+        <div class="hero__eyebrow">Our DNA</div>
+        <h1 class="hero__headline">Built From<br>Belief.</h1>
+        <p class="hero__sub">Natural &nbsp;·&nbsp; Sustainable &nbsp;·&nbsp; Timeless</p>
       </div>
-
-      <div class="hero__metrics">
-        <div class="container">
-          <div class="hero__metric">
-            <div class="hero__metric-num">8</div>
-            <div class="hero__metric-label">Developments</div>
-          </div>
-          <div class="hero__metric">
-            <div class="hero__metric-num">3</div>
-            <div class="hero__metric-label">Countries</div>
-          </div>
-          <div class="hero__metric">
-            <div class="hero__metric-num">16k+</div>
-            <div class="hero__metric-label">Sq. Metres</div>
-          </div>
-          <div class="hero__metric">
-            <div class="hero__metric-num">∞</div>
-            <div class="hero__metric-label">Community</div>
-          </div>
-        </div>
+      <div class="hero__bar">
+        <span class="hero__bar-item">Five Principles</span>
+        <div class="hero__bar-sep"></div>
+        <span class="hero__bar-item">Bali &nbsp;·&nbsp; Tennessee &nbsp;·&nbsp; California</span>
+        <div class="hero__bar-sep"></div>
+        <span class="hero__bar-item">Architecture that belongs</span>
       </div>
     </div>
 
   </section>
 
-  <!-- ═══════════════════════════════ MISSION ════════════════════ -->
-  <section class="mission">
+  <!-- ═══════════════════════════ THE JOURNEY ═══════════════════════ -->
+  <section class="journey">
     <div class="container">
-      <div class="mission__grid">
+      <div class="journey__grid">
 
-        <div class="mission__aside reveal">
-          <div class="badge">Our Ethos</div>
-          <p class="mission__label">
+        <div class="journey__aside reveal">
+          <div class="badge">The Journey to Tiba</div>
+          <p class="journey__label">
             Tiba means<br>"to arrive"
           </p>
         </div>
 
         <div class="reveal d1">
-          <blockquote class="mission__quote">
-            At TIBA living, we create more than just buildings. We craft moments, curate experiences, and design the backdrop of your new life.
+          <blockquote class="journey__quote">
+            TIBA LIVING is a boutique real estate development company, defined by its authentic approach in design, development, and delivery.
           </blockquote>
-          <div class="mission__pillars">
-            <span class="mission__pillar">Quiet Luxury</span>
-            <span class="mission__sep">·</span>
-            <span class="mission__pillar">Untouched Sanctuaries</span>
-            <span class="mission__sep">·</span>
-            <span class="mission__pillar">Community by Design</span>
+          <p class="journey__body">
+            What began as a singular vision on the cliffs of Bali has grown into a global pursuit of one idea: that the places we live should feel inevitable — as if they could exist nowhere else. Every site we choose, every material we specify, every community we build is measured against a single question: does this belong?
+          </p>
+          <p class="journey__body">
+            From the rice terraces of Pererenan to the ridgelines of Tennessee and the coastlines of California, Tiba Living has remained committed to architecture that earns its landscape rather than conquering it. We are boutique by design — small enough to care deeply, experienced enough to deliver with precision.
+          </p>
+          <div class="journey__pillars">
+            <span class="journey__pillar">Quiet Luxury</span>
+            <span class="journey__sep">·</span>
+            <span class="journey__pillar">Untouched Sanctuaries</span>
+            <span class="journey__sep">·</span>
+            <span class="journey__pillar">Community by Design</span>
           </div>
         </div>
 
@@ -1073,217 +1035,156 @@
     </div>
   </section>
 
-  <!-- ═════════════════════════ SELECTED WORKS ══════════════════ -->
-  <section class="works">
-
+  <!-- ═══════════════════════ PILLARS HEADER ════════════════════════ -->
+  <div class="pillars-header">
     <div class="container">
-      <div class="works__head reveal">
-        <div>
-          <div class="works__badge">Selected Works</div>
-          <h2 class="works__title">Our<br>Portfolio</h2>
-        </div>
-        <div class="works__arrows">
-          <button class="arrow-btn" id="prev" aria-label="Previous project">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M15 18l-6-6 6-6"/>
-            </svg>
-          </button>
-          <button class="arrow-btn" id="next" aria-label="Next project">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M9 18l6-6-6-6"/>
-            </svg>
-          </button>
-        </div>
+      <div class="pillars-header__badge reveal">Five Principles</div>
+      <h2 class="pillars-header__title reveal d1">What<br>Drives Us</h2>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════ PILLAR 01 ════════════════════════ -->
+  <div class="pillar-row" style="background: var(--stone);">
+    <div class="pillar-row__image reveal-left">
+      <img src="Project%20Images/Tiba%20Hills/F17AECF1-3657-454F-9311-5D8822C5E88F.jpg"
+           alt="Natural Assimilation — Tiba Hills"
+           loading="lazy">
+    </div>
+    <div class="pillar-row__content reveal-right">
+      <p class="pillar-row__num">01</p>
+      <h3 class="pillar-row__name">Natural<br>Assimilation</h3>
+      <div class="pillar-row__divider"></div>
+      <p class="pillar-row__body">We study each site — its contours, its materials, its rhythm — before a single line is drawn. The result is architecture that feels as though it grew from the earth itself, borrowing from the land rather than imposing upon it.</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════ PILLAR 02 ════════════════════════ -->
+  <div class="pillar-row pillar-row--reverse" style="background: var(--stone-mid);">
+    <div class="pillar-row__content reveal-left">
+      <p class="pillar-row__num">02</p>
+      <h3 class="pillar-row__name">Sustainable<br>Development</h3>
+      <div class="pillar-row__divider"></div>
+      <p class="pillar-row__body">Responsibility is woven into every decision. From locally sourced timber and volcanic stone to passive cooling systems and rainwater harvesting, we build with the next generation in mind — without compromising the quality that defines Tiba Living.</p>
+    </div>
+    <div class="pillar-row__image reveal-right">
+      <img src="Project%20Images/Casa%20Tiba/DSCF5035.jpeg"
+           alt="Sustainable Development — Casa Tiba"
+           loading="lazy">
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════ PILLAR 03 ════════════════════════ -->
+  <div class="pillar-row" style="background: var(--stone);">
+    <div class="pillar-row__image reveal-left">
+      <img src="Project%20Images/Tiba%20Tennessee/infinity_pool_8K_upscaled.png"
+           alt="Climate Adaptability — Tiba Tennessee"
+           loading="lazy">
+    </div>
+    <div class="pillar-row__content reveal-right">
+      <p class="pillar-row__num">03</p>
+      <h3 class="pillar-row__name">Climate<br>Adaptability</h3>
+      <div class="pillar-row__divider"></div>
+      <p class="pillar-row__body">Every destination has its own atmosphere. Our designs are inherently responsive — embracing the tropical humidity of Bali, the mountain air of the Appalachians, the coastal warmth of California — rather than fighting their environment.</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════ PILLAR 04 ════════════════════════ -->
+  <div class="pillar-row pillar-row--reverse" style="background: var(--stone-mid);">
+    <div class="pillar-row__content reveal-left">
+      <p class="pillar-row__num">04</p>
+      <h3 class="pillar-row__name">Timeless<br>Development</h3>
+      <div class="pillar-row__divider"></div>
+      <p class="pillar-row__body">Trends fade. Our architecture endures. We draw from the vernacular of each region while applying a design intelligence that ages with grace. A Tiba building looks as right in twenty years as it does on the day of completion.</p>
+    </div>
+    <div class="pillar-row__image reveal-right">
+      <img src="Project%20Images/88%20East/Fathom-11-scaled.jpg"
+           alt="Timeless Development — 88 East"
+           loading="lazy">
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════ PILLAR 05 ════════════════════════ -->
+  <div class="pillar-row" style="background: var(--stone);">
+    <div class="pillar-row__image reveal-left">
+      <img src="Project%20Images/Tiba%20Townhouse/Copy%20of%20Copy%20of%20Image1.jpg"
+           alt="Informed Modernity — Tiba Townhouse"
+           loading="lazy">
+    </div>
+    <div class="pillar-row__content reveal-right">
+      <p class="pillar-row__num">05</p>
+      <h3 class="pillar-row__name">Informed<br>Modernity</h3>
+      <div class="pillar-row__divider"></div>
+      <p class="pillar-row__body">We are contemporary without being cold. Each project weaves together the cultural heritage of its location with modern living standards — producing spaces that feel both grounded and forward-thinking, rooted yet reaching.</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════ PULL QUOTE ═══════════════════════ -->
+  <section class="pull-quote">
+    <div class="container">
+      <div class="reveal">
+        <span class="pull-quote__mark">"</span>
+        <p class="pull-quote__text">We do not build what is possible.<br>We build what is right.</p>
+        <span class="pull-quote__attr">— Tiba Living Philosophy</span>
       </div>
     </div>
+  </section>
 
-    <div class="works__track" id="track">
+  <!-- ══════════════════ DEVELOPMENT TOLD PLAINLY ══════════════════ -->
+  <section class="development">
+    <div class="container">
 
-      <!-- 01 House SJ -->
-      <a href="house-sj.html" class="work-card">
-        <img src="Project%20Images/House%20SJ/SJ2.png" alt="House SJ — Pererenan, Bali" loading="lazy">
-        <span class="work-card__num">01</span>
-        <div class="work-card__body">
-          <p class="work-card__loc">Pererenan, Bali</p>
-          <h3 class="work-card__name">House SJ</h3>
-          <div class="work-card__cta">View Project
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </div>
+      <div class="development__intro reveal">
+        <div class="development__badge">Development Told Plainly</div>
+        <h2 class="development__title">A Record<br>of Arrival</h2>
+        <p class="development__sub">Each project marks a point of arrival — a new destination shaped by Tiba's philosophy of natural integration.</p>
+      </div>
+
+      <div class="development__timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-item__year">2018</div>
+          <div class="timeline-item__line"></div>
+          <p class="timeline-item__project">Casa Tiba</p>
+          <p class="timeline-item__location">Bingin Cliff, Bali</p>
         </div>
-      </a>
-
-      <!-- 02 Tiba Hills -->
-      <a href="tiba-hills.html" class="work-card">
-        <img src="Project%20Images/Tiba%20Hills/DAEAA03B-7DF7-4980-9B17-119FAFEB5787.jpg" alt="Tiba Hills — Uluwatu, Bali" loading="lazy">
-        <span class="work-card__num">02</span>
-        <div class="work-card__body">
-          <p class="work-card__loc">Uluwatu, Bali</p>
-          <h3 class="work-card__name">Tiba Hills</h3>
-          <div class="work-card__cta">View Project
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </div>
+        <div class="timeline-item reveal d1">
+          <div class="timeline-item__year">2020</div>
+          <div class="timeline-item__line"></div>
+          <p class="timeline-item__project">88 East</p>
+          <p class="timeline-item__location">Canggu, Bali</p>
         </div>
-      </a>
-
-      <!-- 03 Tiba Tennessee -->
-      <div class="work-card">
-        <img src="Project%20Images/Tiba%20Tennessee/infinity_pool_8K_upscaled.png" alt="Tiba Tennessee" loading="lazy">
-        <span class="work-card__num">03</span>
-        <div class="work-card__body">
-          <p class="work-card__loc">Tennessee, USA</p>
-          <h3 class="work-card__name">Tiba Tennessee</h3>
-          <div class="work-card__cta">View Project
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </div>
+        <div class="timeline-item reveal d2">
+          <div class="timeline-item__year">2021</div>
+          <div class="timeline-item__line"></div>
+          <p class="timeline-item__project">Tiba Hills</p>
+          <p class="timeline-item__location">Uluwatu, Bali</p>
+        </div>
+        <div class="timeline-item reveal d3">
+          <div class="timeline-item__year">2022</div>
+          <div class="timeline-item__line"></div>
+          <p class="timeline-item__project">Tiba Lofts</p>
+          <p class="timeline-item__location">Padang Padang, Bali</p>
+        </div>
+        <div class="timeline-item reveal d4">
+          <div class="timeline-item__year">2024</div>
+          <div class="timeline-item__line"></div>
+          <p class="timeline-item__project">Tiba Tennessee</p>
+          <p class="timeline-item__location">Appalachian Highlands</p>
         </div>
       </div>
 
-      <!-- 04 88 East -->
-      <a href="88-east.html" class="work-card">
-        <img src="Project%20Images/88%20East/Fathom-11-scaled.jpg" alt="88 East — Canggu, Bali" loading="lazy">
-        <span class="work-card__num">04</span>
-        <div class="work-card__body">
-          <p class="work-card__loc">Canggu, Bali</p>
-          <h3 class="work-card__name">88 East</h3>
-          <div class="work-card__cta">View Project
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </div>
-        </div>
-      </a>
-
-      <!-- 05 Casa Tiba -->
-      <a href="casa-tiba.html" class="work-card">
-        <img src="Project%20Images/Casa%20Tiba/DSCF5035.jpeg" alt="Casa Tiba — Bingin Cliff, Bali" loading="lazy">
-        <span class="work-card__num">05</span>
-        <div class="work-card__body">
-          <p class="work-card__loc">Bingin Cliff, Bali</p>
-          <h3 class="work-card__name">Casa Tiba</h3>
-          <div class="work-card__cta">View Project
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </div>
-        </div>
-      </a>
-
-      <!-- 06 Tiba Lofts -->
-      <a href="tiba-lofts.html" class="work-card">
-        <img src="Project%20Images/Lofts/Image1.jpg" alt="Tiba Lofts — Padang Padang, Bali" loading="lazy">
-        <span class="work-card__num">06</span>
-        <div class="work-card__body">
-          <p class="work-card__loc">Padang Padang, Bali</p>
-          <h3 class="work-card__name">Tiba Lofts</h3>
-          <div class="work-card__cta">View Project
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </div>
-        </div>
-      </a>
-
-      <!-- 07 Beachclub -->
-      <a href="tiba-beachclub.html" class="work-card">
-        <img src="Project%20Images/Beachclub/1.jpg" alt="Tiba Beachclub — Bali" loading="lazy">
-        <span class="work-card__num">07</span>
-        <div class="work-card__body">
-          <p class="work-card__loc">Bali, Indonesia</p>
-          <h3 class="work-card__name">Tiba Beachclub</h3>
-          <div class="work-card__cta">View Project
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </div>
-        </div>
-      </a>
-
-      <!-- 08 Tiba Townhouse -->
-      <a href="tiba-townhouse.html" class="work-card">
-        <img src="Project%20Images/Tiba%20Townhouse/Copy%20of%20Copy%20of%20Image1.jpg" alt="Tiba Townhouse — Uluwatu, Bali" loading="lazy">
-        <span class="work-card__num">08</span>
-        <div class="work-card__body">
-          <p class="work-card__loc">Uluwatu, Bali</p>
-          <h3 class="work-card__name">Tiba Townhouse</h3>
-          <div class="work-card__cta">View Project
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </div>
-        </div>
-      </a>
-
-    </div><!-- /works__track -->
-
-    <div class="container">
-      <div class="works__footer reveal">
-        <span class="works__count">8 Developments Across 3 Countries</span>
-        <a href="#" class="btn">
-          View All Projects
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+      <div class="reveal">
+        <a href="index.html#portfolio" class="development__cta">
+          View Full Portfolio
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
         </a>
       </div>
-    </div>
 
-  </section>
-
-  <!-- ═══════════════════════════════ OUR DNA ═══════════════════ -->
-  <section class="dna">
-    <div class="dna__image reveal-left">
-      <img src="Project%20Images/Tiba%20Hills/F17AECF1-3657-454F-9311-5D8822C5E88F.jpg"
-           alt="Tiba Hills — natural assimilation"
-           loading="lazy">
-    </div>
-    <div class="dna__content reveal-right">
-      <div class="badge">Our DNA</div>
-      <h2 class="dna__headline">Natural.<br>Sustainable.<br>Timeless.</h2>
-      <ul class="dna__pillars">
-        <li class="dna__pillar"><span class="dna__dot"></span>Natural Assimilation</li>
-        <li class="dna__pillar"><span class="dna__dot"></span>Sustainable Development</li>
-        <li class="dna__pillar"><span class="dna__dot"></span>Climate Adaptability</li>
-        <li class="dna__pillar"><span class="dna__dot"></span>Timeless Development</li>
-        <li class="dna__pillar"><span class="dna__dot"></span>Informed Modernity</li>
-      </ul>
-      <a href="our-dna.html" class="dna__link">
-        Explore Our Philosophy
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-      </a>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════ STATS ═════════════════════ -->
-  <section class="stats">
-    <div class="container">
-      <div class="stat-item reveal">
-        <div class="stat-num">8</div>
-        <div class="stat-label">Developments</div>
-      </div>
-      <div class="stat-item reveal d1">
-        <div class="stat-num">3</div>
-        <div class="stat-label">Countries</div>
-      </div>
-      <div class="stat-item reveal d2">
-        <div class="stat-num">16k+</div>
-        <div class="stat-label">Sq. Metres</div>
-      </div>
-      <div class="stat-item reveal d3">
-        <div class="stat-num">∞</div>
-        <div class="stat-label">Community</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════ INQUIRE ═══════════════════ -->
+  <!-- ═══════════════════════════ INQUIRE ══════════════════════════ -->
   <section class="inquire">
     <div class="container">
       <div class="badge" style="justify-content: center;">Get in Touch</div>
@@ -1302,7 +1203,7 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════ FOOTER ════════════════════ -->
+  <!-- ════════════════════════════ FOOTER ══════════════════════════ -->
   <footer class="footer">
     <div class="container">
 
@@ -1380,17 +1281,10 @@
 
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) closeMenu(); });
 
-    /* ─── HERO CROSSFADE ──────────────────────────────── */
-    const slides   = document.querySelectorAll('.hero__slide');
-    const slideNum = document.getElementById('slideNum');
-    let   current  = 0;
-
-    setInterval(() => {
-      slides[current].classList.remove('active');
-      current = (current + 1) % slides.length;
-      slides[current].classList.add('active');
-      slideNum.textContent = String(current + 1).padStart(2, '0');
-    }, 6000);
+    /* ─── HERO IMAGE PARALLAX TRIGGER ────────────────── */
+    const heroBg = document.getElementById('heroBg');
+    heroBg.addEventListener('load', () => heroBg.classList.add('loaded'));
+    if (heroBg.complete) heroBg.classList.add('loaded');
 
     /* ─── SCROLL REVEALS ──────────────────────────────── */
     const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
@@ -1403,29 +1297,6 @@
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     revealEls.forEach(el => io.observe(el));
-
-    /* ─── CAROUSEL ────────────────────────────────────── */
-    const track = document.getElementById('track');
-    const prev  = document.getElementById('prev');
-    const next  = document.getElementById('next');
-
-    function cardW() {
-      const c = track.querySelector('.work-card');
-      return c ? c.getBoundingClientRect().width + 14 : 300;
-    }
-
-    prev.addEventListener('click', () => track.scrollBy({ left: -cardW(), behavior: 'smooth' }));
-    next.addEventListener('click', () => track.scrollBy({ left:  cardW(), behavior: 'smooth' }));
-
-    let drag = false, startX, scrollLeft;
-    track.addEventListener('mousedown',  e => { drag = true; startX = e.pageX - track.offsetLeft; scrollLeft = track.scrollLeft; });
-    track.addEventListener('mouseleave', () => drag = false);
-    track.addEventListener('mouseup',    () => drag = false);
-    track.addEventListener('mousemove',  e => {
-      if (!drag) return;
-      e.preventDefault();
-      track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.4;
-    });
   </script>
 
 </body>
