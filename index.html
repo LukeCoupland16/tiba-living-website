@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tiba Living — Where You Arrive</title>
+  <meta name="description" content="Tiba Living crafts boutique real estate sanctuaries across Bali, Tennessee, and California. Quiet luxury. Untouched destinations. Community by design.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       VARIABLES
+    ============================================================ */
+    :root {
+      --stone:             #222323;
+      --stone-mid:         #2e2f2f;
+      --ivory:             #F0EEDC;
+      --offwhite:          #F5F3E8;
+      --river-green:       #A3996A;
+      --river-green-light: #b8ad7a;
+      --font-serif: 'Libre Baskerville', 'Baskerville', Georgia, serif;
+      --font-sans:  'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+      --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    /* ============================================================
+       RESET
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--stone);
+      color: var(--ivory);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { text-decoration: none; color: inherit; }
+    button { border: none; background: none; font-family: inherit; cursor: pointer; }
+
+    /* ============================================================
+       LAYOUT HELPERS
+    ============================================================ */
+    .container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 clamp(24px, 4vw, 72px);
+    }
+
+    /* ============================================================
+       SECTION BADGE
+    ============================================================ */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--river-green);
+      margin-bottom: 24px;
+    }
+    .badge::before {
+      content: '';
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: var(--river-green);
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       BUTTONS
+    ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border-radius: 50px;
+      background: var(--river-green);
+      color: var(--stone);
+      transition: background 0.3s var(--ease-out), transform 0.25s var(--ease-out);
+      cursor: pointer;
+    }
+    .btn:hover { background: var(--river-green-light); transform: translateY(-1px); }
+    .btn svg { width: 16px; height: 16px; transition: transform 0.3s var(--ease-out); }
+    .btn:hover svg { transform: translateX(3px); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ivory);
+      border: 1px solid rgba(240, 238, 220, 0.3);
+    }
+    .btn-ghost:hover { background: var(--river-green); border-color: var(--river-green); color: var(--stone); }
+
+    /* ============================================================
+       FULL-SCREEN MENU
+    ============================================================ */
+    .menu {
+      position: fixed; inset: 0;
+      background: var(--stone);
+      z-index: 990;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.5s var(--ease-out);
+    }
+    .menu.open { opacity: 1; pointer-events: all; }
+
+    .menu__inner { text-align: center; }
+
+    .menu__links { list-style: none; }
+    .menu__links li { overflow: hidden; margin: 2px 0; }
+    .menu__links a {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 5vw, 68px);
+      font-weight: 400;
+      color: var(--ivory);
+      letter-spacing: 0.02em;
+      display: inline-block;
+      transform: translateY(110%);
+      opacity: 0;
+      transition: transform 0.6s var(--ease-out), opacity 0.6s var(--ease-out), color 0.3s;
+      position: relative;
+    }
+    .menu__links a::after {
+      content: '';
+      position: absolute; bottom: 2px; left: 0;
+      width: 0; height: 1px;
+      background: var(--river-green);
+      transition: width 0.4s var(--ease-out);
+    }
+    .menu__links a:hover { color: var(--river-green); }
+    .menu__links a:hover::after { width: 100%; }
+
+    .menu.open .menu__links a { transform: translateY(0); opacity: 1; }
+    .menu.open .menu__links li:nth-child(1) a { transition-delay: 0.05s; }
+    .menu.open .menu__links li:nth-child(2) a { transition-delay: 0.10s; }
+    .menu.open .menu__links li:nth-child(3) a { transition-delay: 0.15s; }
+    .menu.open .menu__links li:nth-child(4) a { transition-delay: 0.20s; }
+    .menu.open .menu__links li:nth-child(5) a { transition-delay: 0.25s; }
+
+    .menu__divider {
+      width: 36px; height: 1px;
+      background: rgba(240, 238, 220, 0.15);
+      margin: 36px auto;
+      opacity: 0;
+      transition: opacity 0.5s 0.38s var(--ease-out);
+    }
+    .menu.open .menu__divider { opacity: 1; }
+
+    .menu__contact {
+      font-family: var(--font-sans);
+      font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.35);
+      opacity: 0; transform: translateY(12px);
+      transition: opacity 0.5s 0.42s var(--ease-out), transform 0.5s 0.42s var(--ease-out);
+    }
+    .menu.open .menu__contact { opacity: 1; transform: translateY(0); }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 995;
+      transition: background 0.6s var(--ease-out), border-color 0.6s;
+      border-bottom: 1px solid transparent;
+    }
+    .navbar.scrolled {
+      background: rgba(34, 35, 35, 0.97);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom-color: rgba(240, 238, 220, 0.07);
+    }
+
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .navbar__logo img {
+      height: 26px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      filter: brightness(0) invert(1);
+      transition: height 0.3s var(--ease-out), opacity 0.3s;
+    }
+    .navbar.scrolled .navbar__logo img { height: 22px; }
+    .navbar__logo:hover img { opacity: 0.75; }
+
+    .navbar__links {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      list-style: none;
+    }
+    .navbar__links a {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.75);
+      position: relative;
+      transition: color 0.3s;
+    }
+    .navbar__links a::after {
+      content: '';
+      position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--river-green);
+      transition: width 0.3s var(--ease-out);
+    }
+    .navbar__links a:hover { color: var(--ivory); }
+    .navbar__links a:hover::after { width: 100%; }
+
+    .navbar__right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* Hamburger */
+    .navbar__ham {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      z-index: 996;
+    }
+    .navbar__ham span {
+      display: block;
+      width: 24px; height: 1px;
+      background: var(--ivory);
+      transition: transform 0.4s var(--ease-in-out), opacity 0.3s, width 0.3s;
+      transform-origin: center;
+    }
+    .navbar__ham.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .navbar__ham.open span:nth-child(2) { opacity: 0; width: 0; }
+    .navbar__ham.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      position: relative;
+      height: 100svh;
+      min-height: 700px;
+      overflow: hidden;
+      background: var(--stone);
+    }
+
+    /* Slides */
+    .hero__slides { position: absolute; inset: 0; }
+    .hero__slide {
+      position: absolute; inset: 0;
+      opacity: 0;
+      transition: opacity 2.2s ease;
+    }
+    .hero__slide.active { opacity: 1; }
+    .hero__slide img {
+      transform: scale(1.06);
+      transition: transform 10s ease;
+    }
+    .hero__slide.active img { transform: scale(1.0); }
+
+    /* Gradient overlay */
+    .hero__overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(
+        170deg,
+        rgba(34, 35, 35, 0.18) 0%,
+        rgba(34, 35, 35, 0.04) 40%,
+        rgba(34, 35, 35, 0.72) 100%
+      );
+    }
+
+    /* Bottom content area */
+    .hero__lower {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      z-index: 2;
+    }
+
+    .hero__content { padding-bottom: 8px; }
+
+    .hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--river-green);
+      margin-bottom: 18px;
+      opacity: 0;
+      animation: fadeUp 1s 0.4s var(--ease-out) forwards;
+    }
+    .hero__eyebrow::before {
+      content: '';
+      display: block;
+      width: 20px; height: 1px;
+      background: var(--river-green);
+    }
+
+    .hero__headline {
+      font-family: var(--font-serif);
+      font-size: clamp(2.6rem, 5.5vw, 5.2rem);
+      font-weight: 400;
+      color: var(--ivory);
+      line-height: 1.05;
+      max-width: 720px;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 1.2s 0.6s var(--ease-out) forwards;
+    }
+
+    .hero__sub {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      color: rgba(240, 238, 220, 0.48);
+      margin-bottom: 0;
+      opacity: 0;
+      animation: fadeUp 1s 0.85s var(--ease-out) forwards;
+    }
+
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+    /* Metrics bar */
+    .hero__metrics {
+      margin-top: 36px;
+      border-top: 1px solid rgba(240, 238, 220, 0.09);
+    }
+    .hero__metrics .container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    .hero__metric {
+      padding: 22px clamp(16px, 2vw, 28px);
+      border-right: 1px solid rgba(240, 238, 220, 0.07);
+      transition: background 0.3s;
+      opacity: 0;
+      animation: fadeIn 0.8s var(--ease-out) forwards;
+    }
+    .hero__metric:nth-child(1) { animation-delay: 1.1s; }
+    .hero__metric:nth-child(2) { animation-delay: 1.2s; }
+    .hero__metric:nth-child(3) { animation-delay: 1.3s; }
+    .hero__metric:nth-child(4) { animation-delay: 1.4s; border-right: none; }
+    .hero__metric:hover { background: rgba(240, 238, 220, 0.03); }
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    .hero__metric-num {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 2.2vw, 2.2rem);
+      font-weight: 400;
+      color: var(--ivory);
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    .hero__metric-label {
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.38);
+    }
+
+    /* Slide counter + scroll cue */
+    .hero__counter {
+      position: absolute;
+      bottom: 170px; right: clamp(24px, 4vw, 72px);
+      z-index: 3;
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: rgba(240, 238, 220, 0.35);
+    }
+    .hero__counter em { color: rgba(240, 238, 220, 0.8); font-style: normal; }
+
+    .hero__scroll-cue {
+      position: absolute;
+      left: clamp(24px, 4vw, 72px);
+      bottom: 155px;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero__scroll-cue span {
+      font-family: var(--font-sans);
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.3);
+      writing-mode: vertical-rl;
+    }
+    .hero__scroll-line {
+      width: 1px; height: 50px;
+      background: rgba(240, 238, 220, 0.12);
+      position: relative; overflow: hidden;
+    }
+    .hero__scroll-line::after {
+      content: '';
+      position: absolute; top: -100%; left: 0;
+      width: 1px; height: 100%;
+      background: var(--river-green);
+      animation: drip 2.5s ease infinite;
+    }
+    @keyframes drip { 0% { top: -100%; } 100% { top: 200%; } }
+
+    /* ============================================================
+       MISSION / ETHOS
+    ============================================================ */
+    .mission {
+      background: var(--stone-mid);
+      padding: clamp(90px, 11vw, 150px) 0;
+      border-top: 1px solid rgba(240, 238, 220, 0.06);
+    }
+
+    .mission__grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: clamp(60px, 8vw, 120px);
+      align-items: center;
+    }
+
+    .mission__aside {
+      border-right: 1px solid rgba(240, 238, 220, 0.08);
+      padding-right: clamp(40px, 5vw, 80px);
+    }
+
+    .mission__label {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.32);
+      line-height: 2;
+      margin-top: 16px;
+    }
+
+    .mission__quote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.6rem, 2.8vw, 2.8rem);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.6;
+      color: var(--ivory);
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .mission__quote::before {
+      content: '\201C';
+      display: block;
+      font-size: 4em;
+      line-height: 0.7;
+      color: var(--river-green);
+      margin-bottom: 16px;
+      font-style: normal;
+    }
+
+    .mission__pillars {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .mission__pillar {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.4);
+    }
+    .mission__sep {
+      margin: 0 16px;
+      color: rgba(240, 238, 220, 0.18);
+    }
+
+    /* ============================================================
+       SELECTED WORKS
+    ============================================================ */
+    .works {
+      background: var(--offwhite);
+      padding-top: clamp(80px, 10vw, 130px);
+    }
+
+    .works__head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 52px;
+    }
+
+    .works__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--river-green);
+      margin-bottom: 16px;
+    }
+    .works__badge::before {
+      content: '';
+      display: block;
+      width: 22px; height: 1px;
+      background: var(--river-green);
+      flex-shrink: 0;
+    }
+
+    .works__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.5vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1.12;
+      color: var(--stone);
+    }
+
+    .works__arrows { display: flex; gap: 8px; }
+    .arrow-btn {
+      width: 44px; height: 44px;
+      border: 1px solid rgba(34, 35, 35, 0.16);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--stone);
+      transition: background 0.3s, border-color 0.3s, color 0.3s;
+    }
+    .arrow-btn:hover { background: var(--stone); border-color: var(--stone); color: var(--ivory); }
+    .arrow-btn svg { width: 18px; height: 18px; }
+
+    /* Track */
+    .works__track {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-left: clamp(24px, 4vw, 72px);
+      padding-right: 40px;
+      cursor: grab;
+      -webkit-user-select: none; user-select: none;
+      scroll-snap-type: x mandatory;
+    }
+    .works__track:active { cursor: grabbing; }
+    .works__track::-webkit-scrollbar { display: none; }
+
+    .work-card {
+      flex: 0 0 auto;
+      width: clamp(260px, 28vw, 400px);
+      aspect-ratio: 3 / 4;
+      position: relative;
+      overflow: hidden;
+      background: var(--stone);
+      scroll-snap-align: start;
+      cursor: pointer;
+    }
+    .work-card img { transition: transform 0.9s var(--ease-out); }
+    .work-card:hover img { transform: scale(1.05); }
+
+    .work-card::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to top, rgba(34,35,35,0.9) 0%, rgba(34,35,35,0.04) 50%);
+    }
+
+    .work-card__body {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 28px 24px;
+      z-index: 2;
+    }
+    .work-card__loc {
+      font-family: var(--font-sans);
+      font-size: 0.62rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--river-green);
+      margin-bottom: 8px;
+      transform: translateY(6px);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .work-card:hover .work-card__loc { transform: translateY(0); }
+
+    .work-card__name {
+      font-family: var(--font-serif);
+      font-size: clamp(1.2rem, 1.8vw, 1.8rem);
+      font-weight: 400;
+      color: var(--ivory);
+      line-height: 1.2;
+      transform: translateY(8px);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .work-card:hover .work-card__name { transform: translateY(0); }
+
+    .work-card__cta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      font-family: var(--font-sans);
+      font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.55);
+      opacity: 0; transform: translateY(10px);
+      transition: opacity 0.35s 0.05s var(--ease-out), transform 0.35s 0.05s var(--ease-out);
+    }
+    .work-card__cta svg { width: 14px; height: 14px; }
+    .work-card:hover .work-card__cta { opacity: 1; transform: translateY(0); }
+
+    .work-card__num {
+      position: absolute;
+      top: 20px; right: 20px; z-index: 2;
+      font-family: var(--font-sans);
+      font-size: 0.65rem; font-weight: 300;
+      letter-spacing: 0.06em;
+      color: rgba(240, 238, 220, 0.28);
+    }
+
+    /* Works bottom bar */
+    .works__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: clamp(32px, 4vw, 52px) 0;
+      border-top: 1px solid rgba(34, 35, 35, 0.1);
+      margin-top: 64px;
+    }
+
+    .works__count {
+      font-family: var(--font-sans);
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(34, 35, 35, 0.38);
+    }
+
+    /* ============================================================
+       OUR DNA
+    ============================================================ */
+    .dna {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 740px;
+    }
+
+    .dna__image {
+      position: relative;
+      overflow: hidden;
+    }
+    .dna__image img { transition: transform 1.6s var(--ease-out); }
+    .dna:hover .dna__image img { transform: scale(1.04); }
+
+    .dna__content {
+      background: var(--stone);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(60px, 8vw, 100px) clamp(48px, 6vw, 96px);
+    }
+
+    .dna__headline {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.2vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1.18;
+      color: var(--ivory);
+      margin-bottom: 48px;
+    }
+
+    .dna__pillars { list-style: none; margin-bottom: 52px; }
+    .dna__pillar {
+      font-family: var(--font-sans);
+      font-size: 0.82rem; font-weight: 400;
+      letter-spacing: 0.04em;
+      color: rgba(240, 238, 220, 0.58);
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(240, 238, 220, 0.07);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .dna__pillar:first-child { border-top: 1px solid rgba(240, 238, 220, 0.07); }
+
+    .dna__dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--river-green);
+      flex-shrink: 0;
+    }
+
+    .dna__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-sans);
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--river-green);
+      position: relative;
+    }
+    .dna__link::after {
+      content: '';
+      position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--river-green);
+      transition: width 0.4s var(--ease-out);
+    }
+    .dna__link:hover::after { width: 100%; }
+    .dna__link svg { width: 18px; height: 18px; transition: transform 0.3s; }
+    .dna__link:hover svg { transform: translateX(4px); }
+
+    /* ============================================================
+       STATS
+    ============================================================ */
+    .stats {
+      background: var(--offwhite);
+      padding: clamp(72px, 9vw, 110px) 0;
+    }
+    .stats .container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .stat-item {
+      text-align: center;
+      padding: 0 20px;
+      border-right: 1px solid rgba(34, 35, 35, 0.09);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 4vw, 4.8rem);
+      font-weight: 400;
+      color: var(--stone);
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+    .stat-label {
+      font-family: var(--font-sans);
+      font-size: 0.65rem; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(34, 35, 35, 0.38);
+    }
+
+    /* ============================================================
+       INQUIRE CTA
+    ============================================================ */
+    .inquire {
+      background: var(--stone);
+      padding: clamp(100px, 13vw, 170px) 0;
+      text-align: center;
+      border-top: 1px solid rgba(240, 238, 220, 0.06);
+    }
+    .inquire__headline {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 4.2rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--ivory);
+      line-height: 1.15;
+      max-width: 640px;
+      margin: 0 auto 24px;
+    }
+    .inquire__sub {
+      font-family: var(--font-sans);
+      font-size: 0.82rem; font-weight: 400;
+      letter-spacing: 0.06em;
+      color: rgba(240, 238, 220, 0.4);
+      max-width: 440px;
+      margin: 0 auto 48px;
+      line-height: 1.75;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer {
+      background: var(--stone-mid);
+      padding-top: clamp(64px, 8vw, 100px);
+      border-top: 1px solid rgba(240, 238, 220, 0.06);
+    }
+    .footer__main {
+      display: grid;
+      grid-template-columns: 140px 1fr 1fr 1fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: start;
+      padding-bottom: clamp(48px, 6vw, 80px);
+      border-bottom: 1px solid rgba(240, 238, 220, 0.07);
+    }
+    .footer__logo img {
+      height: 110px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      filter: brightness(0) invert(1);
+      opacity: 0.6;
+    }
+    .footer__col-head {
+      font-family: var(--font-sans);
+      font-size: 0.62rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.28);
+      margin-bottom: 20px;
+    }
+    .footer__col a,
+    .footer__col p {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.82rem; font-weight: 400;
+      line-height: 2.2;
+      color: rgba(240, 238, 220, 0.48);
+      transition: color 0.3s;
+    }
+    .footer__col a:hover { color: var(--river-green); }
+    .footer__col p { cursor: default; }
+
+    .footer__base {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 0;
+    }
+    .footer__copy {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      color: rgba(240, 238, 220, 0.22);
+      letter-spacing: 0.04em;
+    }
+    .footer__social { display: flex; gap: 28px; }
+    .footer__social a {
+      font-family: var(--font-sans);
+      font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.38);
+      transition: color 0.3s;
+    }
+    .footer__social a:hover { color: var(--river-green); }
+
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    .reveal-left {
+      opacity: 0; transform: translateX(-50px);
+      transition: opacity 1.1s var(--ease-out), transform 1.1s var(--ease-out);
+    }
+    .reveal-left.in { opacity: 1; transform: translateX(0); }
+
+    .reveal-right {
+      opacity: 0; transform: translateX(50px);
+      transition: opacity 1.1s var(--ease-out), transform 1.1s var(--ease-out);
+    }
+    .reveal-right.in { opacity: 1; transform: translateX(0); }
+
+    .d1 { transition-delay: 0.10s !important; }
+    .d2 { transition-delay: 0.20s !important; }
+    .d3 { transition-delay: 0.30s !important; }
+    .d4 { transition-delay: 0.40s !important; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1080px) {
+      .navbar__links { display: none; }
+      .mission__grid { grid-template-columns: 1fr; gap: 40px; }
+      .mission__aside { border-right: none; padding-right: 0; border-bottom: 1px solid rgba(240,238,220,0.08); padding-bottom: 32px; }
+      .dna { grid-template-columns: 1fr; }
+      .dna__image { height: 50vw; min-height: 300px; }
+      .stats .container { grid-template-columns: repeat(2, 1fr); gap: 48px 0; }
+      .stat-item:nth-child(even) { border-right: none; }
+      .stat-item:nth-child(odd) { border-right: 1px solid rgba(34,35,35,0.09); }
+      .footer__main { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .hero__metrics .container { grid-template-columns: repeat(2, 1fr); }
+      .hero__metric:nth-child(2) { border-right: none; }
+      .hero__metric:nth-child(3) { border-top: 1px solid rgba(240,238,220,0.07); }
+      .hero__metric:nth-child(4) { border-top: 1px solid rgba(240,238,220,0.07); border-right: none; }
+    }
+
+    @media (max-width: 640px) {
+      .hero__counter { display: none; }
+      .hero__scroll-cue { display: none; }
+      .works__footer { flex-direction: column; gap: 20px; text-align: center; }
+      .footer__main { grid-template-columns: 1fr; }
+      .footer__base { flex-direction: column; gap: 14px; }
+      .inquire__headline { font-size: clamp(1.8rem, 8vw, 2.6rem); }
+      .stat-item { padding: 24px 0; border-right: none !important; border-bottom: 1px solid rgba(34,35,35,0.08); }
+      .stat-item:last-child { border-bottom: none; }
+      .stats .container { grid-template-columns: repeat(2, 1fr); gap: 0; }
+      .stat-item { padding: 24px 16px; }
+    }
+
+    /* Hide nav inquire button on small screens */
+    @media (max-width: 540px) {
+      .btn.desktop-only { display: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Full-Screen Menu -->
+  <div class="menu" id="menu" role="dialog" aria-label="Navigation">
+    <div class="menu__inner">
+      <nav>
+        <ul class="menu__links" role="list">
+          <li><a href="#" onclick="closeMenu(); return false;">Home</a></li>
+          <li><a href="#" onclick="closeMenu(); return false;">Our DNA</a></li>
+          <li><a href="#" onclick="closeMenu(); return false;">Portfolio</a></li>
+          <li><a href="#" onclick="closeMenu(); return false;">About</a></li>
+          <li><a href="#" onclick="closeMenu(); return false;">Inquire</a></li>
+        </ul>
+      </nav>
+      <div class="menu__divider"></div>
+      <p class="menu__contact">contact@tibaliving.com &nbsp;·&nbsp; Bali, Indonesia</p>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="navbar__logo" aria-label="Tiba Living — Home">
+        <img src="TIBA_FINAL_LOGO_LANDSCAPE%20(3)%20(13).png"
+             alt="Tiba Living"
+             width="400" height="92"
+             loading="eager"
+             decoding="async">
+      </a>
+
+      <ul class="navbar__links">
+        <li><a href="#">Our DNA</a></li>
+        <li><a href="#">Portfolio</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+
+      <div class="navbar__right">
+        <a href="mailto:contact@tibaliving.com" class="btn desktop-only">
+          Inquire
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+        <button class="navbar__ham" id="ham" aria-label="Toggle menu" onclick="toggleMenu()">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════ HERO ═══════════════════ -->
+  <section class="hero" id="hero">
+
+    <div class="hero__slides">
+      <div class="hero__slide active">
+        <img src="Project%20Images/House%20SJ/SJ4.png"
+             alt="House SJ — Pererenan, Bali"
+             loading="eager">
+      </div>
+      <div class="hero__slide">
+        <img src="Project%20Images/Tiba%20Hills/2804153C-3938-4286-97AC-1263E5451BC3.jpg"
+             alt="Tiba Hills — Uluwatu, Bali"
+             loading="lazy">
+      </div>
+      <div class="hero__slide">
+        <img src="Project%20Images/Tiba%20Tennessee/infinity_pool_8K_upscaled.png"
+             alt="Tiba Tennessee — Appalachian Highlands"
+             loading="lazy">
+      </div>
+    </div>
+
+    <div class="hero__overlay"></div>
+
+    <div class="hero__scroll-cue">
+      <span>Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+
+    <div class="hero__counter">
+      <em id="slideNum">01</em> / 03
+    </div>
+
+    <div class="hero__lower">
+      <div class="container hero__content">
+        <div class="hero__eyebrow">Where You Arrive</div>
+        <h1 class="hero__headline">Crafting destinations,<br>not just buildings.</h1>
+        <p class="hero__sub">Bali &nbsp;·&nbsp; Tennessee &nbsp;·&nbsp; California</p>
+      </div>
+
+      <div class="hero__metrics">
+        <div class="container">
+          <div class="hero__metric">
+            <div class="hero__metric-num">8</div>
+            <div class="hero__metric-label">Developments</div>
+          </div>
+          <div class="hero__metric">
+            <div class="hero__metric-num">3</div>
+            <div class="hero__metric-label">Countries</div>
+          </div>
+          <div class="hero__metric">
+            <div class="hero__metric-num">16k+</div>
+            <div class="hero__metric-label">Sq. Metres</div>
+          </div>
+          <div class="hero__metric">
+            <div class="hero__metric-num">∞</div>
+            <div class="hero__metric-label">Community</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════════════════ MISSION ════════════════════ -->
+  <section class="mission">
+    <div class="container">
+      <div class="mission__grid">
+
+        <div class="mission__aside reveal">
+          <div class="badge">Our Ethos</div>
+          <p class="mission__label">
+            Tiba means<br>"to arrive"
+          </p>
+        </div>
+
+        <div class="reveal d1">
+          <blockquote class="mission__quote">
+            At TIBA living, we create more than just buildings. We craft moments, curate experiences, and design the backdrop of your new life.
+          </blockquote>
+          <div class="mission__pillars">
+            <span class="mission__pillar">Quiet Luxury</span>
+            <span class="mission__sep">·</span>
+            <span class="mission__pillar">Untouched Sanctuaries</span>
+            <span class="mission__sep">·</span>
+            <span class="mission__pillar">Community by Design</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════ SELECTED WORKS ══════════════════ -->
+  <section class="works">
+
+    <div class="container">
+      <div class="works__head reveal">
+        <div>
+          <div class="works__badge">Selected Works</div>
+          <h2 class="works__title">Our<br>Portfolio</h2>
+        </div>
+        <div class="works__arrows">
+          <button class="arrow-btn" id="prev" aria-label="Previous project">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+          </button>
+          <button class="arrow-btn" id="next" aria-label="Next project">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="works__track" id="track">
+
+      <!-- 01 House SJ -->
+      <div class="work-card">
+        <img src="Project%20Images/House%20SJ/SJ2.png" alt="House SJ — Pererenan, Bali" loading="lazy">
+        <span class="work-card__num">01</span>
+        <div class="work-card__body">
+          <p class="work-card__loc">Pererenan, Bali</p>
+          <h3 class="work-card__name">House SJ</h3>
+          <div class="work-card__cta">View Project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 Tiba Hills -->
+      <div class="work-card">
+        <img src="Project%20Images/Tiba%20Hills/DAEAA03B-7DF7-4980-9B17-119FAFEB5787.jpg" alt="Tiba Hills — Uluwatu, Bali" loading="lazy">
+        <span class="work-card__num">02</span>
+        <div class="work-card__body">
+          <p class="work-card__loc">Uluwatu, Bali</p>
+          <h3 class="work-card__name">Tiba Hills</h3>
+          <div class="work-card__cta">View Project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 Tiba Tennessee -->
+      <div class="work-card">
+        <img src="Project%20Images/Tiba%20Tennessee/infinity_pool_8K_upscaled.png" alt="Tiba Tennessee" loading="lazy">
+        <span class="work-card__num">03</span>
+        <div class="work-card__body">
+          <p class="work-card__loc">Tennessee, USA</p>
+          <h3 class="work-card__name">Tiba Tennessee</h3>
+          <div class="work-card__cta">View Project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 88 East -->
+      <div class="work-card">
+        <img src="Project%20Images/88%20East/Fathom-11-scaled.jpg" alt="88 East — Canggu, Bali" loading="lazy">
+        <span class="work-card__num">04</span>
+        <div class="work-card__body">
+          <p class="work-card__loc">Canggu, Bali</p>
+          <h3 class="work-card__name">88 East</h3>
+          <div class="work-card__cta">View Project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 Casa Tiba -->
+      <div class="work-card">
+        <img src="Project%20Images/Casa%20Tiba/DSCF5035.jpeg" alt="Casa Tiba — Bingin Cliff, Bali" loading="lazy">
+        <span class="work-card__num">05</span>
+        <div class="work-card__body">
+          <p class="work-card__loc">Bingin Cliff, Bali</p>
+          <h3 class="work-card__name">Casa Tiba</h3>
+          <div class="work-card__cta">View Project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 Tiba Lofts -->
+      <a href="tiba-lofts.html" class="work-card">
+        <img src="Project%20Images/Lofts/Image1.jpg" alt="Tiba Lofts — Padang Padang, Bali" loading="lazy">
+        <span class="work-card__num">06</span>
+        <div class="work-card__body">
+          <p class="work-card__loc">Padang Padang, Bali</p>
+          <h3 class="work-card__name">Tiba Lofts</h3>
+          <div class="work-card__cta">View Project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- 07 Beachclub -->
+      <div class="work-card">
+        <img src="Project%20Images/Beachclub/1.jpg" alt="Tiba Beachclub — Bali" loading="lazy">
+        <span class="work-card__num">07</span>
+        <div class="work-card__body">
+          <p class="work-card__loc">Bali, Indonesia</p>
+          <h3 class="work-card__name">Tiba Beachclub</h3>
+          <div class="work-card__cta">View Project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 08 Tiba Townhouse -->
+      <div class="work-card">
+        <img src="Project%20Images/Tiba%20Townhouse/Copy%20of%20Copy%20of%20Image1.jpg" alt="Tiba Townhouse — Uluwatu, Bali" loading="lazy">
+        <span class="work-card__num">08</span>
+        <div class="work-card__body">
+          <p class="work-card__loc">Uluwatu, Bali</p>
+          <h3 class="work-card__name">Tiba Townhouse</h3>
+          <div class="work-card__cta">View Project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /works__track -->
+
+    <div class="container">
+      <div class="works__footer reveal">
+        <span class="works__count">8 Developments Across 3 Countries</span>
+        <a href="#" class="btn">
+          View All Projects
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════════════════ OUR DNA ═══════════════════ -->
+  <section class="dna">
+    <div class="dna__image reveal-left">
+      <img src="Project%20Images/Tiba%20Hills/F17AECF1-3657-454F-9311-5D8822C5E88F.jpg"
+           alt="Tiba Hills — natural assimilation"
+           loading="lazy">
+    </div>
+    <div class="dna__content reveal-right">
+      <div class="badge">Our DNA</div>
+      <h2 class="dna__headline">Natural.<br>Sustainable.<br>Timeless.</h2>
+      <ul class="dna__pillars">
+        <li class="dna__pillar"><span class="dna__dot"></span>Natural Assimilation</li>
+        <li class="dna__pillar"><span class="dna__dot"></span>Sustainable Development</li>
+        <li class="dna__pillar"><span class="dna__dot"></span>Climate Adaptability</li>
+        <li class="dna__pillar"><span class="dna__dot"></span>Timeless Development</li>
+        <li class="dna__pillar"><span class="dna__dot"></span>Informed Modernity</li>
+      </ul>
+      <a href="#" class="dna__link">
+        Explore Our Philosophy
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ STATS ═════════════════════ -->
+  <section class="stats">
+    <div class="container">
+      <div class="stat-item reveal">
+        <div class="stat-num">8</div>
+        <div class="stat-label">Developments</div>
+      </div>
+      <div class="stat-item reveal d1">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Countries</div>
+      </div>
+      <div class="stat-item reveal d2">
+        <div class="stat-num">16k+</div>
+        <div class="stat-label">Sq. Metres</div>
+      </div>
+      <div class="stat-item reveal d3">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Community</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ INQUIRE ═══════════════════ -->
+  <section class="inquire">
+    <div class="container">
+      <div class="badge" style="justify-content: center;">Get in Touch</div>
+      <h2 class="inquire__headline reveal">Begin Your<br>Tiba Journey</h2>
+      <p class="inquire__sub reveal d1">
+        For investor enquiries, property sales, and partnership opportunities across our global portfolio.
+      </p>
+      <div class="reveal d2">
+        <a href="mailto:contact@tibaliving.com" class="btn">
+          Contact Us
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ FOOTER ════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+
+      <div class="footer__main">
+
+        <div class="footer__logo">
+          <img src="TIBA_FINAL_LOGO_PORTRAIT%20(2).png"
+               alt="Tiba Living"
+               loading="lazy"
+               decoding="async">
+        </div>
+
+        <div class="footer__col">
+          <p class="footer__col-head">Navigate</p>
+          <a href="#">Home</a>
+          <a href="#">Our DNA</a>
+          <a href="#">Portfolio</a>
+          <a href="#">About</a>
+          <a href="#">Inquire</a>
+        </div>
+
+        <div class="footer__col">
+          <p class="footer__col-head">Location</p>
+          <p>Jl. Raya Kerobokan No.4</p>
+          <p>Kerobokan Kelod, Kec. Kuta Utara</p>
+          <p>Kabupaten Badung, Bali 80361</p>
+        </div>
+
+        <div class="footer__col">
+          <p class="footer__col-head">Contact</p>
+          <a href="mailto:contact@tibaliving.com">contact@tibaliving.com</a>
+          <a href="https://tibaliving.com" target="_blank" rel="noopener">tibaliving.com</a>
+          <p class="footer__col-head" style="margin-top: 28px;">Follow</p>
+          <a href="#" target="_blank" rel="noopener">Instagram</a>
+          <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+
+      </div>
+
+      <div class="footer__base">
+        <p class="footer__copy">© 2025 Tiba Living. All rights reserved.</p>
+        <div class="footer__social">
+          <a href="#">Instagram</a>
+          <a href="#">LinkedIn</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    /* ─── NAV SCROLL ──────────────────────────────────── */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    /* ─── MENU ───────────────────────────────────────── */
+    const menu    = document.getElementById('menu');
+    const ham     = document.getElementById('ham');
+    let   menuOpen = false;
+
+    function toggleMenu() {
+      menuOpen = !menuOpen;
+      ham.classList.toggle('open', menuOpen);
+      menu.classList.toggle('open', menuOpen);
+      document.body.style.overflow = menuOpen ? 'hidden' : '';
+    }
+    function closeMenu() {
+      menuOpen = false;
+      ham.classList.remove('open');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) closeMenu(); });
+
+    /* ─── HERO CROSSFADE ──────────────────────────────── */
+    const slides   = document.querySelectorAll('.hero__slide');
+    const slideNum = document.getElementById('slideNum');
+    let   current  = 0;
+
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+      slideNum.textContent = String(current + 1).padStart(2, '0');
+    }, 6000);
+
+    /* ─── SCROLL REVEALS ──────────────────────────────── */
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => io.observe(el));
+
+    /* ─── CAROUSEL ────────────────────────────────────── */
+    const track = document.getElementById('track');
+    const prev  = document.getElementById('prev');
+    const next  = document.getElementById('next');
+
+    function cardW() {
+      const c = track.querySelector('.work-card');
+      return c ? c.getBoundingClientRect().width + 14 : 300;
+    }
+
+    prev.addEventListener('click', () => track.scrollBy({ left: -cardW(), behavior: 'smooth' }));
+    next.addEventListener('click', () => track.scrollBy({ left:  cardW(), behavior: 'smooth' }));
+
+    let drag = false, startX, scrollLeft;
+    track.addEventListener('mousedown',  e => { drag = true; startX = e.pageX - track.offsetLeft; scrollLeft = track.scrollLeft; });
+    track.addEventListener('mouseleave', () => drag = false);
+    track.addEventListener('mouseup',    () => drag = false);
+    track.addEventListener('mousemove',  e => {
+      if (!drag) return;
+      e.preventDefault();
+      track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.4;
+    });
+  </script>
+
+</body>
+</html>
