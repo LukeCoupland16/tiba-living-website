@@ -866,6 +866,193 @@
     .footer__social a:hover { color: var(--river-green); }
 
     /* ============================================================
+       FEATURED: TIBA TENNESSEE
+    ============================================================ */
+    .featured-tn {
+      position: relative;
+      height: 92vh;
+      min-height: 660px;
+      overflow: hidden;
+      background: var(--stone);
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .featured-tn__bg {
+      position: absolute;
+      inset: 0;
+    }
+    .featured-tn__bg img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transform: scale(1.05);
+      transition: transform 14s ease;
+    }
+    .featured-tn:hover .featured-tn__bg img { transform: scale(1.0); }
+
+    .featured-tn__overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(
+        108deg,
+        rgba(22, 23, 22, 0.91) 0%,
+        rgba(22, 23, 22, 0.62) 45%,
+        rgba(22, 23, 22, 0.18) 100%
+      );
+    }
+
+    /* Subtle decorative frame */
+    .featured-tn__frame {
+      position: absolute;
+      inset: 18px;
+      z-index: 2;
+      border: 1px solid rgba(240, 238, 220, 0.055);
+      pointer-events: none;
+    }
+
+    .featured-tn__inner {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 clamp(24px, 4vw, 72px);
+      padding-bottom: clamp(56px, 7vw, 88px);
+    }
+
+    /* Pulsing "Now Investing" pill */
+    .featured-tn__pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: rgba(163, 153, 106, 0.12);
+      border: 1px solid rgba(163, 153, 106, 0.32);
+      padding: 7px 16px 7px 12px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+    }
+    .featured-tn__pill-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--river-green);
+      animation: tn-pulse 2.2s ease infinite;
+      flex-shrink: 0;
+    }
+    @keyframes tn-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.45; transform: scale(0.65); }
+    }
+    .featured-tn__pill span {
+      font-family: var(--font-sans);
+      font-size: 0.62rem; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--river-green);
+    }
+
+    .featured-tn__eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.42);
+      margin-bottom: 14px;
+    }
+
+    .featured-tn__headline {
+      font-family: var(--font-serif);
+      font-size: clamp(3.4rem, 6.8vw, 7.4rem);
+      font-weight: 400;
+      color: var(--ivory);
+      line-height: 0.97;
+      letter-spacing: -0.01em;
+      margin-bottom: 30px;
+    }
+
+    .featured-tn__desc {
+      font-family: var(--font-sans);
+      font-size: 0.86rem; font-weight: 400;
+      line-height: 1.82;
+      color: rgba(240, 238, 220, 0.52);
+      max-width: 480px;
+      margin-bottom: 44px;
+      letter-spacing: 0.02em;
+    }
+
+    /* Stats row */
+    .featured-tn__stats {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 48px;
+    }
+    .featured-tn__stat {
+      display: flex;
+      flex-direction: column;
+      padding-right: 36px;
+    }
+    .featured-tn__stat-divider {
+      width: 1px; height: 38px;
+      background: rgba(240, 238, 220, 0.14);
+      margin-right: 36px;
+      flex-shrink: 0;
+    }
+    .featured-tn__stat-num {
+      font-family: var(--font-serif);
+      font-size: clamp(1.7rem, 2.5vw, 2.6rem);
+      font-weight: 400;
+      color: var(--ivory);
+      line-height: 1.1;
+      margin-bottom: 5px;
+    }
+    .featured-tn__stat-unit {
+      font-family: var(--font-sans);
+      font-size: 0.68rem; font-weight: 400;
+      color: rgba(240, 238, 220, 0.4);
+      margin-left: 3px;
+    }
+    .featured-tn__stat-label {
+      font-family: var(--font-sans);
+      font-size: 0.6rem; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.32);
+    }
+
+    /* CTA */
+    .featured-tn__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-sans);
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.09em; text-transform: uppercase;
+      color: var(--stone);
+      background: var(--ivory);
+      padding: 17px 38px;
+      border-radius: 50px;
+      transition: background 0.3s var(--ease-out), transform 0.25s var(--ease-out);
+    }
+    .featured-tn__cta:hover { background: var(--river-green-light); transform: translateY(-2px); }
+    .featured-tn__cta svg { width: 16px; height: 16px; transition: transform 0.3s var(--ease-out); }
+    .featured-tn__cta:hover svg { transform: translateX(4px); }
+
+    /* Corner label */
+    .featured-tn__corner {
+      position: absolute;
+      top: 44px; right: clamp(24px, 4vw, 72px);
+      z-index: 4;
+      writing-mode: vertical-rl;
+      font-family: var(--font-sans);
+      font-size: 0.58rem; font-weight: 500;
+      letter-spacing: 0.26em; text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.24);
+    }
+
+    @media (max-width: 768px) {
+      .featured-tn { height: auto; min-height: 100svh; padding-top: 140px; }
+      .featured-tn__headline { font-size: clamp(3rem, 11vw, 4.8rem); }
+      .featured-tn__corner { display: none; }
+      .featured-tn__frame { display: none; }
+    }
+
+    /* ============================================================
        SCROLL REVEAL
     ============================================================ */
     .reveal {
@@ -938,11 +1125,11 @@
     <div class="menu__inner">
       <nav>
         <ul class="menu__links" role="list">
-          <li><a href="#" onclick="closeMenu(); return false;">Home</a></li>
+          <li><a href="index.html" onclick="closeMenu(); return false;">Home</a></li>
           <li><a href="our-dna.html" onclick="closeMenu(); return false;">Our DNA</a></li>
           <li><a href="#" onclick="closeMenu(); return false;">Portfolio</a></li>
-          <li><a href="#" onclick="closeMenu(); return false;">About</a></li>
-          <li><a href="#" onclick="closeMenu(); return false;">Inquire</a></li>
+          <li><a href="https://tennessee.tibaliving.com" target="_blank" rel="noopener" onclick="closeMenu(); return false;">Tiba Tennessee</a></li>
+          <li><a href="mailto:contact@tibaliving.com" onclick="closeMenu(); return false;">Inquire</a></li>
         </ul>
       </nav>
       <div class="menu__divider"></div>
@@ -953,7 +1140,7 @@
   <!-- Navigation -->
   <nav class="navbar" id="navbar">
     <div class="container">
-      <a href="#" class="navbar__logo" aria-label="Tiba Living — Home">
+      <a href="index.html" class="navbar__logo" aria-label="Tiba Living — Home">
         <img src="TIBA_FINAL_LOGO_LANDSCAPE%20(3)%20(13).png"
              alt="Tiba Living"
              width="400" height="92"
@@ -964,7 +1151,7 @@
       <ul class="navbar__links">
         <li><a href="our-dna.html">Our DNA</a></li>
         <li><a href="#">Portfolio</a></li>
-        <li><a href="#">About</a></li>
+        <li><a href="https://tennessee.tibaliving.com" target="_blank" rel="noopener">Tiba Tennessee</a></li>
       </ul>
 
       <div class="navbar__right">
@@ -1070,6 +1257,64 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FEATURED PROJECT: TIBA TENNESSEE ════════════ -->
+  <section class="featured-tn" aria-label="Featured Project: Tiba Tennessee">
+
+    <div class="featured-tn__bg">
+      <img src="Project%20Images/Tiba%20Tennessee/infinity_pool_8K_upscaled.png"
+           alt="Tiba Tennessee — Appalachian Highlands"
+           loading="lazy">
+    </div>
+
+    <div class="featured-tn__overlay"></div>
+    <div class="featured-tn__frame"></div>
+
+    <div class="featured-tn__corner">Appalachian Highlands &nbsp;·&nbsp; USA</div>
+
+    <div class="featured-tn__inner">
+
+      <div class="featured-tn__pill reveal">
+        <span class="featured-tn__pill-dot"></span>
+        <span>Now Accepting Investor Enquiries</span>
+      </div>
+
+      <p class="featured-tn__eyebrow reveal d1">Featured Project &nbsp;·&nbsp; Tennessee, USA</p>
+
+      <h2 class="featured-tn__headline reveal d1">Tiba<br>Tennessee</h2>
+
+      <p class="featured-tn__desc reveal d2">
+        Our most ambitious venture yet. A private Appalachian sanctuary of highland residences, infinity pools, and ancient-growth trails — crafted for discerning investors seeking both returns and refuge.
+      </p>
+
+      <div class="featured-tn__stats reveal d2">
+        <div class="featured-tn__stat">
+          <span class="featured-tn__stat-num">2025<span class="featured-tn__stat-unit"></span></span>
+          <span class="featured-tn__stat-label">Launch Year</span>
+        </div>
+        <div class="featured-tn__stat-divider"></div>
+        <div class="featured-tn__stat">
+          <span class="featured-tn__stat-num">Limited</span>
+          <span class="featured-tn__stat-label">Residences</span>
+        </div>
+        <div class="featured-tn__stat-divider"></div>
+        <div class="featured-tn__stat">
+          <span class="featured-tn__stat-num">Open</span>
+          <span class="featured-tn__stat-label">Investment Round</span>
+        </div>
+      </div>
+
+      <div class="reveal d3">
+        <a href="https://tennessee.tibaliving.com" target="_blank" rel="noopener" class="featured-tn__cta">
+          Explore Tennessee
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
     </div>
   </section>
 
@@ -1320,7 +1565,7 @@
           <a href="index.html">Home</a>
           <a href="our-dna.html">Our DNA</a>
           <a href="#">Portfolio</a>
-          <a href="#">About</a>
+          <a href="https://tennessee.tibaliving.com" target="_blank" rel="noopener">Tiba Tennessee</a>
           <a href="mailto:contact@tibaliving.com">Inquire</a>
         </div>
 

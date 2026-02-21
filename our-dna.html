@@ -76,12 +76,6 @@
       background: var(--river-green);
       flex-shrink: 0;
     }
-    .badge--dark {
-      color: var(--river-green);
-    }
-    .badge--dark::before {
-      background: var(--river-green);
-    }
 
     /* ============================================================
        BUTTONS
@@ -266,109 +260,110 @@
     .navbar__ham.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
     /* ============================================================
-       HERO
+       PAGE HEADER
     ============================================================ */
-    .hero {
-      position: relative;
-      height: 100svh;
-      min-height: 700px;
-      overflow: hidden;
+    .page-header {
       background: var(--stone);
+      padding-top: clamp(130px, 16vw, 160px);
+      padding-bottom: 0;
+      position: relative;
+      overflow: hidden;
     }
 
-    .hero__bg {
-      position: absolute; inset: 0;
-    }
-    .hero__bg img {
-      transform: scale(1.04);
-      transition: transform 12s ease;
-    }
-    .hero__bg img.loaded { transform: scale(1.0); }
-
-    .hero__overlay {
-      position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(
-        170deg,
-        rgba(34, 35, 35, 0.18) 0%,
-        rgba(34, 35, 35, 0.04) 40%,
-        rgba(34, 35, 35, 0.72) 100%
-      );
-    }
-
-    .hero__lower {
+    /* Teal mineral texture — full-bleed at very low opacity */
+    .page-header::before {
+      content: '';
       position: absolute;
-      bottom: 0; left: 0; right: 0;
-      z-index: 2;
+      inset: 0;
+      background: url('Brand%20Textures/texture-teal-mineral.jpg') center / cover no-repeat;
+      opacity: 0.14;
+      pointer-events: none;
     }
 
-    .hero__content { padding-bottom: 8px; }
+    /* Teal mineral texture — reveals from right edge */
+    .page-header::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 50%;
+      height: 100%;
+      background: url('Brand%20Textures/texture-teal-mineral.jpg') center right / cover no-repeat;
+      opacity: 0.36;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 52%);
+      mask-image: linear-gradient(to right, transparent 0%, black 52%);
+      pointer-events: none;
+    }
 
-    .hero__eyebrow {
+    .page-header__breadcrumb {
       display: inline-flex;
       align-items: center;
-      gap: 14px;
-      font-family: var(--font-sans);
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--river-green);
-      margin-bottom: 18px;
-      opacity: 0;
-      animation: fadeUp 1s 0.4s var(--ease-out) forwards;
-    }
-    .hero__eyebrow::before {
-      content: '';
-      display: block;
-      width: 20px; height: 1px;
-      background: var(--river-green);
-    }
-
-    .hero__headline {
-      font-family: var(--font-serif);
-      font-size: clamp(2.6rem, 5.5vw, 5.2rem);
-      font-weight: 400;
-      color: var(--ivory);
-      line-height: 1.05;
-      max-width: 720px;
-      margin-bottom: 20px;
-      opacity: 0;
-      animation: fadeUp 1.2s 0.6s var(--ease-out) forwards;
-    }
-
-    .hero__sub {
-      font-family: var(--font-sans);
-      font-size: 0.78rem;
-      font-weight: 400;
-      letter-spacing: 0.18em;
-      color: rgba(240, 238, 220, 0.48);
-      margin-bottom: 0;
-      opacity: 0;
-      animation: fadeUp 1s 0.85s var(--ease-out) forwards;
-    }
-
-    /* Bottom divider bar */
-    .hero__bar {
-      margin-top: 36px;
-      border-top: 1px solid rgba(240, 238, 220, 0.09);
-      padding: 22px clamp(24px, 4vw, 72px);
-      display: flex;
-      align-items: center;
-      gap: clamp(24px, 4vw, 56px);
-      opacity: 0;
-      animation: fadeIn 0.8s 1.2s var(--ease-out) forwards;
-    }
-    .hero__bar-item {
+      gap: 10px;
       font-family: var(--font-sans);
       font-size: 0.62rem;
       font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.28);
+      margin-bottom: 32px;
+    }
+    .page-header__breadcrumb a {
+      color: rgba(240, 238, 220, 0.28);
+      transition: color 0.3s;
+    }
+    .page-header__breadcrumb a:hover { color: var(--river-green); }
+    .page-header__breadcrumb svg {
+      width: 10px; height: 10px;
+      opacity: 0.4;
+    }
+    .page-header__breadcrumb .current { color: rgba(240, 238, 220, 0.55); }
+
+    .page-header__headline {
+      font-family: var(--font-serif);
+      font-size: clamp(3.4rem, 7.5vw, 8rem);
+      font-weight: 400;
+      line-height: 1.0;
+      color: var(--ivory);
+      letter-spacing: -0.015em;
+      max-width: 800px;
+      opacity: 0;
+      animation: fadeUp 1s 0.2s var(--ease-out) forwards;
+    }
+
+    .page-header__sub {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.24em;
+      color: rgba(240, 238, 220, 0.35);
+      margin-top: 28px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.45s var(--ease-out) forwards;
+    }
+
+    .page-header__meta {
+      margin-top: clamp(52px, 7vw, 80px);
+      padding: 22px 0;
+      border-top: 1px solid rgba(240, 238, 220, 0.07);
+      display: flex;
+      align-items: center;
+      gap: clamp(20px, 3vw, 48px);
+      opacity: 0;
+      animation: fadeIn 0.8s 0.7s var(--ease-out) forwards;
+      flex-wrap: wrap;
+    }
+
+    .page-header__meta-item {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      font-weight: 500;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: rgba(240, 238, 220, 0.32);
+      color: rgba(240, 238, 220, 0.25);
     }
-    .hero__bar-sep {
-      width: 1px; height: 16px;
-      background: rgba(240, 238, 220, 0.12);
+
+    .page-header__meta-sep {
+      width: 1px; height: 14px;
+      background: rgba(240, 238, 220, 0.1);
       flex-shrink: 0;
     }
 
@@ -377,40 +372,6 @@
       to   { opacity: 1; transform: translateY(0); }
     }
     @keyframes fadeIn { to { opacity: 1; } }
-
-    /* Scroll cue */
-    .hero__scroll-cue {
-      position: absolute;
-      left: clamp(24px, 4vw, 72px);
-      bottom: 155px;
-      z-index: 3;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-    .hero__scroll-cue span {
-      font-family: var(--font-sans);
-      font-size: 0.58rem;
-      font-weight: 500;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: rgba(240, 238, 220, 0.3);
-      writing-mode: vertical-rl;
-    }
-    .hero__scroll-line {
-      width: 1px; height: 50px;
-      background: rgba(240, 238, 220, 0.12);
-      position: relative; overflow: hidden;
-    }
-    .hero__scroll-line::after {
-      content: '';
-      position: absolute; top: -100%; left: 0;
-      width: 1px; height: 100%;
-      background: var(--river-green);
-      animation: drip 2.5s ease infinite;
-    }
-    @keyframes drip { 0% { top: -100%; } 100% { top: 200%; } }
 
     /* ============================================================
        THE JOURNEY
@@ -531,66 +492,89 @@
     }
 
     /* ============================================================
-       PILLAR ROWS
+       PRINCIPLES GRID
     ============================================================ */
-    .pillar-row {
+    .principles {
+      background: var(--stone);
+      padding-bottom: clamp(80px, 10vw, 120px);
+      border-top: 1px solid rgba(240, 238, 220, 0.06);
+    }
+
+    .principles__grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 620px;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1px;
+      background: rgba(240, 238, 220, 0.07);
+      border: 1px solid rgba(240, 238, 220, 0.07);
     }
 
-    .pillar-row__image {
-      position: relative;
+    .principle-card {
+      grid-column: span 2;
+      background: var(--stone);
       overflow: hidden;
-    }
-    .pillar-row__image img {
-      transition: transform 1.6s var(--ease-out);
-    }
-    .pillar-row:hover .pillar-row__image img {
-      transform: scale(1.04);
-    }
-
-    .pillar-row__content {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      padding: clamp(60px, 8vw, 100px) clamp(48px, 6vw, 96px);
+      transition: background 0.4s var(--ease-out);
+    }
+    .principle-card:hover { background: var(--stone-mid); }
+
+    .principle-card:nth-child(4) { grid-column: 1 / span 3; }
+    .principle-card:nth-child(5) { grid-column: 4 / span 3; }
+
+    .principle-card__img {
+      height: 200px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .principle-card__img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1.4s var(--ease-out);
+    }
+    .principle-card:hover .principle-card__img img {
+      transform: scale(1.06);
     }
 
-    .pillar-row--reverse .pillar-row__image { order: 2; }
-    .pillar-row--reverse .pillar-row__content { order: 1; }
+    .principle-card__inner {
+      padding: clamp(24px, 3vw, 36px);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
 
-    .pillar-row__num {
+    .principle-card__num {
       font-family: var(--font-sans);
-      font-size: 0.65rem;
+      font-size: 0.58rem;
       font-weight: 300;
-      letter-spacing: 0.1em;
-      color: rgba(240, 238, 220, 0.22);
-      margin-bottom: 20px;
+      letter-spacing: 0.12em;
+      color: rgba(240, 238, 220, 0.2);
+      margin-bottom: 14px;
     }
 
-    .pillar-row__name {
+    .principle-card__name {
       font-family: var(--font-serif);
-      font-size: clamp(2rem, 3.2vw, 3.4rem);
+      font-size: clamp(1.3rem, 1.8vw, 1.75rem);
       font-weight: 400;
-      line-height: 1.15;
+      line-height: 1.2;
       color: var(--ivory);
-      margin-bottom: 28px;
+      margin-bottom: 18px;
     }
 
-    .pillar-row__body {
+    .principle-card__line {
+      width: 22px; height: 1px;
+      background: var(--river-green);
+      opacity: 0.4;
+      margin-bottom: 18px;
+    }
+
+    .principle-card__text {
       font-family: var(--font-sans);
-      font-size: 0.88rem;
+      font-size: 0.8rem;
       font-weight: 400;
-      line-height: 1.85;
-      color: rgba(240, 238, 220, 0.58);
-      max-width: 480px;
-    }
-
-    .pillar-row__divider {
-      width: 28px; height: 1px;
-      background: rgba(240, 238, 220, 0.14);
-      margin: 32px 0;
+      line-height: 1.82;
+      color: rgba(240, 238, 220, 0.48);
+      flex: 1;
     }
 
     /* ============================================================
@@ -636,125 +620,116 @@
     }
 
     /* ============================================================
-       DEVELOPMENT TOLD PLAINLY
+       TEAM
     ============================================================ */
-    .development {
-      background: var(--offwhite);
+    .team {
+      background: var(--stone);
       padding: clamp(80px, 10vw, 130px) 0;
+      border-top: 1px solid rgba(240, 238, 220, 0.06);
     }
 
-    .development__intro {
-      margin-bottom: clamp(52px, 7vw, 88px);
+    .team__intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 100px);
+      align-items: end;
+      margin-bottom: clamp(52px, 7vw, 80px);
     }
 
-    .development__badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
+    .team__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.5vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--ivory);
+    }
+
+    .team__desc {
       font-family: var(--font-sans);
-      font-size: 0.68rem;
+      font-size: 0.88rem;
+      font-weight: 400;
+      line-height: 1.85;
+      color: rgba(240, 238, 220, 0.48);
+      max-width: 460px;
+    }
+
+    .team__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(240, 238, 220, 0.07);
+      border: 1px solid rgba(240, 238, 220, 0.07);
+    }
+
+    .team-member {
+      background: var(--stone);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .team-member__photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      margin: clamp(28px, 3.5vw, 44px) clamp(28px, 3.5vw, 44px) 0;
+      border: 1px solid rgba(240, 238, 220, 0.1);
+    }
+    .team-member__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 15%;
+      filter: grayscale(20%);
+      transition: transform 1.4s var(--ease-out), filter 0.6s;
+    }
+    .team-member:hover .team-member__photo img {
+      transform: scale(1.06);
+      filter: grayscale(0%);
+    }
+
+    .team-member__inner {
+      padding: clamp(28px, 3.5vw, 44px);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .team-member__name {
+      font-family: var(--font-serif);
+      font-size: clamp(1.3rem, 2vw, 1.6rem);
+      font-weight: 400;
+      color: var(--ivory);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .team-member__role {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
       font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--river-green);
       margin-bottom: 24px;
     }
-    .development__badge::before {
-      content: '';
-      display: block;
-      width: 22px; height: 1px;
-      background: var(--river-green);
-      flex-shrink: 0;
-    }
 
-    .development__title {
-      font-family: var(--font-serif);
-      font-size: clamp(2rem, 3.5vw, 3.4rem);
-      font-weight: 400;
-      line-height: 1.12;
-      color: var(--stone);
+    .team-member__divider {
+      width: 20px; height: 1px;
+      background: rgba(240, 238, 220, 0.12);
       margin-bottom: 20px;
     }
 
-    .development__sub {
+    .team-member__bio {
       font-family: var(--font-sans);
-      font-size: 0.88rem;
+      font-size: 0.8rem;
       font-weight: 400;
-      line-height: 1.8;
-      color: rgba(34, 35, 35, 0.55);
-      max-width: 520px;
+      line-height: 1.85;
+      color: rgba(240, 238, 220, 0.42);
+      flex: 1;
     }
-
-    .development__timeline {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      border-top: 1px solid rgba(34, 35, 35, 0.1);
-      margin-bottom: 52px;
-    }
-
-    .timeline-item {
-      padding: 40px 0 40px clamp(0px, 2vw, 24px);
-      border-right: 1px solid rgba(34, 35, 35, 0.08);
-      position: relative;
-    }
-    .timeline-item:last-child { border-right: none; }
-    .timeline-item:first-child { padding-left: 0; }
-
-    .timeline-item__year {
-      font-family: var(--font-serif);
-      font-size: clamp(1.6rem, 2.2vw, 2.2rem);
-      font-weight: 400;
-      color: var(--stone);
-      line-height: 1;
-      margin-bottom: 14px;
-    }
-
-    .timeline-item__line {
-      width: 22px; height: 1px;
-      background: var(--river-green);
-      margin-bottom: 14px;
-    }
-
-    .timeline-item__project {
-      font-family: var(--font-sans);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--stone);
-      margin-bottom: 6px;
-    }
-
-    .timeline-item__location {
-      font-family: var(--font-sans);
-      font-size: 0.68rem;
-      font-weight: 400;
-      color: rgba(34, 35, 35, 0.45);
-      letter-spacing: 0.04em;
-    }
-
-    .development__cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: var(--font-sans);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--river-green);
-      position: relative;
-    }
-    .development__cta::after {
-      content: '';
-      position: absolute; bottom: -3px; left: 0;
-      width: 0; height: 1px;
-      background: var(--river-green);
-      transition: width 0.4s var(--ease-out);
-    }
-    .development__cta:hover::after { width: 100%; }
-    .development__cta svg { width: 18px; height: 18px; transition: transform 0.3s; }
-    .development__cta:hover svg { transform: translateX(4px); }
 
     /* ============================================================
        INQUIRE CTA
@@ -890,24 +865,22 @@
       .navbar__links { display: none; }
       .journey__grid { grid-template-columns: 1fr; gap: 40px; }
       .journey__aside { border-right: none; padding-right: 0; border-bottom: 1px solid rgba(240,238,220,0.08); padding-bottom: 32px; }
-      .pillar-row { grid-template-columns: 1fr; }
-      .pillar-row__image { height: 55vw; min-height: 320px; }
-      .pillar-row--reverse .pillar-row__image { order: 0; }
-      .pillar-row--reverse .pillar-row__content { order: 1; }
-      .development__timeline { grid-template-columns: repeat(3, 1fr); }
-      .timeline-item:nth-child(3) { border-right: none; }
+      .principles__grid { grid-template-columns: repeat(2, 1fr); }
+      .principle-card { grid-column: span 1 !important; }
+      .team__intro { grid-template-columns: 1fr; gap: 28px; }
+      .team__grid { grid-template-columns: 1fr; }
       .footer__main { grid-template-columns: 1fr 1fr; gap: 40px; }
     }
 
     @media (max-width: 640px) {
-      .hero__scroll-cue { display: none; }
-      .development__timeline { grid-template-columns: repeat(2, 1fr); }
-      .timeline-item:nth-child(2) { border-right: none; }
-      .timeline-item:nth-child(3) { border-right: 1px solid rgba(34,35,35,0.08); }
-      .timeline-item:nth-child(4) { border-right: none; }
       .footer__main { grid-template-columns: 1fr; }
       .footer__base { flex-direction: column; gap: 14px; }
       .pillars-header__title { font-size: clamp(2rem, 8vw, 2.8rem); }
+      .principles__grid { grid-template-columns: 1fr; }
+      .principle-card { grid-column: span 1 !important; }
+      .principle-card__img { height: 56vw; }
+      .page-header__meta { gap: 14px; }
+      .page-header__meta-sep { display: none; }
     }
 
     @media (max-width: 540px) {
@@ -926,7 +899,7 @@
           <li><a href="index.html" onclick="closeMenu(); return false;">Home</a></li>
           <li><a href="our-dna.html" onclick="closeMenu(); return false;">Our DNA</a></li>
           <li><a href="#" onclick="closeMenu(); return false;">Portfolio</a></li>
-          <li><a href="#" onclick="closeMenu(); return false;">About</a></li>
+          <li><a href="https://tennessee.tibaliving.com" target="_blank" rel="noopener" onclick="closeMenu(); return false;">Tiba Tennessee</a></li>
           <li><a href="mailto:contact@tibaliving.com" onclick="closeMenu(); return false;">Inquire</a></li>
         </ul>
       </nav>
@@ -936,7 +909,7 @@
   </div>
 
   <!-- Navigation -->
-  <nav class="navbar" id="navbar">
+  <nav class="navbar scrolled" id="navbar">
     <div class="container">
       <a href="index.html" class="navbar__logo" aria-label="Tiba Living — Home">
         <img src="TIBA_FINAL_LOGO_LANDSCAPE%20(3)%20(13).png"
@@ -949,7 +922,7 @@
       <ul class="navbar__links">
         <li><a href="our-dna.html" class="active">Our DNA</a></li>
         <li><a href="#">Portfolio</a></li>
-        <li><a href="#">About</a></li>
+        <li><a href="https://tennessee.tibaliving.com" target="_blank" rel="noopener">Tiba Tennessee</a></li>
       </ul>
 
       <div class="navbar__right">
@@ -966,38 +939,30 @@
     </div>
   </nav>
 
-  <!-- ══════════════════════════════════ HERO ══════════════════════ -->
-  <section class="hero">
+  <!-- ══════════════════════════ PAGE HEADER ═══════════════════════ -->
+  <section class="page-header">
+    <div class="container" style="position:relative;z-index:1;">
 
-    <div class="hero__bg">
-      <img src="Project%20Images/Tiba%20Hills/2804153C-3938-4286-97AC-1263E5451BC3.jpg"
-           alt="Tiba Hills — natural landscape"
-           id="heroBg"
-           loading="eager">
-    </div>
-
-    <div class="hero__overlay"></div>
-
-    <div class="hero__scroll-cue">
-      <span>Scroll</span>
-      <div class="hero__scroll-line"></div>
-    </div>
-
-    <div class="hero__lower">
-      <div class="container hero__content">
-        <div class="hero__eyebrow">Our DNA</div>
-        <h1 class="hero__headline">Built From<br>Belief.</h1>
-        <p class="hero__sub">Natural &nbsp;·&nbsp; Sustainable &nbsp;·&nbsp; Timeless</p>
+      <div class="page-header__breadcrumb">
+        <a href="index.html">Tiba Living</a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+        <span class="current">Our DNA</span>
       </div>
-      <div class="hero__bar">
-        <span class="hero__bar-item">Five Principles</span>
-        <div class="hero__bar-sep"></div>
-        <span class="hero__bar-item">Bali &nbsp;·&nbsp; Tennessee &nbsp;·&nbsp; California</span>
-        <div class="hero__bar-sep"></div>
-        <span class="hero__bar-item">Architecture that belongs</span>
-      </div>
-    </div>
 
+      <h1 class="page-header__headline">Built From<br>Belief.</h1>
+      <p class="page-header__sub">Natural &nbsp;·&nbsp; Sustainable &nbsp;·&nbsp; Timeless</p>
+
+      <div class="page-header__meta">
+        <span class="page-header__meta-item">Five Principles</span>
+        <div class="page-header__meta-sep"></div>
+        <span class="page-header__meta-item">Bali &nbsp;·&nbsp; Tennessee &nbsp;·&nbsp; California</span>
+        <div class="page-header__meta-sep"></div>
+        <span class="page-header__meta-item">Architecture that belongs</span>
+      </div>
+
+    </div>
   </section>
 
   <!-- ═══════════════════════════ THE JOURNEY ═══════════════════════ -->
@@ -1043,80 +1008,77 @@
     </div>
   </div>
 
-  <!-- ═══════════════════════════ PILLAR 01 ════════════════════════ -->
-  <div class="pillar-row" style="background: var(--stone);">
-    <div class="pillar-row__image reveal-left">
-      <img src="Project%20Images/Tiba%20Hills/F17AECF1-3657-454F-9311-5D8822C5E88F.jpg"
-           alt="Natural Assimilation — Tiba Hills"
-           loading="lazy">
-    </div>
-    <div class="pillar-row__content reveal-right">
-      <p class="pillar-row__num">01</p>
-      <h3 class="pillar-row__name">Natural<br>Assimilation</h3>
-      <div class="pillar-row__divider"></div>
-      <p class="pillar-row__body">We study each site — its contours, its materials, its rhythm — before a single line is drawn. The result is architecture that feels as though it grew from the earth itself, borrowing from the land rather than imposing upon it.</p>
-    </div>
-  </div>
+  <!-- ═══════════════════════ FIVE PRINCIPLES GRID ════════════════ -->
+  <section class="principles">
+    <div class="principles__grid">
 
-  <!-- ═══════════════════════════ PILLAR 02 ════════════════════════ -->
-  <div class="pillar-row pillar-row--reverse" style="background: var(--stone-mid);">
-    <div class="pillar-row__content reveal-left">
-      <p class="pillar-row__num">02</p>
-      <h3 class="pillar-row__name">Sustainable<br>Development</h3>
-      <div class="pillar-row__divider"></div>
-      <p class="pillar-row__body">Responsibility is woven into every decision. From locally sourced timber and volcanic stone to passive cooling systems and rainwater harvesting, we build with the next generation in mind — without compromising the quality that defines Tiba Living.</p>
-    </div>
-    <div class="pillar-row__image reveal-right">
-      <img src="Project%20Images/Casa%20Tiba/DSCF5035.jpeg"
-           alt="Sustainable Development — Casa Tiba"
-           loading="lazy">
-    </div>
-  </div>
+      <div class="principle-card reveal">
+        <div class="principle-card__img">
+          <img src="Project%20Images/Tiba%20Hills/F17AECF1-3657-454F-9311-5D8822C5E88F.jpg"
+               alt="Natural Assimilation — Tiba Hills" loading="lazy">
+        </div>
+        <div class="principle-card__inner">
+          <p class="principle-card__num">01</p>
+          <h3 class="principle-card__name">Natural Assimilation</h3>
+          <div class="principle-card__line"></div>
+          <p class="principle-card__text">We study each site — its contours, its materials, its rhythm — before a single line is drawn. Architecture that feels as though it grew from the earth itself.</p>
+        </div>
+      </div>
 
-  <!-- ═══════════════════════════ PILLAR 03 ════════════════════════ -->
-  <div class="pillar-row" style="background: var(--stone);">
-    <div class="pillar-row__image reveal-left">
-      <img src="Project%20Images/Tiba%20Tennessee/infinity_pool_8K_upscaled.png"
-           alt="Climate Adaptability — Tiba Tennessee"
-           loading="lazy">
-    </div>
-    <div class="pillar-row__content reveal-right">
-      <p class="pillar-row__num">03</p>
-      <h3 class="pillar-row__name">Climate<br>Adaptability</h3>
-      <div class="pillar-row__divider"></div>
-      <p class="pillar-row__body">Every destination has its own atmosphere. Our designs are inherently responsive — embracing the tropical humidity of Bali, the mountain air of the Appalachians, the coastal warmth of California — rather than fighting their environment.</p>
-    </div>
-  </div>
+      <div class="principle-card reveal d1">
+        <div class="principle-card__img">
+          <img src="Project%20Images/Casa%20Tiba/DSCF5035.jpeg"
+               alt="Sustainable Development — Casa Tiba" loading="lazy">
+        </div>
+        <div class="principle-card__inner">
+          <p class="principle-card__num">02</p>
+          <h3 class="principle-card__name">Sustainable Development</h3>
+          <div class="principle-card__line"></div>
+          <p class="principle-card__text">From locally sourced timber and volcanic stone to passive cooling systems and rainwater harvesting, we build with the next generation in mind.</p>
+        </div>
+      </div>
 
-  <!-- ═══════════════════════════ PILLAR 04 ════════════════════════ -->
-  <div class="pillar-row pillar-row--reverse" style="background: var(--stone-mid);">
-    <div class="pillar-row__content reveal-left">
-      <p class="pillar-row__num">04</p>
-      <h3 class="pillar-row__name">Timeless<br>Development</h3>
-      <div class="pillar-row__divider"></div>
-      <p class="pillar-row__body">Trends fade. Our architecture endures. We draw from the vernacular of each region while applying a design intelligence that ages with grace. A Tiba building looks as right in twenty years as it does on the day of completion.</p>
-    </div>
-    <div class="pillar-row__image reveal-right">
-      <img src="Project%20Images/88%20East/Fathom-11-scaled.jpg"
-           alt="Timeless Development — 88 East"
-           loading="lazy">
-    </div>
-  </div>
+      <div class="principle-card reveal d2">
+        <div class="principle-card__img">
+          <img src="Project%20Images/Tiba%20Tennessee/infinity_pool_8K_upscaled.png"
+               alt="Climate Adaptability — Tiba Tennessee" loading="lazy">
+        </div>
+        <div class="principle-card__inner">
+          <p class="principle-card__num">03</p>
+          <h3 class="principle-card__name">Climate Adaptability</h3>
+          <div class="principle-card__line"></div>
+          <p class="principle-card__text">Our designs are inherently responsive — embracing the tropical humidity of Bali, the mountain air of the Appalachians, the coastal warmth of California.</p>
+        </div>
+      </div>
 
-  <!-- ═══════════════════════════ PILLAR 05 ════════════════════════ -->
-  <div class="pillar-row" style="background: var(--stone);">
-    <div class="pillar-row__image reveal-left">
-      <img src="Project%20Images/Tiba%20Townhouse/Copy%20of%20Copy%20of%20Image1.jpg"
-           alt="Informed Modernity — Tiba Townhouse"
-           loading="lazy">
+      <div class="principle-card reveal d1">
+        <div class="principle-card__img">
+          <img src="Project%20Images/88%20East/Fathom-11-scaled.jpg"
+               alt="Timeless Development — 88 East" loading="lazy">
+        </div>
+        <div class="principle-card__inner">
+          <p class="principle-card__num">04</p>
+          <h3 class="principle-card__name">Timeless Development</h3>
+          <div class="principle-card__line"></div>
+          <p class="principle-card__text">Trends fade. Our architecture endures. We draw from the vernacular of each region with a design intelligence that ages with grace.</p>
+        </div>
+      </div>
+
+      <div class="principle-card reveal d2">
+        <div class="principle-card__img">
+          <img src="Project%20Images/Tiba%20Townhouse/Copy%20of%20Copy%20of%20Image1.jpg"
+               alt="Informed Modernity — Tiba Townhouse" loading="lazy">
+        </div>
+        <div class="principle-card__inner">
+          <p class="principle-card__num">05</p>
+          <h3 class="principle-card__name">Informed Modernity</h3>
+          <div class="principle-card__line"></div>
+          <p class="principle-card__text">Contemporary without being cold. Each project weaves cultural heritage with modern living standards — spaces that feel both grounded and forward-thinking.</p>
+        </div>
+      </div>
+
     </div>
-    <div class="pillar-row__content reveal-right">
-      <p class="pillar-row__num">05</p>
-      <h3 class="pillar-row__name">Informed<br>Modernity</h3>
-      <div class="pillar-row__divider"></div>
-      <p class="pillar-row__body">We are contemporary without being cold. Each project weaves together the cultural heritage of its location with modern living standards — producing spaces that feel both grounded and forward-thinking, rooted yet reaching.</p>
-    </div>
-  </div>
+  </section>
 
   <!-- ═══════════════════════════ PULL QUOTE ═══════════════════════ -->
   <section class="pull-quote">
@@ -1129,56 +1091,61 @@
     </div>
   </section>
 
-  <!-- ══════════════════ DEVELOPMENT TOLD PLAINLY ══════════════════ -->
-  <section class="development">
+  <!-- ═══════════════════════════ TEAM ═════════════════════════════ -->
+  <section class="team">
     <div class="container">
 
-      <div class="development__intro reveal">
-        <div class="development__badge">Development Told Plainly</div>
-        <h2 class="development__title">A Record<br>of Arrival</h2>
-        <p class="development__sub">Each project marks a point of arrival — a new destination shaped by Tiba's philosophy of natural integration.</p>
+      <div class="team__intro">
+        <div class="reveal">
+          <div class="badge">The People</div>
+          <h2 class="team__title">Behind<br>Every Decision</h2>
+        </div>
+        <p class="team__desc reveal d1">
+          Tiba's founders strive to develop with intention — bringing together a multidisciplinary depth of experience across real estate, hospitality, and design to create places that endure.
+        </p>
       </div>
 
-      <div class="development__timeline">
-        <div class="timeline-item reveal">
-          <div class="timeline-item__year">2018</div>
-          <div class="timeline-item__line"></div>
-          <p class="timeline-item__project">Casa Tiba</p>
-          <p class="timeline-item__location">Bingin Cliff, Bali</p>
+    </div>
+
+    <div class="team__grid">
+
+      <div class="team-member reveal">
+        <div class="team-member__photo">
+          <img src="https://tibaliving.com/wp-content/uploads/2023/11/TIBA-william.jpg"
+               alt="William Dair — CEO & Founder" loading="lazy">
         </div>
-        <div class="timeline-item reveal d1">
-          <div class="timeline-item__year">2020</div>
-          <div class="timeline-item__line"></div>
-          <p class="timeline-item__project">88 East</p>
-          <p class="timeline-item__location">Canggu, Bali</p>
-        </div>
-        <div class="timeline-item reveal d2">
-          <div class="timeline-item__year">2021</div>
-          <div class="timeline-item__line"></div>
-          <p class="timeline-item__project">Tiba Hills</p>
-          <p class="timeline-item__location">Uluwatu, Bali</p>
-        </div>
-        <div class="timeline-item reveal d3">
-          <div class="timeline-item__year">2022</div>
-          <div class="timeline-item__line"></div>
-          <p class="timeline-item__project">Tiba Lofts</p>
-          <p class="timeline-item__location">Padang Padang, Bali</p>
-        </div>
-        <div class="timeline-item reveal d4">
-          <div class="timeline-item__year">2024</div>
-          <div class="timeline-item__line"></div>
-          <p class="timeline-item__project">Tiba Tennessee</p>
-          <p class="timeline-item__location">Appalachian Highlands</p>
+        <div class="team-member__inner">
+          <h3 class="team-member__name">William Dair</h3>
+          <p class="team-member__role">CEO & Founder</p>
+          <div class="team-member__divider"></div>
+          <p class="team-member__bio">A creative entrepreneur and visionary leading art-driven developments in Bali and beyond. With a diverse background spanning international commodities, logistics, design, and real estate, he brings a multidisciplinary approach to impactful, purpose-led projects.</p>
         </div>
       </div>
 
-      <div class="reveal">
-        <a href="index.html#portfolio" class="development__cta">
-          View Full Portfolio
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </a>
+      <div class="team-member reveal d1">
+        <div class="team-member__photo">
+          <img src="https://tibaliving.com/wp-content/uploads/2023/11/TIBA-josh.jpg"
+               alt="Josh Jennings — Partner" loading="lazy">
+        </div>
+        <div class="team-member__inner">
+          <h3 class="team-member__name">Josh Jennings</h3>
+          <p class="team-member__role">Partner</p>
+          <div class="team-member__divider"></div>
+          <p class="team-member__bio">A seasoned international developer behind the concept and execution of Bali's top luxury properties, including House SJ and 88 East. Across the Americas, he leads high-end hospitality and residential projects in California, Mexico, and beyond.</p>
+        </div>
+      </div>
+
+      <div class="team-member reveal d2">
+        <div class="team-member__photo">
+          <img src="https://tibaliving.com/wp-content/uploads/2025/06/Screenshot-2025-06-14-at-13.17.35-222x300.png"
+               alt="Edo Dozovic — Partner" loading="lazy">
+        </div>
+        <div class="team-member__inner">
+          <h3 class="team-member__name">Edo Dozovic</h3>
+          <p class="team-member__role">Partner</p>
+          <div class="team-member__divider"></div>
+          <p class="team-member__bio">A visionary hospitality expert and co-founder of Tavolo Group, Edo is the creative force behind iconic Bali venues including The Avocado Factory, Uma Garden, and The Shady Family. He brings a sharp focus on guest experience and operational excellence.</p>
+        </div>
       </div>
 
     </div>
@@ -1221,7 +1188,7 @@
           <a href="index.html">Home</a>
           <a href="our-dna.html">Our DNA</a>
           <a href="#">Portfolio</a>
-          <a href="#">About</a>
+          <a href="https://tennessee.tibaliving.com" target="_blank" rel="noopener">Tiba Tennessee</a>
           <a href="mailto:contact@tibaliving.com">Inquire</a>
         </div>
 
@@ -1280,11 +1247,6 @@
     }
 
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) closeMenu(); });
-
-    /* ─── HERO IMAGE PARALLAX TRIGGER ────────────────── */
-    const heroBg = document.getElementById('heroBg');
-    heroBg.addEventListener('load', () => heroBg.classList.add('loaded'));
-    if (heroBg.complete) heroBg.classList.add('loaded');
 
     /* ─── SCROLL REVEALS ──────────────────────────────── */
     const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
