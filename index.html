@@ -586,7 +586,13 @@
       scroll-snap-align: start;
       cursor: pointer;
     }
-    .work-card img { transition: transform 0.9s var(--ease-out); }
+    .work-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.9s var(--ease-out);
+    }
     .work-card:hover img { transform: scale(1.05); }
 
     .work-card::before {
@@ -1129,11 +1135,11 @@
           <li><a href="our-dna.html" onclick="closeMenu(); return false;">Our DNA</a></li>
           <li><a href="portfolio.html" onclick="closeMenu(); return false;">Portfolio</a></li>
           <li><a href="https://tennessee.tibaliving.com" target="_blank" rel="noopener" onclick="closeMenu(); return false;">Tiba Tennessee</a></li>
-          <li><a href="mailto:contact@tibaliving.com" onclick="closeMenu(); return false;">Inquire</a></li>
+          <li><a href="https://wa.me/6281239442648" target="_blank" rel="noopener" onclick="closeMenu(); return false;">Inquire</a></li>
         </ul>
       </nav>
       <div class="menu__divider"></div>
-      <p class="menu__contact">contact@tibaliving.com &nbsp;·&nbsp; Bali, Indonesia</p>
+      <p class="menu__contact">+62 812 3944 2648 &nbsp;·&nbsp; Bali, Indonesia</p>
     </div>
   </div>
 
@@ -1155,7 +1161,7 @@
       </ul>
 
       <div class="navbar__right">
-        <a href="mailto:contact@tibaliving.com" class="btn desktop-only">
+        <a href="https://wa.me/6281239442648" target="_blank" rel="noopener" class="btn desktop-only">
           Inquire
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
@@ -1173,18 +1179,43 @@
 
     <div class="hero__slides">
       <div class="hero__slide active">
-        <img src="Project%20Images/House%20SJ/SJ4.png"
+        <img src="Project%20Images/House%20SJ/MAIN.png"
              alt="House SJ — Pererenan, Bali"
              loading="eager">
       </div>
       <div class="hero__slide">
-        <img src="Project%20Images/Tiba%20Hills/2804153C-3938-4286-97AC-1263E5451BC3.jpg"
+        <img src="Project%20Images/Tiba%20Tennessee/8E1A41B6-0154-417C-9CE2-1A45A7A9245D.png"
+             alt="Tiba Tennessee — Appalachian Highlands"
+             loading="lazy">
+      </div>
+      <div class="hero__slide">
+        <img src="Project%20Images/Tiba%20Hills/A919F8C2-28A2-488B-89D6-AE1B62CD9ED5.jpg"
              alt="Tiba Hills — Uluwatu, Bali"
              loading="lazy">
       </div>
       <div class="hero__slide">
-        <img src="Project%20Images/Tiba%20Tennessee/infinity_pool_8K_upscaled.png"
+        <img src="Project%20Images/Casa%20Tiba/1B.jpeg"
+             alt="Casa Tiba — Bingin Cliff, Bali"
+             loading="lazy">
+      </div>
+      <div class="hero__slide">
+        <img src="Project%20Images/Tiba%20Tennessee/49B7F357-1781-4F5A-BF75-584629D23B52.png"
              alt="Tiba Tennessee — Appalachian Highlands"
+             loading="lazy">
+      </div>
+      <div class="hero__slide">
+        <img src="Project%20Images/88%20East/Fathom-11-scaled.jpg"
+             alt="88 East — Canggu, Bali"
+             loading="lazy">
+      </div>
+      <div class="hero__slide">
+        <img src="Project%20Images/Tiba%20Tennessee/C0DB69DB-3D9A-4288-8ECE-DE2527975268.png"
+             alt="Tiba Tennessee — Appalachian Highlands"
+             loading="lazy">
+      </div>
+      <div class="hero__slide">
+        <img src="Project%20Images/Lofts/Image1.jpg"
+             alt="Tiba Lofts — Padang Padang, Bali"
              loading="lazy">
       </div>
     </div>
@@ -1197,14 +1228,14 @@
     </div>
 
     <div class="hero__counter">
-      <em id="slideNum">01</em> / 03
+      <em id="slideNum">01</em> / 08
     </div>
 
     <div class="hero__lower">
       <div class="container hero__content">
         <div class="hero__eyebrow">Where You Arrive</div>
-        <h1 class="hero__headline">Crafting destinations,<br>not just buildings.</h1>
-        <p class="hero__sub">Bali &nbsp;·&nbsp; Tennessee &nbsp;·&nbsp; California</p>
+        <h1 class="hero__headline">Creating destinations.</h1>
+        <p class="hero__sub">A global hospitality studio</p>
       </div>
 
     </div>
@@ -1230,7 +1261,7 @@
           <div class="mission__pillars">
             <span class="mission__pillar">Quiet Luxury</span>
             <span class="mission__sep">·</span>
-            <span class="mission__pillar">Untouched Sanctuaries</span>
+            <span class="mission__pillar">Informed Modernity</span>
             <span class="mission__sep">·</span>
             <span class="mission__pillar">Community by Design</span>
           </div>
@@ -1266,18 +1297,18 @@
       <h2 class="featured-tn__headline reveal d1">Tiba<br>Tennessee</h2>
 
       <p class="featured-tn__desc reveal d2">
-        Our most ambitious venture yet. A private Appalachian sanctuary of highland residences, infinity pools, and ancient-growth trails — crafted for discerning investors seeking both returns and refuge.
+        A boutique landscape hotel. Built from the natural palette of the valley's and streams that surround it – with picturesque lakeside suites perched, around a newly formed body of water. A retreat – beyond the city's reach.
       </p>
 
       <div class="featured-tn__stats reveal d2">
         <div class="featured-tn__stat">
-          <span class="featured-tn__stat-num">2025<span class="featured-tn__stat-unit"></span></span>
-          <span class="featured-tn__stat-label">Launch Year</span>
+          <span class="featured-tn__stat-num">45</span>
+          <span class="featured-tn__stat-label">Keys</span>
         </div>
         <div class="featured-tn__stat-divider"></div>
         <div class="featured-tn__stat">
-          <span class="featured-tn__stat-num">Limited</span>
-          <span class="featured-tn__stat-label">Residences</span>
+          <span class="featured-tn__stat-num">57</span>
+          <span class="featured-tn__stat-label">Acres</span>
         </div>
         <div class="featured-tn__stat-divider"></div>
         <div class="featured-tn__stat">
@@ -1326,7 +1357,7 @@
 
       <!-- 01 House SJ -->
       <a href="house-sj.html" class="work-card">
-        <img src="Project%20Images/House%20SJ/SJ2.png" alt="House SJ — Pererenan, Bali" loading="lazy">
+        <img src="Project%20Images/House%20SJ/MAIN.png" alt="House SJ — Pererenan, Bali" loading="lazy">
         <span class="work-card__num">01</span>
         <div class="work-card__body">
           <p class="work-card__loc">Pererenan, Bali</p>
@@ -1341,7 +1372,7 @@
 
       <!-- 02 Tiba Hills -->
       <a href="tiba-hills.html" class="work-card">
-        <img src="Project%20Images/Tiba%20Hills/DAEAA03B-7DF7-4980-9B17-119FAFEB5787.jpg" alt="Tiba Hills — Uluwatu, Bali" loading="lazy">
+        <img src="Project%20Images/Tiba%20Hills/6644c4ac-da1b-44c5-b68a-98d89ef957c0.jpeg" alt="Tiba Hills — Uluwatu, Bali" loading="lazy">
         <span class="work-card__num">02</span>
         <div class="work-card__body">
           <p class="work-card__loc">Uluwatu, Bali</p>
@@ -1386,7 +1417,7 @@
 
       <!-- 05 Casa Tiba -->
       <a href="casa-tiba.html" class="work-card">
-        <img src="Project%20Images/Casa%20Tiba/DSCF5035.jpeg" alt="Casa Tiba — Bingin Cliff, Bali" loading="lazy">
+        <img src="Project%20Images/Casa%20Tiba/Experience%20serenity%20at%20Ocean%20Haven%2C%20where%20the%20sky%20meets%20the%20sea%20in%20the%20most%20breathtaking%20way.%20Indulge%20in%20the%20panoramic%20beauty%20and%20let%20the%20calmness%20of%20the%20ocean%20reenergize%20your%20soul.%20%F0%9F%8C%85%20%F0%9F%93%8D%20%40casatiba%20%23casatiba%20%23bali%20%23balilife%20%23balitravel%20.jpg" alt="Casa Tiba — Bingin Cliff, Bali" loading="lazy">
         <span class="work-card__num">05</span>
         <div class="work-card__body">
           <p class="work-card__loc">Bingin Cliff, Bali</p>
@@ -1416,7 +1447,7 @@
 
       <!-- 07 Beachclub -->
       <a href="tiba-beachclub.html" class="work-card">
-        <img src="Project%20Images/Beachclub/1.jpg" alt="Tiba Beachclub — Bali" loading="lazy">
+        <img src="Project%20Images/Beachclub/8.jpg" alt="Tiba Beachclub — Bali" loading="lazy">
         <span class="work-card__num">07</span>
         <div class="work-card__body">
           <p class="work-card__loc">Bali, Indonesia</p>
@@ -1431,11 +1462,11 @@
 
       <!-- 08 Tiba Townhouse -->
       <a href="tiba-townhouse.html" class="work-card">
-        <img src="Project%20Images/Tiba%20Townhouse/Copy%20of%20Copy%20of%20Image1.jpg" alt="Tiba Townhouse — Uluwatu, Bali" loading="lazy">
+        <img src="Project%20Images/Tiba%20Townhouse/copy%20of%20image8.png" alt="Tiba Townhouses — Uluwatu, Bali" loading="lazy">
         <span class="work-card__num">08</span>
         <div class="work-card__body">
           <p class="work-card__loc">Uluwatu, Bali</p>
-          <h3 class="work-card__name">Tiba Townhouse</h3>
+          <h3 class="work-card__name">Tiba Townhouses</h3>
           <div class="work-card__cta">View Project
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -1489,12 +1520,12 @@
   <section class="inquire">
     <div class="container">
       <div class="badge" style="justify-content: center;">Get in Touch</div>
-      <h2 class="inquire__headline reveal">Begin Your<br>Tiba Journey</h2>
+      <h2 class="inquire__headline reveal">Begin Your<br>Journey to Tiba</h2>
       <p class="inquire__sub reveal d1">
         For investor enquiries, property sales, and partnership opportunities across our global portfolio.
       </p>
       <div class="reveal d2">
-        <a href="mailto:contact@tibaliving.com" class="btn">
+        <a href="https://wa.me/6281239442648" target="_blank" rel="noopener" class="btn">
           Contact Us
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
@@ -1523,7 +1554,7 @@
           <a href="our-dna.html">Our DNA</a>
           <a href="portfolio.html">Portfolio</a>
           <a href="https://tennessee.tibaliving.com" target="_blank" rel="noopener">Tiba Tennessee</a>
-          <a href="mailto:contact@tibaliving.com">Inquire</a>
+          <a href="https://wa.me/6281239442648" target="_blank" rel="noopener">Inquire</a>
         </div>
 
         <div class="footer__col">
@@ -1535,7 +1566,7 @@
 
         <div class="footer__col">
           <p class="footer__col-head">Contact</p>
-          <a href="mailto:contact@tibaliving.com">contact@tibaliving.com</a>
+          <a href="https://wa.me/6281239442648" target="_blank" rel="noopener">+62 812 3944 2648</a>
           <a href="https://tibaliving.com" target="_blank" rel="noopener">tibaliving.com</a>
           <p class="footer__col-head" style="margin-top: 28px;">Follow</p>
           <a href="#" target="_blank" rel="noopener">Instagram</a>
