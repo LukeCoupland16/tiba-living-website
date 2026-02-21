@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — Tiba Living</title>
+  <meta name="description" content="The complete Tiba Living portfolio — eight boutique sanctuaries across Bali, Tennessee, and California. Quiet luxury. Untouched destinations.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       VARIABLES
+    ============================================================ */
+    :root {
+      --stone:             #222323;
+      --stone-mid:         #2e2f2f;
+      --ivory:             #F0EEDC;
+      --offwhite:          #F5F3E8;
+      --river-green:       #A3996A;
+      --river-green-light: #b8ad7a;
+      --font-serif: 'Libre Baskerville', 'Baskerville', Georgia, serif;
+      --font-sans:  'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+      --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    /* ============================================================
+       RESET
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--stone);
+      color: var(--ivory);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { text-decoration: none; color: inherit; }
+    button { border: none; background: none; font-family: inherit; cursor: pointer; }
+
+    /* ============================================================
+       LAYOUT
+    ============================================================ */
+    .container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 clamp(24px, 4vw, 72px);
+    }
+
+    /* ============================================================
+       BADGE
+    ============================================================ */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--river-green);
+      margin-bottom: 24px;
+    }
+    .badge::before {
+      content: '';
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: var(--river-green);
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       BUTTONS
+    ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border-radius: 50px;
+      background: var(--river-green);
+      color: var(--stone);
+      transition: background 0.3s var(--ease-out), transform 0.25s var(--ease-out);
+      cursor: pointer;
+    }
+    .btn:hover { background: var(--river-green-light); transform: translateY(-1px); }
+    .btn svg { width: 16px; height: 16px; transition: transform 0.3s var(--ease-out); }
+    .btn:hover svg { transform: translateX(3px); }
+
+    /* ============================================================
+       FULL-SCREEN MENU
+    ============================================================ */
+    .menu {
+      position: fixed; inset: 0;
+      background: var(--stone);
+      z-index: 990;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.5s var(--ease-out);
+    }
+    .menu.open { opacity: 1; pointer-events: all; }
+
+    .menu__inner { text-align: center; }
+
+    .menu__links { list-style: none; }
+    .menu__links li { overflow: hidden; margin: 2px 0; }
+    .menu__links a {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 5vw, 68px);
+      font-weight: 400;
+      color: var(--ivory);
+      letter-spacing: 0.02em;
+      display: inline-block;
+      transform: translateY(110%);
+      opacity: 0;
+      transition: transform 0.6s var(--ease-out), opacity 0.6s var(--ease-out), color 0.3s;
+      position: relative;
+    }
+    .menu__links a::after {
+      content: '';
+      position: absolute; bottom: 2px; left: 0;
+      width: 0; height: 1px;
+      background: var(--river-green);
+      transition: width 0.4s var(--ease-out);
+    }
+    .menu__links a:hover { color: var(--river-green); }
+    .menu__links a:hover::after { width: 100%; }
+    .menu__links a.active { color: var(--river-green); }
+
+    .menu.open .menu__links a { transform: translateY(0); opacity: 1; }
+    .menu.open .menu__links li:nth-child(1) a { transition-delay: 0.05s; }
+    .menu.open .menu__links li:nth-child(2) a { transition-delay: 0.10s; }
+    .menu.open .menu__links li:nth-child(3) a { transition-delay: 0.15s; }
+    .menu.open .menu__links li:nth-child(4) a { transition-delay: 0.20s; }
+    .menu.open .menu__links li:nth-child(5) a { transition-delay: 0.25s; }
+
+    .menu__divider {
+      width: 36px; height: 1px;
+      background: rgba(240, 238, 220, 0.15);
+      margin: 36px auto;
+      opacity: 0;
+      transition: opacity 0.5s 0.38s var(--ease-out);
+    }
+    .menu.open .menu__divider { opacity: 1; }
+
+    .menu__contact {
+      font-family: var(--font-sans);
+      font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.35);
+      opacity: 0; transform: translateY(12px);
+      transition: opacity 0.5s 0.42s var(--ease-out), transform 0.5s 0.42s var(--ease-out);
+    }
+    .menu.open .menu__contact { opacity: 1; transform: translateY(0); }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 995;
+      transition: background 0.6s var(--ease-out), border-color 0.6s;
+      border-bottom: 1px solid transparent;
+    }
+    .navbar.scrolled {
+      background: rgba(34, 35, 35, 0.97);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom-color: rgba(240, 238, 220, 0.07);
+    }
+
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .navbar__logo img {
+      height: 26px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      filter: brightness(0) invert(1);
+      transition: height 0.3s var(--ease-out), opacity 0.3s;
+    }
+    .navbar.scrolled .navbar__logo img { height: 22px; }
+    .navbar__logo:hover img { opacity: 0.75; }
+
+    .navbar__links {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      list-style: none;
+    }
+    .navbar__links a {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.75);
+      position: relative;
+      transition: color 0.3s;
+    }
+    .navbar__links a::after {
+      content: '';
+      position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--river-green);
+      transition: width 0.3s var(--ease-out);
+    }
+    .navbar__links a:hover { color: var(--ivory); }
+    .navbar__links a:hover::after { width: 100%; }
+    .navbar__links a.active { color: var(--ivory); }
+    .navbar__links a.active::after { width: 100%; }
+
+    .navbar__right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .navbar__ham {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      z-index: 996;
+    }
+    .navbar__ham span {
+      display: block;
+      width: 24px; height: 1px;
+      background: var(--ivory);
+      transition: transform 0.4s var(--ease-in-out), opacity 0.3s, width 0.3s;
+      transform-origin: center;
+    }
+    .navbar__ham.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .navbar__ham.open span:nth-child(2) { opacity: 0; width: 0; }
+    .navbar__ham.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* ============================================================
+       PAGE HERO
+    ============================================================ */
+    .page-hero {
+      position: relative;
+      min-height: 52vh;
+      padding-top: 140px;
+      padding-bottom: clamp(64px, 9vw, 110px);
+      background: var(--stone);
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .page-hero__content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+    }
+
+    .page-hero__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(60px, 8vw, 120px);
+      align-items: flex-end;
+    }
+
+    .page-hero__headline {
+      font-family: var(--font-serif);
+      font-size: clamp(3.6rem, 7.5vw, 8rem);
+      font-weight: 400;
+      color: var(--ivory);
+      line-height: 0.92;
+      letter-spacing: -0.01em;
+      opacity: 0;
+      animation: fadeUp 1.1s 0.3s var(--ease-out) forwards;
+    }
+    .page-hero__headline em {
+      font-style: italic;
+      color: var(--river-green);
+    }
+
+    .page-hero__right {
+      padding-bottom: 8px;
+      opacity: 0;
+      animation: fadeUp 1s 0.5s var(--ease-out) forwards;
+    }
+
+    .page-hero__desc {
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      font-weight: 400;
+      line-height: 1.78;
+      color: rgba(240, 238, 220, 0.48);
+      letter-spacing: 0.02em;
+      max-width: 420px;
+      margin-bottom: 40px;
+    }
+
+    .page-hero__stats {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      padding-top: 28px;
+      border-top: 1px solid rgba(240, 238, 220, 0.08);
+    }
+
+    .page-hero__stat {
+      flex: 1;
+      padding-right: 20px;
+    }
+    .page-hero__stat:last-child { padding-right: 0; border-right: none; }
+    .page-hero__stat + .page-hero__stat {
+      padding-left: 20px;
+      border-left: 1px solid rgba(240, 238, 220, 0.08);
+    }
+
+    .page-hero__stat-num {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 2vw, 2rem);
+      color: var(--ivory);
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .page-hero__stat-label {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.3);
+    }
+
+    /* Bottom decorative line */
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: rgba(240, 238, 220, 0.06);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================================
+       FEATURED: TIBA TENNESSEE
+    ============================================================ */
+    .featured-tn {
+      position: relative;
+      height: 92vh;
+      min-height: 660px;
+      overflow: hidden;
+      background: var(--stone);
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .featured-tn__bg { position: absolute; inset: 0; }
+    .featured-tn__bg img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transform: scale(1.05);
+      transition: transform 14s ease;
+    }
+    .featured-tn:hover .featured-tn__bg img { transform: scale(1.0); }
+
+    .featured-tn__overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(
+        108deg,
+        rgba(22, 23, 22, 0.91) 0%,
+        rgba(22, 23, 22, 0.62) 45%,
+        rgba(22, 23, 22, 0.18) 100%
+      );
+    }
+
+    .featured-tn__frame {
+      position: absolute;
+      inset: 18px;
+      z-index: 2;
+      border: 1px solid rgba(240, 238, 220, 0.055);
+      pointer-events: none;
+    }
+
+    .featured-tn__inner {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 clamp(24px, 4vw, 72px);
+      padding-bottom: clamp(56px, 7vw, 88px);
+    }
+
+    .featured-tn__pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: rgba(163, 153, 106, 0.12);
+      border: 1px solid rgba(163, 153, 106, 0.32);
+      padding: 7px 16px 7px 12px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+    }
+    .featured-tn__pill-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--river-green);
+      animation: tn-pulse 2.2s ease infinite;
+      flex-shrink: 0;
+    }
+    @keyframes tn-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.45; transform: scale(0.65); }
+    }
+    .featured-tn__pill span {
+      font-family: var(--font-sans);
+      font-size: 0.62rem; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--river-green);
+    }
+
+    .featured-tn__eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.42);
+      margin-bottom: 14px;
+    }
+
+    .featured-tn__headline {
+      font-family: var(--font-serif);
+      font-size: clamp(3.4rem, 6.8vw, 7.4rem);
+      font-weight: 400;
+      color: var(--ivory);
+      line-height: 0.97;
+      letter-spacing: -0.01em;
+      margin-bottom: 30px;
+    }
+
+    .featured-tn__desc {
+      font-family: var(--font-sans);
+      font-size: 0.86rem; font-weight: 400;
+      line-height: 1.82;
+      color: rgba(240, 238, 220, 0.52);
+      max-width: 480px;
+      margin-bottom: 44px;
+      letter-spacing: 0.02em;
+    }
+
+    .featured-tn__stats {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 48px;
+    }
+    .featured-tn__stat {
+      display: flex;
+      flex-direction: column;
+      padding-right: 36px;
+    }
+    .featured-tn__stat-divider {
+      width: 1px; height: 38px;
+      background: rgba(240, 238, 220, 0.14);
+      margin-right: 36px;
+      flex-shrink: 0;
+    }
+    .featured-tn__stat-num {
+      font-family: var(--font-serif);
+      font-size: clamp(1.7rem, 2.5vw, 2.6rem);
+      font-weight: 400;
+      color: var(--ivory);
+      line-height: 1.1;
+      margin-bottom: 5px;
+    }
+    .featured-tn__stat-unit {
+      font-family: var(--font-sans);
+      font-size: 0.68rem; font-weight: 400;
+      color: rgba(240, 238, 220, 0.4);
+      margin-left: 3px;
+    }
+    .featured-tn__stat-label {
+      font-family: var(--font-sans);
+      font-size: 0.6rem; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.32);
+    }
+
+    .featured-tn__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-sans);
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.09em; text-transform: uppercase;
+      color: var(--stone);
+      background: var(--ivory);
+      padding: 17px 38px;
+      border-radius: 50px;
+      transition: background 0.3s var(--ease-out), transform 0.25s var(--ease-out);
+    }
+    .featured-tn__cta:hover { background: var(--river-green-light); transform: translateY(-2px); }
+    .featured-tn__cta svg { width: 16px; height: 16px; transition: transform 0.3s var(--ease-out); }
+    .featured-tn__cta:hover svg { transform: translateX(4px); }
+
+    .featured-tn__corner {
+      position: absolute;
+      top: 44px; right: clamp(24px, 4vw, 72px);
+      z-index: 4;
+      writing-mode: vertical-rl;
+      font-family: var(--font-sans);
+      font-size: 0.58rem; font-weight: 500;
+      letter-spacing: 0.26em; text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.24);
+    }
+
+    /* ============================================================
+       PORTFOLIO GRID
+    ============================================================ */
+    .portfolio {
+      background: var(--offwhite);
+      padding: clamp(80px, 10vw, 130px) 0;
+    }
+
+    .portfolio__head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 52px;
+    }
+
+    .portfolio__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--river-green);
+      margin-bottom: 16px;
+    }
+    .portfolio__badge::before {
+      content: '';
+      display: block;
+      width: 22px; height: 1px;
+      background: var(--river-green);
+      flex-shrink: 0;
+    }
+
+    .portfolio__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.5vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1.12;
+      color: var(--stone);
+    }
+
+    .portfolio__count {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(34, 35, 35, 0.38);
+      padding-bottom: 8px;
+    }
+
+    /* Grid layout */
+    .portfolio__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    /* Base card */
+    .proj-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--stone);
+      display: block;
+      cursor: pointer;
+      aspect-ratio: 4 / 3;
+    }
+    .proj-card img {
+      transition: transform 0.9s var(--ease-out);
+    }
+    .proj-card:hover img { transform: scale(1.05); }
+
+    .proj-card::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to top, rgba(34,35,35,0.9) 0%, rgba(34,35,35,0.02) 55%);
+    }
+
+    /* Featured Tennessee card — larger */
+    .proj-card--featured {
+      grid-column: span 2;
+      aspect-ratio: 16 / 9;
+    }
+
+    /* Card inner body */
+    .proj-card__body {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: clamp(20px, 2.5vw, 32px);
+      z-index: 2;
+    }
+
+    .proj-card__num {
+      position: absolute;
+      top: 20px; right: 20px; z-index: 2;
+      font-family: var(--font-sans);
+      font-size: 0.65rem; font-weight: 300;
+      letter-spacing: 0.06em;
+      color: rgba(240, 238, 220, 0.28);
+    }
+
+    /* "Now Accepting" pill on Tennessee grid card */
+    .proj-card__pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(163, 153, 106, 0.15);
+      border: 1px solid rgba(163, 153, 106, 0.35);
+      padding: 5px 12px 5px 9px;
+      border-radius: 50px;
+      margin-bottom: 12px;
+    }
+    .proj-card__pill-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--river-green);
+      animation: tn-pulse 2.2s ease infinite;
+      flex-shrink: 0;
+    }
+    .proj-card__pill span {
+      font-family: var(--font-sans);
+      font-size: 0.58rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--river-green);
+    }
+
+    .proj-card__loc {
+      font-family: var(--font-sans);
+      font-size: 0.62rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--river-green);
+      margin-bottom: 8px;
+      transform: translateY(6px);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .proj-card:hover .proj-card__loc { transform: translateY(0); }
+
+    .proj-card__name {
+      font-family: var(--font-serif);
+      font-size: clamp(1.2rem, 1.8vw, 1.8rem);
+      font-weight: 400;
+      color: var(--ivory);
+      line-height: 1.15;
+      transform: translateY(8px);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .proj-card:hover .proj-card__name { transform: translateY(0); }
+
+    .proj-card--featured .proj-card__name {
+      font-size: clamp(1.8rem, 3.2vw, 3rem);
+    }
+
+    .proj-card__cta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      font-family: var(--font-sans);
+      font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.55);
+      opacity: 0; transform: translateY(10px);
+      transition: opacity 0.35s 0.05s var(--ease-out), transform 0.35s 0.05s var(--ease-out);
+    }
+    .proj-card__cta svg { width: 14px; height: 14px; }
+    .proj-card:hover .proj-card__cta { opacity: 1; transform: translateY(0); }
+
+    /* ============================================================
+       INQUIRE CTA
+    ============================================================ */
+    .inquire {
+      background: var(--stone);
+      padding: clamp(100px, 13vw, 170px) 0;
+      text-align: center;
+      border-top: 1px solid rgba(240, 238, 220, 0.06);
+    }
+    .inquire__headline {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 4.2rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--ivory);
+      line-height: 1.15;
+      max-width: 640px;
+      margin: 0 auto 24px;
+    }
+    .inquire__sub {
+      font-family: var(--font-sans);
+      font-size: 0.82rem; font-weight: 400;
+      letter-spacing: 0.06em;
+      color: rgba(240, 238, 220, 0.4);
+      max-width: 440px;
+      margin: 0 auto 48px;
+      line-height: 1.75;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer {
+      background: var(--stone-mid);
+      padding-top: clamp(64px, 8vw, 100px);
+      border-top: 1px solid rgba(240, 238, 220, 0.06);
+    }
+    .footer__main {
+      display: grid;
+      grid-template-columns: 140px 1fr 1fr 1fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: start;
+      padding-bottom: clamp(48px, 6vw, 80px);
+      border-bottom: 1px solid rgba(240, 238, 220, 0.07);
+    }
+    .footer__logo img {
+      height: 110px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      filter: brightness(0) invert(1);
+      opacity: 0.6;
+    }
+    .footer__col-head {
+      font-family: var(--font-sans);
+      font-size: 0.62rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.28);
+      margin-bottom: 20px;
+    }
+    .footer__col a,
+    .footer__col p {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.82rem; font-weight: 400;
+      line-height: 2.2;
+      color: rgba(240, 238, 220, 0.48);
+      transition: color 0.3s;
+    }
+    .footer__col a:hover { color: var(--river-green); }
+    .footer__col p { cursor: default; }
+
+    .footer__base {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 0;
+    }
+    .footer__copy {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      color: rgba(240, 238, 220, 0.22);
+      letter-spacing: 0.04em;
+    }
+    .footer__social { display: flex; gap: 28px; }
+    .footer__social a {
+      font-family: var(--font-sans);
+      font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.38);
+      transition: color 0.3s;
+    }
+    .footer__social a:hover { color: var(--river-green); }
+
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    .d1 { transition-delay: 0.10s !important; }
+    .d2 { transition-delay: 0.20s !important; }
+    .d3 { transition-delay: 0.30s !important; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1080px) {
+      .navbar__links { display: none; }
+      .page-hero__inner { grid-template-columns: 1fr; gap: 36px; }
+      .footer__main { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .portfolio__grid { grid-template-columns: repeat(2, 1fr); }
+      .proj-card--featured { grid-column: span 2; aspect-ratio: 16 / 8; }
+    }
+
+    @media (max-width: 640px) {
+      .portfolio__grid { grid-template-columns: 1fr; }
+      .proj-card--featured { grid-column: span 1; aspect-ratio: 4/3; }
+      .featured-tn { height: auto; min-height: 100svh; padding-top: 140px; }
+      .featured-tn__headline { font-size: clamp(3rem, 11vw, 4.8rem); }
+      .featured-tn__corner { display: none; }
+      .featured-tn__frame { display: none; }
+      .footer__main { grid-template-columns: 1fr; }
+      .footer__base { flex-direction: column; gap: 14px; }
+      .portfolio__head { flex-direction: column; align-items: flex-start; gap: 12px; }
+    }
+
+    @media (max-width: 540px) {
+      .btn.desktop-only { display: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Full-Screen Menu -->
+  <div class="menu" id="menu" role="dialog" aria-label="Navigation">
+    <div class="menu__inner">
+      <nav>
+        <ul class="menu__links" role="list">
+          <li><a href="index.html" onclick="closeMenu(); return false;">Home</a></li>
+          <li><a href="our-dna.html" onclick="closeMenu(); return false;">Our DNA</a></li>
+          <li><a href="portfolio.html" class="active" onclick="closeMenu(); return false;">Portfolio</a></li>
+          <li><a href="https://tennessee.tibaliving.com" target="_blank" rel="noopener" onclick="closeMenu(); return false;">Tiba Tennessee</a></li>
+          <li><a href="mailto:contact@tibaliving.com" onclick="closeMenu(); return false;">Inquire</a></li>
+        </ul>
+      </nav>
+      <div class="menu__divider"></div>
+      <p class="menu__contact">contact@tibaliving.com &nbsp;·&nbsp; Bali, Indonesia</p>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar__logo" aria-label="Tiba Living — Home">
+        <img src="TIBA_FINAL_LOGO_LANDSCAPE%20(3)%20(13).png"
+             alt="Tiba Living"
+             width="400" height="92"
+             loading="eager"
+             decoding="async">
+      </a>
+
+      <ul class="navbar__links">
+        <li><a href="our-dna.html">Our DNA</a></li>
+        <li><a href="portfolio.html" class="active">Portfolio</a></li>
+        <li><a href="https://tennessee.tibaliving.com" target="_blank" rel="noopener">Tiba Tennessee</a></li>
+      </ul>
+
+      <div class="navbar__right">
+        <a href="mailto:contact@tibaliving.com" class="btn desktop-only">
+          Inquire
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+        <button class="navbar__ham" id="ham" aria-label="Toggle menu" onclick="toggleMenu()">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════ PAGE HERO ══════════════════════ -->
+  <section class="page-hero">
+    <div class="container page-hero__content">
+      <div class="page-hero__inner">
+
+        <div>
+          <div class="badge">Selected Works</div>
+          <h1 class="page-hero__headline">Our<br><em>Portfolio</em></h1>
+        </div>
+
+        <div class="page-hero__right">
+          <p class="page-hero__desc">
+            Eight boutique sanctuaries crafted for discerning owners and investors — from the surf-break cliffs of Bali to the ancient highlands of Appalachia.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════ FEATURED: TIBA TENNESSEE ════════════════ -->
+  <section class="featured-tn" aria-label="Featured Project: Tiba Tennessee">
+
+    <div class="featured-tn__bg">
+      <img src="Project%20Images/Tiba%20Tennessee/infinity_pool_8K_upscaled.png"
+           alt="Tiba Tennessee — Appalachian Highlands"
+           loading="lazy">
+    </div>
+
+    <div class="featured-tn__overlay"></div>
+    <div class="featured-tn__frame"></div>
+
+    <div class="featured-tn__corner">Appalachian Highlands &nbsp;·&nbsp; USA</div>
+
+    <div class="featured-tn__inner">
+
+      <div class="featured-tn__pill reveal">
+        <span class="featured-tn__pill-dot"></span>
+        <span>Now Accepting Investor Enquiries</span>
+      </div>
+
+      <p class="featured-tn__eyebrow reveal d1">Featured Project &nbsp;·&nbsp; Tennessee, USA</p>
+
+      <h2 class="featured-tn__headline reveal d1">Tiba<br>Tennessee</h2>
+
+      <p class="featured-tn__desc reveal d2">
+        Our most ambitious venture yet. A private Appalachian sanctuary of highland residences, infinity pools, and ancient-growth trails — crafted for discerning investors seeking both returns and refuge.
+      </p>
+
+      <div class="featured-tn__stats reveal d2">
+        <div class="featured-tn__stat">
+          <span class="featured-tn__stat-num">2025</span>
+          <span class="featured-tn__stat-label">Launch Year</span>
+        </div>
+        <div class="featured-tn__stat-divider"></div>
+        <div class="featured-tn__stat">
+          <span class="featured-tn__stat-num">Limited</span>
+          <span class="featured-tn__stat-label">Residences</span>
+        </div>
+        <div class="featured-tn__stat-divider"></div>
+        <div class="featured-tn__stat">
+          <span class="featured-tn__stat-num">Open</span>
+          <span class="featured-tn__stat-label">Investment Round</span>
+        </div>
+      </div>
+
+      <div class="reveal d3">
+        <a href="https://tennessee.tibaliving.com" target="_blank" rel="noopener" class="featured-tn__cta">
+          Explore Tennessee
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════ ALL DEVELOPMENTS ════════════════════ -->
+  <section class="portfolio">
+    <div class="container">
+
+      <div class="portfolio__head reveal">
+        <div>
+          <div class="portfolio__badge">The Collection</div>
+          <h2 class="portfolio__title">All<br>Developments</h2>
+        </div>
+      </div>
+
+      <div class="portfolio__grid">
+
+        <!-- 01 — Tiba Tennessee (featured, spans 2 cols) -->
+        <a href="https://tennessee.tibaliving.com" target="_blank" rel="noopener" class="proj-card proj-card--featured reveal">
+          <img src="Project%20Images/Tiba%20Tennessee/living_room_8K_upscaled.png"
+               alt="Tiba Tennessee — Appalachian Highlands"
+               loading="lazy">
+          <span class="proj-card__num">01</span>
+          <div class="proj-card__body">
+            <div class="proj-card__pill">
+              <span class="proj-card__pill-dot"></span>
+              <span>Now Investing</span>
+            </div>
+            <p class="proj-card__loc">Tennessee, USA</p>
+            <h3 class="proj-card__name">Tiba Tennessee</h3>
+            <div class="proj-card__cta">
+              Visit Site
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- 02 — House SJ -->
+        <a href="house-sj.html" class="proj-card reveal d1">
+          <img src="Project%20Images/House%20SJ/SJ2.png"
+               alt="House SJ — Pererenan, Bali"
+               loading="lazy">
+          <span class="proj-card__num">02</span>
+          <div class="proj-card__body">
+            <p class="proj-card__loc">Pererenan, Bali</p>
+            <h3 class="proj-card__name">House SJ</h3>
+            <div class="proj-card__cta">
+              View Project
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- 03 — Tiba Hills -->
+        <a href="tiba-hills.html" class="proj-card reveal">
+          <img src="Project%20Images/Tiba%20Hills/DAEAA03B-7DF7-4980-9B17-119FAFEB5787.jpg"
+               alt="Tiba Hills — Uluwatu, Bali"
+               loading="lazy">
+          <span class="proj-card__num">03</span>
+          <div class="proj-card__body">
+            <p class="proj-card__loc">Uluwatu, Bali</p>
+            <h3 class="proj-card__name">Tiba Hills</h3>
+            <div class="proj-card__cta">
+              View Project
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- 04 — 88 East -->
+        <a href="88-east.html" class="proj-card reveal d1">
+          <img src="Project%20Images/88%20East/Fathom-11-scaled.jpg"
+               alt="88 East — Canggu, Bali"
+               loading="lazy">
+          <span class="proj-card__num">04</span>
+          <div class="proj-card__body">
+            <p class="proj-card__loc">Canggu, Bali</p>
+            <h3 class="proj-card__name">88 East</h3>
+            <div class="proj-card__cta">
+              View Project
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- 05 — Casa Tiba -->
+        <a href="casa-tiba.html" class="proj-card reveal d2">
+          <img src="Project%20Images/Casa%20Tiba/DSCF5035.jpeg"
+               alt="Casa Tiba — Bingin Cliff, Bali"
+               loading="lazy">
+          <span class="proj-card__num">05</span>
+          <div class="proj-card__body">
+            <p class="proj-card__loc">Bingin Cliff, Bali</p>
+            <h3 class="proj-card__name">Casa Tiba</h3>
+            <div class="proj-card__cta">
+              View Project
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- 06 — Tiba Lofts -->
+        <a href="tiba-lofts.html" class="proj-card reveal">
+          <img src="Project%20Images/Lofts/Image1.jpg"
+               alt="Tiba Lofts — Padang Padang, Bali"
+               loading="lazy">
+          <span class="proj-card__num">06</span>
+          <div class="proj-card__body">
+            <p class="proj-card__loc">Padang Padang, Bali</p>
+            <h3 class="proj-card__name">Tiba Lofts</h3>
+            <div class="proj-card__cta">
+              View Project
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- 07 — Tiba Beachclub -->
+        <a href="tiba-beachclub.html" class="proj-card reveal d1">
+          <img src="Project%20Images/Beachclub/1.jpg"
+               alt="Tiba Beachclub — Bali"
+               loading="lazy">
+          <span class="proj-card__num">07</span>
+          <div class="proj-card__body">
+            <p class="proj-card__loc">Bali, Indonesia</p>
+            <h3 class="proj-card__name">Tiba Beachclub</h3>
+            <div class="proj-card__cta">
+              View Project
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- 08 — Tiba Townhouse -->
+        <a href="tiba-townhouse.html" class="proj-card reveal d2">
+          <img src="Project%20Images/Tiba%20Townhouse/Copy%20of%20Copy%20of%20Image1.jpg"
+               alt="Tiba Townhouse — Uluwatu, Bali"
+               loading="lazy">
+          <span class="proj-card__num">08</span>
+          <div class="proj-card__body">
+            <p class="proj-card__loc">Uluwatu, Bali</p>
+            <h3 class="proj-card__name">Tiba Townhouse</h3>
+            <div class="proj-card__cta">
+              View Project
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════ INQUIRE ═════════════════════════ -->
+  <section class="inquire">
+    <div class="container">
+      <div class="badge" style="justify-content: center;">Get in Touch</div>
+      <h2 class="inquire__headline reveal">Begin Your<br>Tiba Journey</h2>
+      <p class="inquire__sub reveal d1">
+        For investor enquiries, property sales, and partnership opportunities across our global portfolio.
+      </p>
+      <div class="reveal d2">
+        <a href="mailto:contact@tibaliving.com" class="btn">
+          Contact Us
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════ FOOTER ══════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+
+      <div class="footer__main">
+
+        <div class="footer__logo">
+          <img src="TIBA_FINAL_LOGO_PORTRAIT%20(2).png"
+               alt="Tiba Living"
+               loading="lazy"
+               decoding="async">
+        </div>
+
+        <div class="footer__col">
+          <p class="footer__col-head">Navigate</p>
+          <a href="index.html">Home</a>
+          <a href="our-dna.html">Our DNA</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="https://tennessee.tibaliving.com" target="_blank" rel="noopener">Tiba Tennessee</a>
+          <a href="mailto:contact@tibaliving.com">Inquire</a>
+        </div>
+
+        <div class="footer__col">
+          <p class="footer__col-head">Location</p>
+          <p>Jl. Raya Kerobokan No.4</p>
+          <p>Kerobokan Kelod, Kec. Kuta Utara</p>
+          <p>Kabupaten Badung, Bali 80361</p>
+        </div>
+
+        <div class="footer__col">
+          <p class="footer__col-head">Contact</p>
+          <a href="mailto:contact@tibaliving.com">contact@tibaliving.com</a>
+          <a href="https://tibaliving.com" target="_blank" rel="noopener">tibaliving.com</a>
+          <p class="footer__col-head" style="margin-top: 28px;">Follow</p>
+          <a href="#" target="_blank" rel="noopener">Instagram</a>
+          <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+
+      </div>
+
+      <div class="footer__base">
+        <p class="footer__copy">© 2025 Tiba Living. All rights reserved.</p>
+        <div class="footer__social">
+          <a href="#">Instagram</a>
+          <a href="#">LinkedIn</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    /* ─── NAV SCROLL ──────────────────────────────────── */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    /* ─── MENU ───────────────────────────────────────── */
+    const menu    = document.getElementById('menu');
+    const ham     = document.getElementById('ham');
+    let   menuOpen = false;
+
+    function toggleMenu() {
+      menuOpen = !menuOpen;
+      ham.classList.toggle('open', menuOpen);
+      menu.classList.toggle('open', menuOpen);
+      document.body.style.overflow = menuOpen ? 'hidden' : '';
+    }
+    function closeMenu() {
+      menuOpen = false;
+      ham.classList.remove('open');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) closeMenu(); });
+
+    /* ─── SCROLL REVEALS ──────────────────────────────── */
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.10, rootMargin: '0px 0px -30px 0px' });
+    revealEls.forEach(el => io.observe(el));
+  </script>
+
+</body>
+</html>
