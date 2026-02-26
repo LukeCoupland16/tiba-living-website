@@ -523,40 +523,36 @@
       color: var(--stone);
     }
 
-    /* Row 1: tall · landscape · tall */
-    .gallery__row-1 {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+    /* ── GALLERY CAROUSEL ──────────────────────────────── */
+    .gallery__track-outer { overflow: hidden; }
+    .gallery__track {
+      display: flex;
       gap: 10px;
-      margin-bottom: 10px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 0 max(24px, 5vw);
+      cursor: grab;
+      user-select: none;
     }
-    .gallery__row-1 .g-cell:nth-child(1) { aspect-ratio: 3 / 4; }
-    .gallery__row-1 .g-cell:nth-child(2) { aspect-ratio: 4 / 3; align-self: center; }
-    .gallery__row-1 .g-cell:nth-child(3) { aspect-ratio: 3 / 4; }
+    .gallery__track::-webkit-scrollbar { display: none; }
+    .gallery__track.grabbing { cursor: grabbing; }
 
-    /* Row 2: 60/40 split */
-    .gallery__row-2 {
-      display: grid;
-      grid-template-columns: 3fr 2fr;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-    .gallery__row-2 .g-cell { aspect-ratio: 16 / 9; }
-
-    /* Row 3: 3 equal columns */
-    .gallery__row-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-    .gallery__row-3 .g-cell { aspect-ratio: 4 / 3; }
-
-    /* Cell styles */
     .g-cell {
+      flex-shrink: 0;
       overflow: hidden;
       position: relative;
       background: var(--stone);
+      height: clamp(300px, 42vw, 520px);
+      aspect-ratio: 4 / 3;
+      scroll-snap-align: start;
+      cursor: pointer;
     }
+    .g-cell:nth-child(3n+1) { aspect-ratio: 3 / 4; }
+    .g-cell:nth-child(3n+2) { aspect-ratio: 4 / 3; }
+    .g-cell:nth-child(3n)   { aspect-ratio: 16 / 9; }
+
     .g-cell img {
       transition: transform 0.8s var(--ease-out);
       width: 100%; height: 100%; object-fit: cover;
@@ -572,6 +568,77 @@
       z-index: 1;
     }
     .g-cell:hover::after { outline-color: var(--river-green); }
+
+    .gallery__nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      padding: 20px max(24px, 5vw) 0;
+    }
+    .gallery__arrow {
+      width: 48px; height: 48px;
+      background: transparent;
+      border: 1px solid rgba(34,35,35,0.25);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 0.3s var(--ease-out), border-color 0.3s var(--ease-out), color 0.3s var(--ease-out);
+      color: var(--stone);
+    }
+    .gallery__arrow:hover {
+      background: var(--stone);
+      border-color: var(--stone);
+      color: var(--ivory);
+    }
+    .gallery__arrow svg { width: 18px; height: 18px; pointer-events: none; }
+    .gallery__arrow:disabled { opacity: 0.3; cursor: default; }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,0.93);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .lightbox.active { opacity: 1; pointer-events: all; }
+    .lightbox__img {
+      display: block;
+      max-width: 90vw; max-height: 88vh;
+      width: auto; height: auto;
+      object-fit: contain;
+      transition: opacity 0.15s ease;
+    }
+    .lightbox__close {
+      position: fixed; top: 20px; right: 24px;
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      transition: background 0.2s;
+    }
+    .lightbox__close:hover { background: rgba(255,255,255,0.2); }
+    .lightbox__prev, .lightbox__next {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      width: 50px; height: 50px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      transition: background 0.2s;
+    }
+    .lightbox__prev { left: 20px; }
+    .lightbox__next { right: 20px; }
+    .lightbox__prev:hover, .lightbox__next:hover { background: rgba(255,255,255,0.2); }
+    .lightbox__counter {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.45);
+    }
 
     /* ============================================================
        FEATURE SPLIT
@@ -899,14 +966,6 @@
     }
 
     @media (max-width: 768px) {
-      .gallery__row-1 { grid-template-columns: 1fr; }
-      .gallery__row-1 .g-cell:nth-child(1) { aspect-ratio: 4 / 3; }
-      .gallery__row-1 .g-cell:nth-child(2) { aspect-ratio: 4 / 3; }
-      .gallery__row-1 .g-cell:nth-child(3) { display: none; }
-      .gallery__row-2 { grid-template-columns: 1fr; }
-      .gallery__row-2 .g-cell:nth-child(2) { display: none; }
-      .gallery__row-3 { grid-template-columns: 1fr 1fr; }
-      .gallery__row-3 .g-cell:nth-child(3) { display: none; }
       .strip { grid-template-columns: 1fr; height: auto; }
       .strip__cell { aspect-ratio: 4/3; height: auto; }
       .strip__cell:nth-child(2), .strip__cell:nth-child(3) { display: none; }
@@ -934,11 +993,11 @@
     <div class="menu__inner">
       <nav>
         <ul class="menu__links" role="list">
-          <li><a href="index.html" onclick="closeMenu(); return false;">Home</a></li>
-          <li><a href="our-dna.html" onclick="closeMenu(); return false;">Our DNA</a></li>
-          <li><a href="portfolio.html" onclick="closeMenu(); return false;">Portfolio</a></li>
-          <li><a href="https://tennessee.tibaliving.com" target="_blank" rel="noopener" onclick="closeMenu(); return false;">Tiba Tennessee</a></li>
-          <li><a href="https://wa.me/6281239442648" target="_blank" rel="noopener" onclick="closeMenu(); return false;">Inquire</a></li>
+          <li><a href="index.html" onclick="closeMenu()">Home</a></li>
+          <li><a href="our-dna.html" onclick="closeMenu()">Our DNA</a></li>
+          <li><a href="portfolio.html" onclick="closeMenu()">Portfolio</a></li>
+          <li><a href="https://tennessee.tibaliving.com" target="_blank" rel="noopener" onclick="closeMenu()">Tiba Tennessee</a></li>
+          <li><a href="https://wa.me/6281239442648" target="_blank" rel="noopener" onclick="closeMenu()">Inquire</a></li>
         </ul>
       </nav>
       <div class="menu__divider"></div>
@@ -1077,44 +1136,41 @@
       </div>
     </div>
 
-    <div class="container">
-
-      <!-- Row 1 -->
-      <div class="gallery__row-1">
-        <div class="g-cell reveal">
+    <div class="gallery__track-outer">
+      <div class="gallery__track" id="galleryTrack">
+        <div class="g-cell">
           <img src="Project%20Images/Tiba%20Townhouse/Copy%20of%20Copy%20of%20Image3.jpg" alt="Tiba Townhouse — exterior facade" loading="lazy">
         </div>
-        <div class="g-cell reveal d1">
+        <div class="g-cell">
           <img src="Project%20Images/Tiba%20Townhouse/Copy%20of%20Copy%20of%20Image4.jpg" alt="Tiba Townhouse — living terrace" loading="lazy">
         </div>
-        <div class="g-cell reveal d2">
+        <div class="g-cell">
           <img src="Project%20Images/Tiba%20Townhouse/Copy%20of%20Copy%20of%20Image5.jpg" alt="Tiba Townhouse — interior detail" loading="lazy">
         </div>
-      </div>
-
-      <!-- Row 2 -->
-      <div class="gallery__row-2">
-        <div class="g-cell reveal">
+        <div class="g-cell">
           <img src="Project%20Images/Tiba%20Townhouse/Copy%20of%20Copy%20of%20Image6.jpg" alt="Tiba Townhouse — rooftop outlook" loading="lazy">
         </div>
-        <div class="g-cell reveal d1">
+        <div class="g-cell">
           <img src="Project%20Images/Tiba%20Townhouse/Copy%20of%20Copy%20of%20Image7.jpg" alt="Tiba Townhouse — communal garden" loading="lazy">
         </div>
-      </div>
-
-      <!-- Row 3 -->
-      <div class="gallery__row-3">
-        <div class="g-cell reveal">
+        <div class="g-cell">
           <img src="Project%20Images/Tiba%20Townhouse/Copy%20of%20Copy%20of%20Image8.jpg" alt="Tiba Townhouse — bedroom suite" loading="lazy">
         </div>
-        <div class="g-cell reveal d1">
+        <div class="g-cell">
           <img src="Project%20Images/Tiba%20Townhouse/Copy%20of%20Copy%20of%20Image9.jpg" alt="Tiba Townhouse — pool deck" loading="lazy">
         </div>
-        <div class="g-cell reveal d2">
+        <div class="g-cell">
           <img src="Project%20Images/Tiba%20Townhouse/Copy%20of%20Copy%20of%20Image10.jpg" alt="Tiba Townhouse — stone courtyard" loading="lazy">
         </div>
       </div>
-
+    </div>
+    <div class="gallery__nav">
+      <button class="gallery__arrow" id="gallPrev" aria-label="Previous">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 5-7 7 7 7"/></svg>
+      </button>
+      <button class="gallery__arrow" id="gallNext" aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
     </div>
   </section>
 
@@ -1365,7 +1421,110 @@
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     revealEls.forEach(el => io.observe(el));
+    /* ─── GALLERY CAROUSEL ────────────────────────────── */
+    (function () {
+      var track = document.getElementById('galleryTrack');
+      var prevBtn = document.getElementById('gallPrev');
+      var nextBtn = document.getElementById('gallNext');
+      if (!track) return;
+
+      /* drag-to-scroll */
+      var isDown = false, startX, scrollLeft;
+      track.addEventListener('mousedown', function(e) {
+        isDown = true;
+        track.classList.add('grabbing');
+        startX = e.pageX - track.offsetLeft;
+        scrollLeft = track.scrollLeft;
+      });
+      document.addEventListener('mouseup', function() {
+        isDown = false;
+        track.classList.remove('grabbing');
+      });
+      track.addEventListener('mousemove', function(e) {
+        if (!isDown) return;
+        e.preventDefault();
+        var x = e.pageX - track.offsetLeft;
+        track.scrollLeft = scrollLeft - (x - startX);
+      });
+      track.addEventListener('mouseleave', function() {
+        isDown = false;
+        track.classList.remove('grabbing');
+      });
+
+      /* arrow buttons */
+      function scrollAmount() { return track.clientWidth * 0.8; }
+      if (prevBtn) prevBtn.addEventListener('click', function() { track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }); });
+      if (nextBtn) nextBtn.addEventListener('click', function() { track.scrollBy({ left: scrollAmount(), behavior: 'smooth' }); });
+    })();
+
+    /* ─── LIGHTBOX ────────────────────────────────────── */
+    (function () {
+      var lightbox   = document.getElementById('lightbox');
+      var lbImg      = document.getElementById('lightboxImg');
+      var lbClose    = document.getElementById('lightboxClose');
+      var lbPrev     = document.getElementById('lightboxPrev');
+      var lbNext     = document.getElementById('lightboxNext');
+      var lbCounter  = document.getElementById('lightboxCounter');
+      if (!lightbox) return;
+
+      var imgs = Array.from(document.querySelectorAll('#galleryTrack .g-cell img'));
+      var cur = 0;
+
+      function open(i) {
+        cur = i;
+        lbImg.src = imgs[i].src;
+        lbImg.alt = imgs[i].alt;
+        lbCounter.textContent = (i + 1) + ' / ' + imgs.length;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+      function close() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+      function navigate(dir) {
+        cur = (cur + dir + imgs.length) % imgs.length;
+        lbImg.style.opacity = '0';
+        setTimeout(function() {
+          lbImg.src = imgs[cur].src;
+          lbImg.alt = imgs[cur].alt;
+          lbCounter.textContent = (cur + 1) + ' / ' + imgs.length;
+          lbImg.style.opacity = '1';
+        }, 150);
+      }
+
+      imgs.forEach(function(img, i) {
+        img.parentElement.addEventListener('click', function() { open(i); });
+      });
+
+      lbClose.addEventListener('click', close);
+      lbPrev.addEventListener('click', function() { navigate(-1); });
+      lbNext.addEventListener('click', function() { navigate(1); });
+      lightbox.addEventListener('click', function(e) { if (e.target === lightbox) close(); });
+
+      document.addEventListener('keydown', function(e) {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape')     close();
+        if (e.key === 'ArrowLeft')  navigate(-1);
+        if (e.key === 'ArrowRight') navigate(1);
+      });
+    })();
   </script>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <img class="lightbox__img" id="lightboxImg" src="" alt="">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+    <button class="lightbox__prev" id="lightboxPrev" aria-label="Previous image">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="lightbox__next" id="lightboxNext" aria-label="Next image">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+    <div class="lightbox__counter" id="lightboxCounter"></div>
+  </div>
 
 </body>
 </html>
