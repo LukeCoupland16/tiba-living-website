@@ -1,4 +1,16 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/tiba-tennessee",
+      "destination": "https://tennessee.tibaliving.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tiba-tennessee/",
+      "destination": "https://tennessee.tibaliving.com/",
+      "statusCode": 301
+    }
+  ]
 }
