@@ -1143,6 +1143,188 @@
     @media (max-width: 540px) {
       .btn.desktop-only { display: none; }
     }
+
+    /* ============================================================
+       F&B PARTNER: TAVOLO GROUP
+    ============================================================ */
+    .tavolo {
+      background: var(--offwhite);
+      padding: clamp(80px, 11vw, 140px) 0;
+    }
+
+    .tavolo__header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 100px);
+      align-items: end;
+      margin-bottom: clamp(48px, 6vw, 72px);
+      padding-bottom: clamp(48px, 6vw, 72px);
+      border-bottom: 1px solid rgba(34, 35, 35, 0.09);
+    }
+
+    .tavolo .badge { color: var(--river-green); }
+    .tavolo .badge::before { background: var(--river-green); }
+
+    .tavolo__headline {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 3.6vw, 4.2rem);
+      font-weight: 400;
+      color: var(--stone);
+      line-height: 1.12;
+    }
+
+    .tavolo__intro {
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      font-weight: 400;
+      line-height: 1.85;
+      color: rgba(34, 35, 35, 0.54);
+      letter-spacing: 0.02em;
+      align-self: end;
+    }
+
+    /* Featured label row above venue cards */
+    .tavolo__venues-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: clamp(28px, 3vw, 40px);
+    }
+    .tavolo__venues-label-text {
+      font-family: var(--font-sans);
+      font-size: 0.62rem; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(34, 35, 35, 0.34);
+    }
+    .tavolo__venues-count {
+      font-family: var(--font-sans);
+      font-size: 0.62rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(34, 35, 35, 0.28);
+    }
+
+    .tavolo__venues {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(20px, 2.5vw, 32px);
+      margin-bottom: clamp(56px, 8vw, 96px);
+    }
+
+    .tavolo__venue {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Image slot */
+    .tavolo__venue-img {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: rgba(34, 35, 35, 0.1);
+      margin-bottom: 24px;
+      flex-shrink: 0;
+    }
+    .tavolo__venue-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 1.4s var(--ease-out);
+    }
+    .tavolo__venue:hover .tavolo__venue-img img { transform: scale(1.05); }
+
+    /* Number badge on image */
+    .tavolo__venue-num {
+      position: absolute;
+      top: 14px; left: 14px;
+      font-family: var(--font-sans);
+      font-size: 0.58rem; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.82);
+      background: rgba(22, 23, 22, 0.46);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      padding: 5px 11px;
+      border-radius: 2px;
+    }
+
+    .tavolo__venue-body { flex: 1; }
+
+    .tavolo__venue-name {
+      font-family: var(--font-serif);
+      font-size: clamp(1.2rem, 1.6vw, 1.6rem);
+      font-weight: 400;
+      color: var(--stone);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .tavolo__venue-tag {
+      font-family: var(--font-sans);
+      font-size: 0.62rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--river-green);
+      margin-bottom: 16px;
+    }
+
+    .tavolo__venue-desc {
+      font-family: var(--font-sans);
+      font-size: 0.81rem; font-weight: 400;
+      line-height: 1.78;
+      color: rgba(34, 35, 35, 0.50);
+      letter-spacing: 0.01em;
+    }
+
+    .tavolo__footer {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 48px;
+      padding-top: clamp(40px, 5vw, 64px);
+      border-top: 1px solid rgba(34, 35, 35, 0.09);
+    }
+
+    .tavolo__about {
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 400;
+      line-height: 1.85;
+      color: rgba(34, 35, 35, 0.42);
+      max-width: 600px;
+      letter-spacing: 0.01em;
+    }
+
+    .tavolo__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      font-family: var(--font-sans);
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--stone);
+      position: relative;
+      white-space: nowrap;
+    }
+    .tavolo__link::after {
+      content: '';
+      position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--stone);
+      transition: width 0.4s var(--ease-out);
+    }
+    .tavolo__link:hover::after { width: 100%; }
+    .tavolo__link svg { width: 18px; height: 18px; transition: transform 0.3s; }
+    .tavolo__link:hover svg { transform: translateX(4px); }
+
+    @media (max-width: 1080px) {
+      .tavolo__header { grid-template-columns: 1fr; gap: 24px; }
+      .tavolo__venues { grid-template-columns: 1fr; gap: 40px; }
+      .tavolo__footer { flex-direction: column; align-items: flex-start; gap: 28px; }
+    }
+
+    @media (min-width: 540px) and (max-width: 1080px) {
+      .tavolo__venues { grid-template-columns: repeat(2, 1fr); }
+    }
   </style>
 </head>
 
@@ -1535,6 +1717,78 @@
           <path d="M5 12h14M12 5l7 7-7 7"/>
         </svg>
       </a>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ F&B PARTNER: TAVOLO GROUP ══════════ -->
+  <section class="tavolo">
+    <div class="container">
+
+      <div class="tavolo__header reveal">
+        <div>
+          <div class="badge">F&amp;B Partner</div>
+          <h2 class="tavolo__headline">Where taste<br>meets place.</h2>
+        </div>
+        <p class="tavolo__intro">
+          Tiba Living partners with Tavolo Group — Bali's leading boutique hospitality collective — to bring world-class dining and lifestyle programming to every property we create. With over a dozen concept venues across the island, a few of their most iconic are featured below.
+        </p>
+      </div>
+
+      <div class="tavolo__venues-label reveal">
+        <span class="tavolo__venues-label-text">Featured Venues</span>
+        <span class="tavolo__venues-count">3 of 20+ across Bali</span>
+      </div>
+
+      <div class="tavolo__venues">
+
+        <div class="tavolo__venue reveal d1">
+          <div class="tavolo__venue-img">
+            <img src="Project%20Images/Tavolo/uma-garden.jpg" alt="Uma Garden — Kerobokan, Bali" loading="lazy" style="object-position: 70% 80%;">
+            <span class="tavolo__venue-num">01</span>
+          </div>
+          <div class="tavolo__venue-body">
+            <h3 class="tavolo__venue-name">Uma Garden</h3>
+            <p class="tavolo__venue-tag">Fire-Based Kitchen &nbsp;·&nbsp; Kerobokan</p>
+            <p class="tavolo__venue-desc">A wood-fired sanctuary built on a humble philosophy of bringing people together. Locally sourced seafood, free-range meats, and seasonal vegetables treated simply — with respect for tradition.</p>
+          </div>
+        </div>
+
+        <div class="tavolo__venue reveal d2">
+          <div class="tavolo__venue-img">
+            <img src="Project%20Images/Tavolo/shun-omakase.jpg" alt="Shun Omakase — Canggu, Bali" loading="lazy">
+            <span class="tavolo__venue-num">02</span>
+          </div>
+          <div class="tavolo__venue-body">
+            <h3 class="tavolo__venue-name">Shun Omakase</h3>
+            <p class="tavolo__venue-tag">Edomae Sushi &nbsp;·&nbsp; Canggu</p>
+            <p class="tavolo__venue-desc">An intimate 18-seat counter where Tokyo's Edomae traditions meet seasonal ingenuity. Two seatings nightly — each an unhurried journey through Japan's culinary heritage and artistry.</p>
+          </div>
+        </div>
+
+        <div class="tavolo__venue reveal d3">
+          <div class="tavolo__venue-img">
+            <img src="Project%20Images/Tavolo/avocado-factory.jpg" alt="Avocado Factory — Canggu, Bali" loading="lazy" style="object-position: bottom;">
+            <span class="tavolo__venue-num">03</span>
+          </div>
+          <div class="tavolo__venue-body">
+            <h3 class="tavolo__venue-name">Avocado Factory</h3>
+            <p class="tavolo__venue-tag">Avocado Bar &nbsp;·&nbsp; Canggu</p>
+            <p class="tavolo__venue-desc">Bali's first avocado-dedicated culinary concept. Creative, community-driven, and committed to sustainability — from rainwater collection to furniture built from 3,000 kg of recycled plastic.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="tavolo__footer reveal">
+        <p class="tavolo__about">Beyond these three, Tavolo Group's portfolio spans Mediterranean beachfront dining, specialty coffee, Roman-style pizza, and more — all operating across Bali's most sought-after neighbourhoods. Their fully integrated approach to brand, operations, and guest experience is a natural alignment with how Tiba Living approaches every development.</p>
+        <a href="https://tavologroup.com" target="_blank" rel="noopener" class="tavolo__link">
+          Discover Tavolo Group
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
     </div>
   </section>
 
