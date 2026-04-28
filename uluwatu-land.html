@@ -306,6 +306,30 @@
     }
     @keyframes heroZoom { to { transform: scale(1.0); } }
 
+    .hero__sound {
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.45rem 0.85rem;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+    .hero__sound:hover { background: rgba(0,0,0,0.45); border-color: rgba(255,255,255,0.55); }
+    .hero__sound svg { flex-shrink: 0; }
+
     .proj-hero__overlay {
       position: absolute; inset: 0; z-index: 1;
       background: linear-gradient(
@@ -1100,13 +1124,22 @@
   <section class="proj-hero" id="hero">
 
     <div class="proj-hero__video">
-      <video autoplay muted loop playsinline
+      <video id="heroVideo" autoplay muted loop playsinline
              poster="Project%20Images/Belimbing%20Sari/land-1.jpg">
         <source src="hero-video.mp4" type="video/mp4">
         <img src="Project%20Images/Belimbing%20Sari/land-1.jpg"
              alt="Prime Development Land   Uluwatu, Bali">
       </video>
     </div>
+
+    <button id="heroSound" class="hero__sound" aria-label="Toggle sound" aria-pressed="false">
+      <svg id="heroSoundIcon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <line x1="23" y1="9" x2="17" y2="15"></line>
+        <line x1="17" y1="9" x2="23" y2="15"></line>
+      </svg>
+      <span id="heroSoundLabel">Sound</span>
+    </button>
 
     <div class="proj-hero__overlay"></div>
 
@@ -1587,6 +1620,38 @@
       if (e.key === 'ArrowRight') lbShow(lbIndex + 1);
       if (e.key === 'Escape')     lbHide();
     });
+
+    /* ─── HERO SOUND TOGGLE ────────────────────────────── */
+    var heroVideo = document.getElementById('heroVideo');
+    var heroSoundBtn = document.getElementById('heroSound');
+    var heroSoundLabel = document.getElementById('heroSoundLabel');
+    var heroSoundIcon = document.getElementById('heroSoundIcon');
+
+    if (heroVideo) {
+      var heroSection = document.getElementById('hero');
+      var heroVisObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { heroVideo.play(); }
+          else { heroVideo.pause(); }
+        });
+      }, { threshold: 0.1 });
+      heroVisObs.observe(heroSection);
+
+      if (heroSoundBtn) {
+        heroSoundBtn.addEventListener('click', function () {
+          var muted = heroVideo.muted;
+          heroVideo.muted = !muted;
+          heroSoundBtn.setAttribute('aria-pressed', String(muted));
+          if (muted) {
+            heroSoundLabel.textContent = 'Mute';
+            heroSoundIcon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>';
+          } else {
+            heroSoundLabel.textContent = 'Sound';
+            heroSoundIcon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>';
+          }
+        });
+      }
+    }
 
   </script>
 
