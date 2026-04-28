@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prime Development Land   Uluwatu, Bali · Tiba Living</title>
+  <title>Prime Development Land — Uluwatu, Bali · Tiba Living</title>
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Tiba Living">
   <meta property="og:url" content="https://tibaliving.com/uluwatu-land">
-  <meta property="og:title" content="Prime Development Land   Uluwatu, Bali · Tiba Living">
+  <meta property="og:title" content="Prime Development Land — Uluwatu, Bali · Tiba Living">
   <meta property="og:description" content="20 are of Pink Zone land in Uluwatu, Bali. Main road frontage, 2–3 minutes from Alila and Savaya. IDR 700M per are. Presented by Tiba Living.">
   <meta property="og:image" content="https://tibaliving.com/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -22,7 +22,7 @@
 
   <!-- Twitter / X card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Prime Development Land   Uluwatu, Bali · Tiba Living">
+  <meta name="twitter:title" content="Prime Development Land — Uluwatu, Bali · Tiba Living">
   <meta name="twitter:description" content="20 are of Pink Zone land in Uluwatu, Bali. Main road frontage, 2–3 minutes from Alila and Savaya. IDR 700M per are.">
   <meta name="twitter:image" content="https://tibaliving.com/og-image.png">
 
@@ -174,6 +174,7 @@
     .menu.open .menu__links li:nth-child(3) a { transition-delay: 0.15s; }
     .menu.open .menu__links li:nth-child(4) a { transition-delay: 0.20s; }
     .menu.open .menu__links li:nth-child(5) a { transition-delay: 0.25s; }
+    .menu.open .menu__links li:nth-child(6) a { transition-delay: 0.30s; }
 
     .menu__divider {
       width: 36px; height: 1px;
@@ -317,7 +318,7 @@
       background: rgba(0,0,0,0.25);
       border: 1px solid rgba(255,255,255,0.3);
       color: #fff;
-      font-family: var(--font-body);
+      font-family: var(--font-sans);
       font-size: 0.65rem;
       font-weight: 500;
       letter-spacing: 0.12em;
@@ -566,205 +567,6 @@
     /* ============================================================
        DRONE SECTION
     ============================================================ */
-    .drone-section {
-      background: var(--stone);
-      padding: clamp(80px, 10vw, 130px) 0;
-      text-align: center;
-      border-top: 1px solid rgba(240, 238, 220, 0.06);
-    }
-    .drone-section h2 {
-      font-family: var(--font-serif);
-      font-size: clamp(1.8rem, 2.8vw, 3rem);
-      font-weight: 400;
-      color: var(--ivory);
-      margin-bottom: 12px;
-    }
-    .drone-section .drone-sub {
-      font-family: var(--font-sans);
-      font-size: 0.82rem;
-      color: rgba(240, 238, 220, 0.4);
-      letter-spacing: 0.06em;
-      max-width: 480px;
-      margin: 0 auto 52px;
-      line-height: 1.8;
-    }
-    .drone-embed {
-      position: relative;
-      width: 100%;
-      max-width: 980px;
-      margin: 0 auto;
-      aspect-ratio: 16 / 9;
-      overflow: hidden;
-      border: 1px solid rgba(240, 238, 220, 0.08);
-    }
-    .drone-embed iframe {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      border: none;
-    }
-    .drone-note {
-      font-family: var(--font-sans);
-      font-size: 0.62rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(240, 238, 220, 0.22);
-      margin-top: 20px;
-    }
-
-    /* ============================================================
-       GALLERY
-    ============================================================ */
-    .gallery {
-      background: var(--offwhite);
-      padding: clamp(80px, 10vw, 140px) 0;
-    }
-
-    .gallery__head {
-      margin-bottom: 52px;
-    }
-
-    .gallery__badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      font-family: var(--font-sans);
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--river-green);
-      margin-bottom: 16px;
-    }
-    .gallery__badge::before {
-      content: '';
-      display: block;
-      width: 22px; height: 1px;
-      background: var(--river-green);
-      flex-shrink: 0;
-    }
-
-    .gallery__title {
-      font-family: var(--font-serif);
-      font-size: clamp(2rem, 3.5vw, 3.4rem);
-      font-weight: 400;
-      line-height: 1.12;
-      color: var(--stone);
-    }
-
-    .gallery__track-outer { overflow: hidden; }
-    .gallery__track {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      padding: 0 max(24px, 5vw);
-      cursor: grab;
-      user-select: none;
-    }
-    .gallery__track::-webkit-scrollbar { display: none; }
-    .gallery__track.grabbing { cursor: grabbing; }
-
-    .g-cell {
-      flex-shrink: 0;
-      overflow: hidden;
-      position: relative;
-      background: var(--stone);
-      height: clamp(300px, 42vw, 520px);
-      scroll-snap-align: start;
-      cursor: pointer;
-    }
-    .g-cell img {
-      display: block;
-      height: 100%;
-      width: auto;
-      max-width: none;
-      transition: transform 0.8s var(--ease-out);
-    }
-    .g-cell:hover img { transform: scale(1.04); }
-    .g-cell::after {
-      content: '';
-      position: absolute; inset: 0;
-      outline: 2px solid transparent;
-      outline-offset: -2px;
-      transition: outline-color 0.4s var(--ease-out);
-      pointer-events: none;
-      z-index: 1;
-    }
-    .g-cell:hover::after { outline-color: var(--river-green); }
-
-    .gallery__nav {
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-      padding: 20px max(24px, 5vw) 0;
-    }
-    .gallery__arrow {
-      width: 48px; height: 48px;
-      background: transparent;
-      border: 1px solid rgba(34,35,35,0.25);
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
-      transition: background 0.3s var(--ease-out), border-color 0.3s var(--ease-out), color 0.3s var(--ease-out);
-      color: var(--stone);
-    }
-    .gallery__arrow:hover {
-      background: var(--stone);
-      border-color: var(--stone);
-      color: var(--ivory);
-    }
-    .gallery__arrow svg { width: 18px; height: 18px; pointer-events: none; }
-    .gallery__arrow:disabled { opacity: 0.3; cursor: default; }
-
-    /* Lightbox */
-    .lightbox {
-      position: fixed; inset: 0; z-index: 9999;
-      background: rgba(0,0,0,0.93);
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-    .lightbox.active { opacity: 1; pointer-events: all; }
-    .lightbox__img {
-      display: block;
-      max-width: 90vw; max-height: 88vh;
-      width: auto; height: auto;
-      object-fit: contain;
-      transition: opacity 0.15s ease;
-    }
-    .lightbox__close {
-      position: fixed; top: 20px; right: 24px;
-      width: 44px; height: 44px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.18);
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      color: #fff;
-      transition: background 0.2s;
-    }
-    .lightbox__close:hover { background: rgba(255,255,255,0.2); }
-    .lightbox__prev, .lightbox__next {
-      position: fixed; top: 50%; transform: translateY(-50%);
-      width: 50px; height: 50px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.18);
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      color: #fff;
-      transition: background 0.2s;
-    }
-    .lightbox__prev { left: 20px; }
-    .lightbox__next { right: 20px; }
-    .lightbox__prev:hover, .lightbox__next:hover { background: rgba(255,255,255,0.2); }
-    .lightbox__counter {
-      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
-      font-family: var(--font-sans);
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      color: rgba(255,255,255,0.45);
-    }
-
     /* ============================================================
        LOCATION SECTION
     ============================================================ */
@@ -1081,6 +883,7 @@
           <li><a href="our-dna" onclick="closeMenu()">Our DNA</a></li>
           <li><a href="portfolio" onclick="closeMenu()">Portfolio</a></li>
           <li><a href="https://tennessee.tibaliving.com" target="_blank" rel="noopener" onclick="closeMenu()">Tiba Tennessee</a></li>
+          <li><a href="uluwatu-land" onclick="closeMenu()">Land for Sale</a></li>
           <li><a href="https://wa.me/6281239442648" target="_blank" rel="noopener" onclick="closeMenu()">Inquire</a></li>
         </ul>
       </nav>
@@ -1092,7 +895,7 @@
   <!-- Navigation -->
   <nav class="navbar" id="navbar">
     <div class="container">
-      <a href="/" class="navbar__logo" aria-label="Tiba Living   Home">
+      <a href="/" class="navbar__logo" aria-label="Tiba Living — Home">
         <img src="TIBA_FINAL_LOGO_LANDSCAPE%20(3)%20(13).png"
              alt="Tiba Living"
              width="400" height="92"
@@ -1104,6 +907,7 @@
         <li><a href="our-dna">Our DNA</a></li>
         <li><a href="portfolio">Portfolio</a></li>
         <li><a href="https://tennessee.tibaliving.com" target="_blank" rel="noopener">Tiba Tennessee</a></li>
+        <li><a href="uluwatu-land">Land for Sale</a></li>
       </ul>
 
       <div class="navbar__right">
@@ -1128,7 +932,7 @@
              poster="Project%20Images/Belimbing%20Sari/land-1.jpg">
         <source src="hero-video.mp4" type="video/mp4">
         <img src="Project%20Images/Belimbing%20Sari/land-1.jpg"
-             alt="Prime Development Land   Uluwatu, Bali">
+             alt="Prime Development Land — Uluwatu, Bali">
       </video>
     </div>
 
@@ -1200,7 +1004,7 @@
             Two minutes from Alila and Savaya. A blank canvas for Uluwatu's next landmark.
           </blockquote>
           <p class="proj-intro__body">
-            Just off the road that connects two of Bali's most celebrated resort addresses   Alila Villas Uluwatu and Savaya   this 20 are parcel sits at the heart of the peninsula's most coveted corridor. With direct main road frontage and a commanding elevation with ocean views, it delivers what very few sites at this level can: genuine accessibility in a location defined by exclusivity.
+            Just off the road that connects two of Bali's most celebrated resort addresses — Alila Villas Uluwatu and Savaya — this 20 are parcel sits at the heart of the peninsula's most coveted corridor. With direct main road frontage and a commanding elevation with ocean views, it delivers what very few sites at this level can: genuine accessibility in a location defined by exclusivity.
           </p>
           <p class="proj-intro__body">
             Zoned Pink under Bali's spatial planning regulations, the land is cleared for commercial development, luxury villas, or a boutique resort project. Pink Zone frontage at this scale rarely reaches open sale.
@@ -1279,7 +1083,7 @@
       <iframe
         src="https://maps.google.com/maps?q=-8.839438,115.137422&t=&z=15&ie=UTF8&iwloc=&output=embed"
         loading="lazy"
-        title="Land location   Uluwatu, Bali"
+        title="Land location — Uluwatu, Bali"
         referrerpolicy="no-referrer-when-downgrade">
       </iframe>
     </div>
@@ -1292,7 +1096,7 @@
           <div class="feature-dot"></div>
           <div>
             <p class="feature-item__name">2–3 min to Alila Villas Uluwatu</p>
-            <p class="feature-item__desc">Bali's most iconic resort address   a short drive along the same main road.</p>
+            <p class="feature-item__desc">Bali's most iconic resort address — a short drive along the same main road.</p>
           </div>
         </li>
         <li class="feature-item">
@@ -1504,27 +1308,6 @@
   </footer>
 
 
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Image viewer">
-    <button class="lightbox__close" id="lbClose" aria-label="Close">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
-        <path d="M18 6 6 18M6 6l12 12"/>
-      </svg>
-    </button>
-    <button class="lightbox__prev" id="lbPrev" aria-label="Previous image">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
-        <path d="M19 12H5"/><path d="m12 19-7-7 7-7"/>
-      </svg>
-    </button>
-    <img class="lightbox__img" id="lbImg" src="" alt="Land site image">
-    <button class="lightbox__next" id="lbNext" aria-label="Next image">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
-        <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-      </svg>
-    </button>
-    <div class="lightbox__counter" id="lbCounter"></div>
-  </div>
-
   <script>
     /* ─── NAV SCROLL ──────────────────────────────────── */
     const navbar = document.getElementById('navbar');
@@ -1563,63 +1346,6 @@
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     revealEls.forEach(el => io.observe(el));
-
-    /* ─── GALLERY DRAG ───────────────────────────────── */
-    const track = document.getElementById('galleryTrack');
-    if (track) {
-      let isDown = false, startX = 0, scrollL = 0;
-      track.addEventListener('mousedown', e => {
-        isDown = true;
-        track.classList.add('grabbing');
-        startX = e.pageX - track.offsetLeft;
-        scrollL = track.scrollLeft;
-      });
-      ['mouseleave', 'mouseup'].forEach(ev => track.addEventListener(ev, () => {
-        isDown = false;
-        track.classList.remove('grabbing');
-      }));
-      track.addEventListener('mousemove', e => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - track.offsetLeft;
-        track.scrollLeft = scrollL - (x - startX) * 1.2;
-      });
-      document.getElementById('gallPrev').addEventListener('click', () => track.scrollBy({ left: -420, behavior: 'smooth' }));
-      document.getElementById('gallNext').addEventListener('click', () => track.scrollBy({ left:  420, behavior: 'smooth' }));
-    }
-
-    /* ─── LIGHTBOX ───────────────────────────────────── */
-    const lbEl      = document.getElementById('lightbox');
-    const lbImg     = document.getElementById('lbImg');
-    const lbCounter = document.getElementById('lbCounter');
-    const cells     = [...document.querySelectorAll('.g-cell')];
-    let   lbIndex   = 0;
-
-    function lbShow(idx) {
-      lbIndex = (idx + cells.length) % cells.length;
-      lbImg.style.opacity = 0;
-      lbImg.src = cells[lbIndex].dataset.img;
-      lbImg.onload = () => { lbImg.style.opacity = 1; };
-      lbCounter.textContent = `${lbIndex + 1} / ${cells.length}`;
-      lbEl.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-    function lbHide() {
-      lbEl.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    cells.forEach((c, i) => c.addEventListener('click', () => lbShow(i)));
-    document.getElementById('lbClose').addEventListener('click', lbHide);
-    document.getElementById('lbPrev').addEventListener('click', () => lbShow(lbIndex - 1));
-    document.getElementById('lbNext').addEventListener('click', () => lbShow(lbIndex + 1));
-    lbEl.addEventListener('click', e => { if (e.target === lbEl) lbHide(); });
-    document.addEventListener('keydown', e => {
-      if (!lbEl.classList.contains('active')) return;
-      if (e.key === 'ArrowLeft')  lbShow(lbIndex - 1);
-      if (e.key === 'ArrowRight') lbShow(lbIndex + 1);
-      if (e.key === 'Escape')     lbHide();
-    });
 
     /* ─── HERO SOUND TOGGLE ────────────────────────────── */
     var heroVideo = document.getElementById('heroVideo');
