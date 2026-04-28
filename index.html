@@ -174,6 +174,7 @@
     .menu.open .menu__links li:nth-child(3) a { transition-delay: 0.15s; }
     .menu.open .menu__links li:nth-child(4) a { transition-delay: 0.20s; }
     .menu.open .menu__links li:nth-child(5) a { transition-delay: 0.25s; }
+    .menu.open .menu__links li:nth-child(6) a { transition-delay: 0.30s; }
 
     .menu__divider {
       width: 36px; height: 1px;
@@ -290,19 +291,12 @@
       background: var(--stone);
     }
 
-    /* Slides */
-    .hero__slides { position: absolute; inset: 0; }
-    .hero__slide {
+    /* Video background */
+    .hero__video {
       position: absolute; inset: 0;
-      opacity: 0;
-      transition: opacity 2.2s ease;
+      width: 100%; height: 100%;
+      object-fit: cover;
     }
-    .hero__slide.active { opacity: 1; }
-    .hero__slide img {
-      transform: scale(1.06);
-      transition: transform 10s ease;
-    }
-    .hero__slide.active img { transform: scale(1.0); }
 
     /* Gradient overlay */
     .hero__overlay {
@@ -411,18 +405,6 @@
       text-transform: uppercase;
       color: rgba(240, 238, 220, 0.38);
     }
-
-    /* Slide counter + scroll cue */
-    .hero__counter {
-      position: absolute;
-      bottom: 170px; right: clamp(24px, 4vw, 72px);
-      z-index: 3;
-      font-family: var(--font-sans);
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      color: rgba(240, 238, 220, 0.35);
-    }
-    .hero__counter em { color: rgba(240, 238, 220, 0.8); font-style: normal; }
 
     .hero__scroll-cue {
       position: absolute;
@@ -1342,6 +1324,7 @@
           <li><a href="our-dna" onclick="closeMenu()">Our DNA</a></li>
           <li><a href="portfolio" onclick="closeMenu()">Portfolio</a></li>
           <li><a href="https://tennessee.tibaliving.com" target="_blank" rel="noopener" onclick="closeMenu()">Tiba Tennessee</a></li>
+          <li><a href="uluwatu-land" onclick="closeMenu()">Land for Sale</a></li>
           <li><a href="https://wa.me/6281239442648" target="_blank" rel="noopener" onclick="closeMenu()">Inquire</a></li>
         </ul>
       </nav>
@@ -1365,6 +1348,7 @@
         <li><a href="our-dna">Our DNA</a></li>
         <li><a href="portfolio">Portfolio</a></li>
         <li><a href="https://tennessee.tibaliving.com" target="_blank" rel="noopener">Tiba Tennessee</a></li>
+        <li><a href="uluwatu-land">Land for Sale</a></li>
       </ul>
 
       <div class="navbar__right">
@@ -1384,58 +1368,15 @@
   <!-- ═══════════════════════════════════ HERO ═══════════════════ -->
   <section class="hero" id="hero">
 
-    <div class="hero__slides">
-      <div class="hero__slide active">
-        <img src="Project%20Images/House%20SJ/MAIN.jpg"
-             alt="House SJ — Pererenan, Bali"
-             loading="eager">
-      </div>
-      <div class="hero__slide">
-        <img src="Project%20Images/Tiba%20Tennessee/8E1A41B6-0154-417C-9CE2-1A45A7A9245D.jpg"
-             alt="Tiba Tennessee — Appalachian Highlands"
-             loading="lazy">
-      </div>
-      <div class="hero__slide">
-        <img src="Project%20Images/Tiba%20Hills/A919F8C2-28A2-488B-89D6-AE1B62CD9ED5.jpg"
-             alt="Tiba Hills — Uluwatu, Bali"
-             loading="lazy">
-      </div>
-      <div class="hero__slide">
-        <img src="Project%20Images/Casa%20Tiba/1B.jpeg"
-             alt="Casa Tiba — Bingin Cliff, Bali"
-             loading="lazy">
-      </div>
-      <div class="hero__slide">
-        <img src="Project%20Images/Tiba%20Tennessee/49B7F357-1781-4F5A-BF75-584629D23B52.jpg"
-             alt="Tiba Tennessee — Appalachian Highlands"
-             loading="lazy">
-      </div>
-      <div class="hero__slide">
-        <img src="Project%20Images/88%20East/Fathom-11-scaled.jpg"
-             alt="88 East — Canggu, Bali"
-             loading="lazy">
-      </div>
-      <div class="hero__slide">
-        <img src="Project%20Images/Tiba%20Tennessee/C0DB69DB-3D9A-4288-8ECE-DE2527975268.jpg"
-             alt="Tiba Tennessee — Appalachian Highlands"
-             loading="lazy">
-      </div>
-      <div class="hero__slide">
-        <img src="Project%20Images/Lofts/Image1.jpg"
-             alt="Tiba Lofts — Padang Padang, Bali"
-             loading="lazy">
-      </div>
-    </div>
+    <video class="hero__video" autoplay muted loop playsinline>
+      <source src="hero.mp4" type="video/mp4">
+    </video>
 
     <div class="hero__overlay"></div>
 
     <div class="hero__scroll-cue">
       <span>Scroll</span>
       <div class="hero__scroll-line"></div>
-    </div>
-
-    <div class="hero__counter">
-      <em id="slideNum">01</em> / 08
     </div>
 
     <div class="hero__lower">
@@ -1893,18 +1834,6 @@
     }
 
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) closeMenu(); });
-
-    /* ─── HERO CROSSFADE ──────────────────────────────── */
-    const slides   = document.querySelectorAll('.hero__slide');
-    const slideNum = document.getElementById('slideNum');
-    let   current  = 0;
-
-    setInterval(() => {
-      slides[current].classList.remove('active');
-      current = (current + 1) % slides.length;
-      slides[current].classList.add('active');
-      slideNum.textContent = String(current + 1).padStart(2, '0');
-    }, 6000);
 
     /* ─── SCROLL REVEALS ──────────────────────────────── */
     const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
