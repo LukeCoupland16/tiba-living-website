@@ -637,7 +637,6 @@
       border-top: 1px solid rgba(240, 238, 220, 0.06);
     }
     .siteplan__header {
-      text-align: center;
       margin-bottom: clamp(48px, 6vw, 72px);
     }
     .siteplan__header h2 {
@@ -645,75 +644,120 @@
       font-size: clamp(1.8rem, 2.8vw, 3rem);
       font-weight: 400;
       color: var(--ivory);
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
     .siteplan__header p {
       font-family: var(--font-sans);
       font-size: 0.85rem;
       color: rgba(240, 238, 220, 0.42);
-      max-width: 520px;
-      margin: 0 auto;
+      max-width: 480px;
       line-height: 1.85;
     }
+    .siteplan__layout {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 2px;
+      align-items: start;
+    }
     .siteplan__diagram {
-      max-width: 900px;
-      margin: 0 auto;
-      border: 1px solid rgba(240, 238, 220, 0.07);
       background: var(--stone);
-      padding: clamp(24px, 3vw, 48px);
+      border: 1px solid rgba(240, 238, 220, 0.07);
+      padding: clamp(28px, 4vw, 56px);
+      position: relative;
     }
     .siteplan__diagram img {
       width: 100%;
       height: auto;
       object-fit: contain;
-      filter: invert(1) brightness(0.85) sepia(0.2) hue-rotate(10deg) saturate(0.4);
+      filter: invert(0.92) brightness(0.7) sepia(0.15) hue-rotate(10deg) saturate(0.5);
+      opacity: 0.9;
     }
-    .siteplan__legend {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2px;
-      margin-top: clamp(36px, 4vw, 56px);
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
+    .siteplan__sidebar {
+      display: flex;
+      flex-direction: column;
     }
-    .siteplan__plot {
+    .siteplan__total {
       background: var(--stone);
-      padding: clamp(24px, 3vw, 36px) clamp(20px, 2.5vw, 32px);
       border: 1px solid rgba(240, 238, 220, 0.07);
-      transition: border-color 0.3s var(--ease-out);
+      padding: clamp(28px, 3vw, 44px) clamp(24px, 3vw, 40px);
+      border-bottom: 1px solid rgba(163, 153, 106, 0.2);
     }
-    .siteplan__plot:hover {
-      border-color: var(--river-green);
-    }
-    .siteplan__plot-num {
+    .siteplan__total-label {
       font-family: var(--font-sans);
       font-size: 0.6rem;
       font-weight: 600;
       letter-spacing: 0.22em;
       text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.3);
+      margin-bottom: 8px;
+    }
+    .siteplan__total-figure {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 400;
       color: var(--river-green);
-      margin-bottom: 10px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .siteplan__total-sub {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      color: rgba(240, 238, 220, 0.35);
+      letter-spacing: 0.04em;
+    }
+    .siteplan__plots {
+      background: var(--stone);
+      border: 1px solid rgba(240, 238, 220, 0.07);
+      border-top: none;
+      flex: 1;
+    }
+    .siteplan__plot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px clamp(24px, 3vw, 40px);
+      border-bottom: 1px solid rgba(240, 238, 220, 0.05);
+      transition: background 0.3s var(--ease-out);
+    }
+    .siteplan__plot:last-child { border-bottom: none; }
+    .siteplan__plot:hover {
+      background: rgba(163, 153, 106, 0.04);
+    }
+    .siteplan__plot-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .siteplan__plot-num {
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      color: var(--river-green);
+      width: 18px;
     }
     .siteplan__plot-size {
-      font-family: var(--font-serif);
-      font-size: clamp(1.3rem, 2vw, 1.8rem);
-      font-weight: 400;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 500;
       color: var(--ivory);
-      margin-bottom: 6px;
+      letter-spacing: 0.02em;
     }
     .siteplan__plot-status {
       font-family: var(--font-sans);
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      color: rgba(240, 238, 220, 0.35);
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
     }
     .siteplan__plot-status.available {
       color: var(--river-green);
     }
     .siteplan__plot-status.sold {
       color: rgba(240, 238, 220, 0.2);
+    }
+    @media (max-width: 900px) {
+      .siteplan__layout { grid-template-columns: 1fr; }
     }
 
     /* INQUIRE CTA */
@@ -1057,6 +1101,89 @@
     </div>
   </section>
 
+  <!-- SITE PLAN -->
+  <section class="siteplan">
+    <div class="container">
+      <div class="siteplan__header reveal">
+        <div class="badge">Available Plots</div>
+        <h2>Site Plan</h2>
+        <p>Multiple plots available across the hillside, each with individual split certificates and unobstructed ocean views.</p>
+      </div>
+
+      <div class="siteplan__layout">
+        <div class="siteplan__diagram reveal">
+          <img src="site-plan-sunset-hills.svg" alt="Uluwatu Sunset Hills site plan showing available plots">
+        </div>
+
+        <div class="siteplan__sidebar reveal d1">
+          <div class="siteplan__total">
+            <p class="siteplan__total-label">Total Available</p>
+            <p class="siteplan__total-figure">42.91 Are</p>
+            <p class="siteplan__total-sub">across 8 individual plots</p>
+          </div>
+          <div class="siteplan__plots">
+            <div class="siteplan__plot">
+              <div class="siteplan__plot-left">
+                <span class="siteplan__plot-num">01</span>
+                <span class="siteplan__plot-size">6 Are</span>
+              </div>
+              <span class="siteplan__plot-status available">Available</span>
+            </div>
+            <div class="siteplan__plot">
+              <div class="siteplan__plot-left">
+                <span class="siteplan__plot-num">02</span>
+                <span class="siteplan__plot-size">6 Are</span>
+              </div>
+              <span class="siteplan__plot-status available">Available</span>
+            </div>
+            <div class="siteplan__plot">
+              <div class="siteplan__plot-left">
+                <span class="siteplan__plot-num">03</span>
+                <span class="siteplan__plot-size">6 Are</span>
+              </div>
+              <span class="siteplan__plot-status available">Available</span>
+            </div>
+            <div class="siteplan__plot">
+              <div class="siteplan__plot-left">
+                <span class="siteplan__plot-num">04</span>
+                <span class="siteplan__plot-size">4.36 Are</span>
+              </div>
+              <span class="siteplan__plot-status available">Available</span>
+            </div>
+            <div class="siteplan__plot">
+              <div class="siteplan__plot-left">
+                <span class="siteplan__plot-num">05</span>
+                <span class="siteplan__plot-size">5 Are</span>
+              </div>
+              <span class="siteplan__plot-status available">Available</span>
+            </div>
+            <div class="siteplan__plot">
+              <div class="siteplan__plot-left">
+                <span class="siteplan__plot-num">06</span>
+                <span class="siteplan__plot-size">5 Are</span>
+              </div>
+              <span class="siteplan__plot-status available">Available</span>
+            </div>
+            <div class="siteplan__plot">
+              <div class="siteplan__plot-left">
+                <span class="siteplan__plot-num">07</span>
+                <span class="siteplan__plot-size">4.55 Are</span>
+              </div>
+              <span class="siteplan__plot-status available">Available</span>
+            </div>
+            <div class="siteplan__plot">
+              <div class="siteplan__plot-left">
+                <span class="siteplan__plot-num">08</span>
+                <span class="siteplan__plot-size">6 Are</span>
+              </div>
+              <span class="siteplan__plot-status available">Available</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- LOCATION -->
   <section class="location-section">
 
@@ -1112,82 +1239,6 @@
       </div>
     </div>
 
-  </section>
-
-  <!-- WA CTA: after location -->
-  <section class="wa-strip">
-    <div class="container">
-      <div class="wa-strip__inner reveal">
-        <div class="wa-strip__text">
-          <strong>Want plot sizes and pricing?</strong>
-          We can share detailed survey documents and certificate information directly.
-        </div>
-        <a href="https://wa.me/6281239442648?text=Hi%2C%20I%27d%20like%20plot%20sizes%20and%20pricing%20for%20Uluwatu%20Sunset%20Hills." target="_blank" rel="noopener" class="btn btn-ghost">
-          Contact us on WhatsApp
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-          </svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- SITE PLAN -->
-  <section class="siteplan">
-    <div class="container">
-      <div class="siteplan__header reveal">
-        <div class="badge" style="justify-content: center;">Available Plots</div>
-        <h2>Site Plan</h2>
-        <p>Multiple plots available across the hillside, each with individual split certificates and unobstructed ocean views.</p>
-      </div>
-
-      <div class="siteplan__diagram reveal d1">
-        <img src="site-plan-sunset-hills.svg" alt="Uluwatu Sunset Hills site plan showing available plots">
-      </div>
-
-      <div class="siteplan__legend">
-        <div class="siteplan__plot reveal">
-          <span class="siteplan__plot-num">Plot 1</span>
-          <p class="siteplan__plot-size">6 Are</p>
-          <p class="siteplan__plot-status available">Available</p>
-        </div>
-        <div class="siteplan__plot reveal d1">
-          <span class="siteplan__plot-num">Plot 2</span>
-          <p class="siteplan__plot-size">6 Are</p>
-          <p class="siteplan__plot-status available">Available</p>
-        </div>
-        <div class="siteplan__plot reveal d2">
-          <span class="siteplan__plot-num">Plot 3</span>
-          <p class="siteplan__plot-size">6 Are</p>
-          <p class="siteplan__plot-status available">Available</p>
-        </div>
-        <div class="siteplan__plot reveal d3">
-          <span class="siteplan__plot-num">Plot 4</span>
-          <p class="siteplan__plot-size">4.36 Are</p>
-          <p class="siteplan__plot-status available">Available</p>
-        </div>
-        <div class="siteplan__plot reveal d4">
-          <span class="siteplan__plot-num">Plot 5</span>
-          <p class="siteplan__plot-size">5 Are</p>
-          <p class="siteplan__plot-status available">Available</p>
-        </div>
-        <div class="siteplan__plot reveal">
-          <span class="siteplan__plot-num">Plot 6</span>
-          <p class="siteplan__plot-size">5 Are</p>
-          <p class="siteplan__plot-status available">Available</p>
-        </div>
-        <div class="siteplan__plot reveal d1">
-          <span class="siteplan__plot-num">Plot 7</span>
-          <p class="siteplan__plot-size">4.55 Are</p>
-          <p class="siteplan__plot-status available">Available</p>
-        </div>
-        <div class="siteplan__plot reveal d2">
-          <span class="siteplan__plot-num">Plot 8</span>
-          <p class="siteplan__plot-size">6 Are</p>
-          <p class="siteplan__plot-status available">Available</p>
-        </div>
-      </div>
-    </div>
   </section>
 
   <!-- INQUIRE -->
