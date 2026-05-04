@@ -287,7 +287,8 @@
       transition: opacity 0.3s var(--ease-out), visibility 0.3s;
       z-index: 1000;
     }
-    .navbar__dropdown:hover .navbar__dropdown-menu {
+    .navbar__dropdown:hover .navbar__dropdown-menu,
+    .navbar__dropdown:focus-within .navbar__dropdown-menu {
       opacity: 1;
       visibility: visible;
     }
