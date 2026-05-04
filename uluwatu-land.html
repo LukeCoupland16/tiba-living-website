@@ -565,6 +565,147 @@
     }
 
     /* ============================================================
+       INVESTMENT CONTEXT SECTION
+    ============================================================ */
+    .invest-context {
+      background: var(--stone);
+      padding: clamp(90px, 11vw, 150px) 0;
+      border-top: 1px solid rgba(240, 238, 220, 0.06);
+    }
+    .invest-context__header {
+      max-width: 720px;
+      margin-bottom: clamp(56px, 7vw, 80px);
+    }
+    .invest-context__headline {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.22;
+      color: var(--ivory);
+      margin-bottom: 28px;
+    }
+    .invest-context__lead {
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      font-weight: 400;
+      line-height: 1.9;
+      color: rgba(240, 238, 220, 0.58);
+      max-width: 640px;
+    }
+
+    .invest-context__stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(240, 238, 220, 0.06);
+      border: 1px solid rgba(240, 238, 220, 0.06);
+      margin-bottom: clamp(56px, 7vw, 80px);
+    }
+    .invest-stat {
+      background: var(--stone);
+      padding: clamp(36px, 4vw, 56px) clamp(28px, 3vw, 44px);
+    }
+    .invest-stat__figure {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.5vw, 3.6rem);
+      font-weight: 400;
+      color: var(--river-green);
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+    .invest-stat__label {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.32);
+      margin-bottom: 10px;
+    }
+    .invest-stat__desc {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 400;
+      line-height: 1.7;
+      color: rgba(240, 238, 220, 0.42);
+    }
+
+    .invest-context__body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(48px, 6vw, 96px);
+      align-items: start;
+    }
+    .invest-context__text p {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 400;
+      line-height: 1.9;
+      color: rgba(240, 238, 220, 0.52);
+      margin-bottom: 24px;
+    }
+    .invest-context__text p:last-child { margin-bottom: 0; }
+
+    .invest-context__visual {
+      position: relative;
+      border: 1px solid rgba(240, 238, 220, 0.07);
+      background: var(--stone-mid);
+      overflow: hidden;
+    }
+    .invest-context__visual img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+    .invest-context__placeholder {
+      text-align: center;
+      padding: 40px;
+    }
+    .invest-context__placeholder svg {
+      width: 48px;
+      height: 48px;
+      stroke: rgba(240, 238, 220, 0.15);
+      margin-bottom: 16px;
+    }
+    .invest-context__placeholder span {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(240, 238, 220, 0.2);
+    }
+
+    .invest-context__gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: clamp(56px, 7vw, 80px);
+    }
+    .invest-context__gallery-item {
+      position: relative;
+      overflow: hidden;
+      background: var(--stone-mid);
+      border: 1px solid rgba(240, 238, 220, 0.07);
+    }
+    .invest-context__gallery-item img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.9s var(--ease-out);
+    }
+    .invest-context__gallery-item:hover img { transform: scale(1.04); }
+
+    @media (max-width: 768px) {
+      .invest-context__stats { grid-template-columns: 1fr; }
+      .invest-context__body { grid-template-columns: 1fr; }
+      .invest-context__gallery { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
        DRONE SECTION
     ============================================================ */
     /* ============================================================
@@ -884,6 +1025,7 @@
           <li><a href="portfolio" onclick="closeMenu()">Portfolio</a></li>
           <li><a href="https://tennessee.tibaliving.com" target="_blank" rel="noopener" onclick="closeMenu()">Tiba Tennessee</a></li>
           <li><a href="uluwatu-land" onclick="closeMenu()">Land for Sale</a></li>
+          <li><a href="uluwatu-sunset-hills" onclick="closeMenu()">Sunset Hills</a></li>
           <li><a href="https://wa.me/6281239442648" target="_blank" rel="noopener" onclick="closeMenu()">Inquire</a></li>
         </ul>
       </nav>
@@ -1023,7 +1165,7 @@
 
         <div class="fact-card reveal">
           <div class="fact-card__img">
-            <img src="Project%20Images/Tiba%20Townhouse/Copy%20of%20Copy%20of%20Image1.jpg" alt="Townhouse render – pool and facade" loading="lazy">
+            <img src="Project%20Images/Belimbing%20Sari/townhouse-wide.png" alt="Townhouse development — wide view" loading="lazy">
           </div>
           <div class="fact-card__text">
             <span class="fact-card__num">01</span>
@@ -1055,6 +1197,71 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ INVESTMENT CONTEXT ═══════════════════ -->
+  <section class="invest-context">
+    <div class="container">
+
+      <div class="invest-context__header reveal">
+        <div class="badge">The Neighbourhood</div>
+        <h2 class="invest-context__headline">You're not pioneering.<br>You're joining.</h2>
+        <p class="invest-context__lead">
+          The plots surrounding this land are already under active development by international developers building high-end townhouses and boutique resort-style residences. The area already has the density and quality of a resort precinct - and it's still growing.
+        </p>
+      </div>
+
+      <div class="invest-context__stats">
+        <div class="invest-stat reveal">
+          <div class="invest-stat__figure">12+</div>
+          <p class="invest-stat__label">Active Projects</p>
+          <p class="invest-stat__desc">Multiple developments already under construction on surrounding plots within the immediate area.</p>
+        </div>
+        <div class="invest-stat reveal d1">
+          <div class="invest-stat__figure">International</div>
+          <p class="invest-stat__label">Developer Profile</p>
+          <p class="invest-stat__desc">International developers from Australia, Europe, and Southeast Asia are building high-specification properties here.</p>
+        </div>
+        <div class="invest-stat reveal d2">
+          <div class="invest-stat__figure">Resort</div>
+          <p class="invest-stat__label">Property Standard</p>
+          <p class="invest-stat__desc">Townhouses, boutique hotels, and luxury villas — the calibre of what's being built sets the tone for the entire area.</p>
+        </div>
+      </div>
+
+      <div class="invest-context__body">
+        <div class="invest-context__text reveal">
+          <p>
+            Across the neighbouring plots, construction is well underway on multi-unit townhouse developments, private villa compounds, and hotel-grade hospitality projects. These are fully capitalised developments from experienced operators who've committed significant investment to this exact corridor.
+          </p>
+          <p>
+            The result is an area that's rapidly taking on the character of a curated resort precinct. Shared infrastructure is improving, road access is widening, and the density of quality development is creating a compounding effect on land values and desirability.
+          </p>
+          <p>
+            Your project won't be the first to break ground here. It'll be part of something already well underway.
+          </p>
+        </div>
+        <div class="invest-context__visual reveal d1">
+          <img src="Project%20Images/Belimbing%20Sari/site-plan-context.png" alt="Site plan showing surrounding villa, resort, and townhouse developments" loading="lazy">
+        </div>
+      </div>
+
+      <div class="badge reveal" style="margin-top: clamp(56px, 7vw, 80px); margin-bottom: 12px;">Adjacent Development</div>
+      <p class="invest-context__lead reveal" style="margin-bottom: clamp(32px, 4vw, 44px);">Boutique townhouses currently under construction on the neighbouring plot.</p>
+
+      <div class="invest-context__gallery">
+        <div class="invest-context__gallery-item reveal">
+          <img src="Project%20Images/Belimbing%20Sari/townhouse-interior.jpg" alt="Townhouse interior — double-height living space" loading="lazy">
+        </div>
+        <div class="invest-context__gallery-item reveal d1">
+          <img src="Project%20Images/Belimbing%20Sari/townhouse-exterior.jpg" alt="Townhouse exterior — street view with landscaping" loading="lazy">
+        </div>
+        <div class="invest-context__gallery-item reveal d2">
+          <img src="Project%20Images/Belimbing%20Sari/townhouse-pool.jpg" alt="Townhouse private pool and deck" loading="lazy">
+        </div>
+      </div>
+
     </div>
   </section>
 
