@@ -168,13 +168,29 @@
     .menu__links a:hover { color: var(--river-green); }
     .menu__links a:hover::after { width: 100%; }
 
-    .menu.open .menu__links a { transform: translateY(0); opacity: 1; }
-    .menu.open .menu__links li:nth-child(1) a { transition-delay: 0.05s; }
-    .menu.open .menu__links li:nth-child(2) a { transition-delay: 0.10s; }
-    .menu.open .menu__links li:nth-child(3) a { transition-delay: 0.15s; }
-    .menu.open .menu__links li:nth-child(4) a { transition-delay: 0.20s; }
-    .menu.open .menu__links li:nth-child(5) a { transition-delay: 0.25s; }
-    .menu.open .menu__links li:nth-child(6) a { transition-delay: 0.30s; }
+    .menu.open .menu__links > li > a { transform: translateY(0); opacity: 1; }
+    .menu.open .menu__links > li:nth-child(1) > a { transition-delay: 0.05s; }
+    .menu.open .menu__links > li:nth-child(2) > a { transition-delay: 0.10s; }
+    .menu.open .menu__links > li:nth-child(3) > a { transition-delay: 0.15s; }
+    .menu.open .menu__links > li:nth-child(4) > a { transition-delay: 0.20s; }
+    .menu.open .menu__links > li:nth-child(5) > a { transition-delay: 0.25s; }
+    .menu.open .menu__links > li:nth-child(6) > a { transition-delay: 0.30s; }
+
+    .menu__sub {
+      list-style: none;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s var(--ease-out);
+      padding-left: 24px;
+    }
+    .menu__dropdown.open .menu__sub { max-height: 200px; }
+    .menu__sub a {
+      font-size: clamp(20px, 3vw, 36px) !important;
+      color: rgba(240, 238, 220, 0.5);
+      transform: none;
+      opacity: 1;
+    }
+    .menu__sub a:hover { color: var(--river-green); }
 
     .menu__divider {
       width: 36px; height: 1px;
@@ -254,6 +270,55 @@
     }
     .navbar__links a:hover { color: var(--ivory); }
     .navbar__links a:hover::after { width: 100%; }
+
+    .navbar__dropdown {
+      position: relative;
+    }
+    .navbar__dropdown-toggle {
+      cursor: pointer;
+    }
+    .navbar__dropdown-menu {
+      position: absolute;
+      top: calc(100% + 14px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--stone);
+      border: 1px solid rgba(240, 238, 220, 0.08);
+      padding: 16px 0;
+      min-width: 260px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s var(--ease-out), visibility 0.3s;
+      z-index: 1000;
+    }
+    .navbar__dropdown:hover .navbar__dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+    }
+    .navbar__dropdown-menu a {
+      display: block;
+      padding: 12px 28px;
+      font-size: 0.7rem !important;
+      letter-spacing: 0.06em !important;
+      text-transform: none !important;
+      color: rgba(240, 238, 220, 0.6);
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .navbar__dropdown-menu a::after { display: none !important; }
+    .navbar__dropdown-menu a:hover {
+      background: rgba(240, 238, 220, 0.04);
+      color: var(--ivory);
+    }
+    .navbar__dropdown-menu a span {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 0.82rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--ivory);
+      margin-bottom: 3px;
+    }
 
     .navbar__right {
       display: flex;
@@ -1019,8 +1084,13 @@
           <li><a href="our-dna" onclick="closeMenu()">Our DNA</a></li>
           <li><a href="portfolio" onclick="closeMenu()">Portfolio</a></li>
           <li><a href="https://tennessee.tibaliving.com" target="_blank" rel="noopener" onclick="closeMenu()">Tiba Tennessee</a></li>
-          <li><a href="uluwatu-land" onclick="closeMenu()">Land for Sale</a></li>
-          <li><a href="uluwatu-sunset-hills" onclick="closeMenu()">Sunset Hills</a></li>
+          <li class="menu__dropdown">
+            <a onclick="this.parentElement.classList.toggle('open')">Land for Sale</a>
+            <ul class="menu__sub">
+              <li><a href="uluwatu-sunset-hills" onclick="closeMenu()">Sunset Hills</a></li>
+              <li><a href="uluwatu-land" onclick="closeMenu()">Uluwatu Land</a></li>
+            </ul>
+          </li>
           <li><a href="https://wa.me/6281239442648" target="_blank" rel="noopener" onclick="closeMenu()">Inquire</a></li>
         </ul>
       </nav>
@@ -1044,7 +1114,19 @@
         <li><a href="our-dna">Our DNA</a></li>
         <li><a href="portfolio">Portfolio</a></li>
         <li><a href="https://tennessee.tibaliving.com" target="_blank" rel="noopener">Tiba Tennessee</a></li>
-        <li><a href="uluwatu-land">Land for Sale</a></li>
+        <li class="navbar__dropdown">
+          <a class="navbar__dropdown-toggle">Land for Sale</a>
+          <div class="navbar__dropdown-menu">
+            <a href="uluwatu-sunset-hills">
+              <span>Sunset Hills</span>
+              Panoramic ocean-view hillside plots
+            </a>
+            <a href="uluwatu-land">
+              <span>Uluwatu Land</span>
+              Boutique resort development opportunity
+            </a>
+          </div>
+        </li>
       </ul>
 
       <div class="navbar__right">
