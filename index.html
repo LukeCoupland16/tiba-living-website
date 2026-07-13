@@ -53,7 +53,7 @@
        RESET
     ============================================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: clip; }
     body {
       font-family: var(--font-sans);
       background: var(--stone);
@@ -755,6 +755,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       min-height: 740px;
+      overflow: hidden;
     }
 
     .dna__image {
@@ -1546,23 +1547,18 @@
       <h2 class="featured-tn__headline reveal d1">Tiba<br>Tennessee</h2>
 
       <p class="featured-tn__desc reveal d2">
-        A boutique landscape hotel. Built from the natural palette of the valley's and streams that surround it – with picturesque lakeside suites perched, around a newly formed body of water. A retreat – beyond the city's reach.
+        A boutique landscape hotel. Built from the natural palette of the valleys and streams that surround it – with picturesque lakeside suites perched around a newly formed body of water. A retreat – beyond the city's reach.
       </p>
 
       <div class="featured-tn__stats reveal d2">
         <div class="featured-tn__stat">
-          <span class="featured-tn__stat-num">45</span>
+          <span class="featured-tn__stat-num">40</span>
           <span class="featured-tn__stat-label">Keys</span>
         </div>
         <div class="featured-tn__stat-divider"></div>
         <div class="featured-tn__stat">
-          <span class="featured-tn__stat-num">57</span>
+          <span class="featured-tn__stat-num">100</span>
           <span class="featured-tn__stat-label">Acres</span>
-        </div>
-        <div class="featured-tn__stat-divider"></div>
-        <div class="featured-tn__stat">
-          <span class="featured-tn__stat-num">Open</span>
-          <span class="featured-tn__stat-label">Investment Round</span>
         </div>
       </div>
 
